@@ -11,7 +11,7 @@ skills/
 ├── README.md                          # This file
 ├── LICENSE                            # Repository license
 └── <skill-name>/                      # Individual skill directory
-    ├── <SKILL>.md                     # Main skill file (thin)
+    ├── SKILL.md                       # Main skill file (thin)
     └── references/                    # Detailed instruction files
         ├── 1_<TOPIC>.md              # First reference (numbered)
         ├── 2_<TOPIC>.md              # Second reference (numbered)
