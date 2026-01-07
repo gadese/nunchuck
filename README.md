@@ -1,264 +1,199 @@
-# Skills
+# Agent Skills
+
+A collection of structured skills for AI agents to perform specific tasks effectively and avoid common pitfalls in agentic programming.
+
+## What's New
+
+**Recent Updates (January 2026):**
+- ✨ **New Skill**: `plan-status` - Track plan execution progress with frontmatter parsing
+- 🪟 **Windows Support**: PowerShell (`.ps1`) scripts added to `adapter`, `index`, and `plan` skills
+- 📦 **Adapter Skillset**: Created `SKILLSET` for coordinating IDE adapter generation
+- 📊 **Plan Status Tracking**: Added frontmatter status values (`pending`, `in_progress`, `complete`)
+- 🔄 **Enhanced Plan Skills**: All plan skills now support artifact status parsing
+
+See [CHANGELOG.md](#) for complete release history.
+
+## Quick Links
+
+- 📚 [Skills Reference](./docs/02_SKILLS.md) - Browse all available skills
+- 🎯 [Skillsets](./docs/03_SKILLSETS.md) - Learn about orchestrator skills
+- 📋 [INDEX.md](./INDEX.md) - Auto-generated skill index with keywords
+- 📖 [Formal Specification](./SPEC.md) - Official Agent Skills format
 
 ## Overview
 
-This repository contains a collection of agent skills designed to prevent typical issues that surface during agentic programming sessions. Each skill provides structured guidance, instructions, and references to help AI agents perform specific tasks more effectively and avoid common pitfalls.
+This repository provides **agent skills** - structured instructions that help AI agents perform specific tasks more effectively. Each skill includes:
 
-## Repository Structure
+- **Clear guidance** on when and how to use the skill
+- **Step-by-step procedures** stored in reference files
+- **Executable scripts** for automation (Unix and Windows)
+- **Keywords and metadata** for easy discovery
 
-```
-skills/
-├── README.md                          # This file
-├── INDEX.md                           # Auto-generated skill index
-├── LICENSE                            # Repository license
-├── SPEC.md                            # Formal specification for skills
-├── adapter/                           # Adapter skills for IDE/tools
-│   ├── cursor/
-│   │   ├── SKILL.md
-│   │   ├── references/
-│   │   └── scripts/
-│   └── windsurf/
-│       ├── SKILL.md
-│       ├── assets/
-│       ├── references/
-│       └── scripts/
-├── index/                             # Skill indexing and discovery
-│   ├── SKILL.md
-│   ├── references/
-│   └── scripts/
-├── plan/                              # Planning and execution skillset
-│   ├── SKILL.md                       # Skillset orchestrator
-│   ├── create/
-│   │   ├── SKILL.md
-│   │   ├── references/
-│   │   └── scripts/
-│   └── exec/
-│       ├── SKILL.md
-│       └── references/
-└── refactor/                          # Code refactoring skillset
-    ├── SKILL.md                       # Skillset orchestrator
-    ├── dictionaries/
-    │   ├── SKILL.md
-    │   └── references/
-    ├── import-hygiene/
-    │   ├── SKILL.md
-    │   └── references/
-    ├── inline-complexity/
-    │   ├── SKILL.md
-    │   └── references/
-    ├── lexical-ontology/
-    │   ├── SKILL.md
-    │   └── references/
-    ├── module-stutter/
-    │   ├── SKILL.md
-    │   ├── references/
-    │   └── scripts/
-    ├── semantic-noise/
-    │   ├── SKILL.md
-    │   └── references/
-    └── structural-duplication/
-        ├── SKILL.md
-        └── references/
-```
+### Key Features
 
-## Skills Index
+- **Individual Skills**: Standalone skills for specific tasks
+- **Skillsets**: Orchestrator skills that coordinate multiple related skills
+- **Cross-Platform**: Scripts for both Unix/macOS/Linux (`.sh`) and Windows (`.ps1`)
+- **Progressive Disclosure**: Frontmatter-only `SKILL.md` files that reference detailed documentation
+- **Spec Compliant**: Follows the [Agent Skills specification](./SPEC.md)
 
-### Adapter Skills
+## Documentation
 
-Adapter skills for generating IDE and tool integrations:
+### Getting Started
 
-- **[cursor](./adapter/cursor/SKILL.md)** - Generate Cursor commands from agent skills. Creates plain markdown command files that delegate to skill references, enabling Cursor to invoke agent skills.
-- **[windsurf](./adapter/windsurf/SKILL.md)** - Generate Windsurf workflows from agent skills. Creates thin workflow adapters that point to skill references, enabling Windsurf to invoke agent skills via slash commands.
+- **[Quickstart Guide](./docs/01_QUICKSTART.md)** - Get up and running quickly
+  - What are Agent Skills?
+  - Repository structure overview
+  - Using skills and running scripts
+  - Quick actions and common commands
 
-### Index Skill
+### Reference Documentation
 
-Skill indexing and discovery:
+- **[Skills Reference](./docs/02_SKILLS.md)** - Complete guide to individual skills
+  - Adapter skills (Cursor, Windsurf)
+  - Index skill (skill discovery)
+  - Plan skills (create, exec, status)
+  - Refactor skills (code quality audits)
+  - Keyword index for quick lookup
 
-- **[index](./index/SKILL.md)** - Generate a hierarchical index of all skills from SKILL.md files. Produces a Markdown index optimized for agent lookup with skillsets, member skills, keywords, and pipelines.
+- **[Skillsets](./docs/03_SKILLSETS.md)** - Understanding orchestrator skills
+  - What are skillsets?
+  - How skillsets work
+  - Available skillsets (adapter, plan, refactor)
+  - Creating new skillsets
 
-### Plan Skillset
+- **[Schema Documentation](./docs/04_SCHEMAS.md)** - Technical reference
+  - SKILL.md frontmatter schema
+  - SKILLSET custom schema
+  - Plan artifact frontmatter
+  - Examples and validation
 
-Development phase management skills:
+- **[Contributing Guidelines](./docs/05_CONTRIBUTING.md)** - Add your own skills
+  - Adding individual skills
+  - Creating skillsets
+  - Schema requirements
+  - Testing and submission
 
-- **[plan](./plan/SKILL.md)** - Orchestrator skill for the `plan` skillset. Dispatches to member skills in a safe, predictable order.
-  - **[create](./plan/create/SKILL.md)** - Materialize the current conversation into a new docs/planning/phase-N plan (root plan plus sub-plans and task files).
-  - **[exec](./plan/exec/SKILL.md)** - Execute an existing docs/planning/phase-N plan sequentially by completing subtasks.
+## Available Skills
 
-### Refactor Skillset
+### Skillsets (Orchestrators)
 
-Code quality audit and refactoring skills:
+- **[adapter](./adapter/SKILL.md)** - Coordinate IDE adapter generation (Windsurf, Cursor)
+- **[plan](./plan/SKILL.md)** - Coordinate planning, execution, and status tracking
+- **[refactor](./refactor/SKILL.md)** - Coordinate code quality audits
 
-- **[refactor](./refactor/SKILL.md)** - Orchestrator skill for the `refactor` skillset. Dispatches to member skills for code quality audits and structural improvements.
-  - **[dictionaries](./refactor/dictionaries/SKILL.md)** - Audit dictionary usage against the Dictionary Usage Doctrine. Produces a severity-grouped report with minimal refactor suggestions.
-  - **[import-hygiene](./refactor/import-hygiene/SKILL.md)** - Audit Python imports to preserve semantic context and prevent shadowing after refactors.
-  - **[inline-complexity](./refactor/inline-complexity/SKILL.md)** - Audit inline complexity and recommend variable extraction. Produces a report with flattening suggestions for nested expressions.
-  - **[lexical-ontology](./refactor/lexical-ontology/SKILL.md)** - Audit identifiers and namespaces for lexical-semantic and ontological correctness.
-  - **[module-stutter](./refactor/module-stutter/SKILL.md)** - Detect module/package name stutter in Python public APIs. Produces a Markdown report and optional CI gate.
-  - **[semantic-noise](./refactor/semantic-noise/SKILL.md)** - Audit semantic noise and namespace integrity.
-  - **[structural-duplication](./refactor/structural-duplication/SKILL.md)** - Identify structurally duplicate logic (pipeline-spine duplication) across semantically distinct modules.
+### Individual Skills
 
-## Skill Structure
+**Adapter Skills:**
+- [adapter-cursor](./adapter/cursor/SKILL.md) - Generate Cursor commands
+- [adapter-windsurf](./adapter/windsurf/SKILL.md) - Generate Windsurf workflows
 
-Each skill follows a canonical structure to ensure consistency and ease of use. **SKILL.md files are now strictly frontmatter** with skill resources defined in the `metadata` key.
+**Index Skill:**
+- [index](./index/SKILL.md) - Generate hierarchical skill index
 
-### Main Skill File (`SKILL.md`)
+**Plan Skills:**
+- [plan-create](./plan/create/SKILL.md) - Create execution plans
+- [plan-exec](./plan/exec/SKILL.md) - Execute existing plans
+- [plan-status](./plan/status/SKILL.md) - Track plan progress (NEW!)
 
-The `SKILL.md` file contains only YAML frontmatter - no Markdown body content. All instructions and documentation are referenced through the `metadata` field.
+**Refactor Skills:**
+- [refactor-dictionaries](./refactor/dictionaries/SKILL.md) - Audit dictionary usage
+- [refactor-import-hygiene](./refactor/import-hygiene/SKILL.md) - Audit Python imports
+- [refactor-inline-complexity](./refactor/inline-complexity/SKILL.md) - Audit inline complexity
+- [refactor-lexical-ontology](./refactor/lexical-ontology/SKILL.md) - Audit identifiers
+- [refactor-module-stutter](./refactor/module-stutter/SKILL.md) - Detect module name stutter
+- [refactor-semantic-noise](./refactor/semantic-noise/SKILL.md) - Audit semantic noise
+- [refactor-structural-duplication](./refactor/structural-duplication/SKILL.md) - Identify structural duplication
 
-#### Required Fields
+See [Skills Reference](./docs/02_SKILLS.md) for detailed descriptions and [INDEX.md](./INDEX.md) for the auto-generated index.
 
-- **`name`**: The skill's unique identifier (lowercase, hyphens only)
-- **`description`**: A brief description of the skill's purpose and when to use it
+## Quick Start
 
-#### Optional Fields
+### Install and Run Scripts
 
-- **`license`**: License identifier (e.g., MIT, Apache-2.0)
-- **`compatibility`**: Environment requirements
-- **`allowed-tools`**: Pre-approved tools (experimental)
+**macOS / Linux / WSL:**
+```bash
+# Generate skill index
+./index/scripts/index.sh
 
-#### The `metadata` Field
+# Check plan status
+./plan/status/scripts/status.sh
 
-The `metadata` field defines skill resources and properties:
-
-- **`author`**: Skill author name or organization
-- **`version`**: Semantic version string
-- **`references`**: List of reference files (e.g., `["01_GOAL.md", "02_PROCEDURE.md"]`)
-- **`scripts`**: List of executable scripts (e.g., `["index.sh", "validate.py"]`)
-- **`keywords`**: List of keywords for skill discovery
-
-**Example - Individual Skill:**
-```yaml
----
-name: plan-create
-license: MIT
-description: >
-  Materialize the current conversation into a new docs/planning/phase-N plan
-  (root plan plus sub-plans and task files).
-metadata:
-  author: Jordan Godau
-  references:
-    - 00_INSTRUCTIONS.md
-    - 01_INTENT.md
-    - 02_PRECONDITIONS.md
-    - 03_SCRIPTS.md
-    - 04_PROCEDURE.md
-    - 05_TEMPLATES.md
-    - 06_EDGE_CASES.md
-  scripts:
-    - dirs.ps1
-    - dirs.sh
-  keywords:
-    - phase
-    - plan
-    - planning
-    - task
----
+# Generate IDE adapters
+./adapter/windsurf/scripts/generate.sh
+./adapter/cursor/scripts/generate.sh
 ```
 
-### Skillsets (Parent Skills)
+**Windows (PowerShell):**
+```powershell
+# Generate skill index
+.\index\scripts\index.ps1
 
-**Skillsets** are orchestrator skills that group and coordinate related member skills. They use the special `metadata.skillset` field to define the group structure.
+# Check plan status
+.\plan\status\scripts\status.ps1
 
-#### The `metadata.skillset` Field
-
-- **`name`**: Skillset identifier
-- **`schema_version`**: Skillset schema version (currently `1`)
-- **`skills`**: List of member skill names
-- **`resources`**: Shared resources for the skillset
-  - `root`: Shared resources directory path
-  - `assets`: List of shared asset files
-  - `scripts`: List of shared scripts
-  - `references`: List of shared reference files
-- **`pipelines`**: Skill execution pipelines
-  - `default`: Default execution order
-  - `allowed`: List of valid skill execution sequences
-- **`requires`**: Dependencies (implementation TBD)
-
-**Example - Skillset:**
-```yaml
----
-name: plan
-description: >
-  Orchestrator skill for the `plan` skillset. Dispatches to member skills in a safe, predictable order.
-metadata:
-  author: Jordan Godau
-  version: 0.1.0
-
-  skillset:
-    name: plan
-    schema_version: 1
-    skills:
-      - plan-create
-      - plan-exec
-
-    resources:
-      root: .resources
-      assets: []
-      scripts: []
-      references: 
-        - TAXONOMY.md
-
-    pipelines:
-      default:
-        - plan-create
-        - plan-exec
-      allowed:
-        - [plan-exec]
-        - [plan-create]
-        - [plan-create, plan-exec]
-
-    requires: []
----
+# Generate IDE adapters
+.\adapter\windsurf\scripts\generate.ps1
+.\adapter\cursor\scripts\generate.ps1
 ```
 
-### References Directory
+See [Quickstart Guide](./docs/01_QUICKSTART.md) for more examples.
 
-Detailed instruction files are kept separate in a `references/` subdirectory. This enables progressive disclosure - agents load these files only when needed.
+## Understanding Skills
 
-**Naming Convention**: References follow the pattern `<NN>_<TOPIC>.md` where:
-- `<NN>` is a zero-padded sequential number (00, 01, 02, 03, ...)
-- `<TOPIC>` is a descriptive name in uppercase with underscores (e.g., `GOAL`, `DEFINITIONS`, `PROCEDURE`)
+### Skill Structure
 
-**Example**:
+Each skill follows a canonical structure:
+
 ```
 skill-name/
-├── SKILL.md                    # Frontmatter only
-├── references/
+├── SKILL.md              # Frontmatter only (no body content)
+├── references/           # Detailed documentation
 │   ├── 00_INSTRUCTIONS.md
 │   ├── 01_INTENT.md
-│   ├── 02_PRECONDITIONS.md
-│   ├── 03_PROCEDURE.md
-│   └── 04_OUTPUT.md
-└── scripts/
-    ├── script1.sh
-    └── script2.py
+│   └── 02_PROCEDURE.md
+└── scripts/              # Executable automation
+    ├── script.sh         # Unix/macOS/Linux
+    └── script.ps1        # Windows PowerShell
 ```
 
-### Scripts Directory
+- **SKILL.md**: Contains only YAML frontmatter with metadata
+- **references/**: Progressive disclosure - detailed instructions loaded as needed
+- **scripts/**: Cross-platform automation with identical functionality
 
-Contains executable scripts referenced in `metadata.scripts`. Scripts should be self-contained and handle errors gracefully.
+See [Schema Documentation](./docs/04_SCHEMAS.md) for complete details.
 
-### Skillset Resources Directory
+### Skillsets
 
-Skillsets may have a shared resources directory (e.g., `.resources/`) containing assets, scripts, and references used by multiple member skills.
+Skillsets are orchestrator skills that coordinate multiple related skills:
+
+- **`adapter` skillset**: Coordinates Windsurf and Cursor adapter generation
+- **`plan` skillset**: Coordinates plan creation, execution, and status tracking
+- **`refactor` skillset**: Coordinates code quality audits in recommended order
+
+Skillsets use a strict `metadata.skillset` schema that maintains spec compliance while providing orchestration capabilities.
+
+See [Skillsets Documentation](./docs/03_SKILLSETS.md) to learn more.
 
 ## Contributing
 
-When adding new skills to this repository:
+We welcome contributions! Before adding a new skill:
 
-1. Choose or create an appropriate category directory (e.g., `adapter/`, `index/`, `plan/`, `refactor/`)
-2. Create a new directory for your skill within the category
-3. Add a `SKILL.md` file with **frontmatter only** following the canonical structure (see [SPEC.md](./SPEC.md))
-   - Include required fields: `name`, `description`
-   - Use `metadata` field to define `author`, `references`, `scripts`, and `keywords`
-   - For skillsets, add `metadata.skillset` with `skills`, `resources`, and `pipelines`
-4. Create a `references/` subdirectory for detailed documentation
-5. Follow the `<NN>_<TOPIC>.md` naming convention for reference files (zero-padded numbers, uppercase topics)
-6. List reference files in `metadata.references` array
-7. Optionally add a `scripts/` directory if your skill includes executable scripts
-8. List script files in `metadata.scripts` array
-9. Update the Skills Index section in this README
-10. Run the index skill to regenerate INDEX.md: `./index/scripts/index.sh`
+1. **Check existing skills** to avoid duplication
+2. **Review the [Contributing Guidelines](./docs/05_CONTRIBUTING.md)** for detailed instructions
+3. **Follow the schema requirements** for skills or skillsets
+4. **Test thoroughly** including cross-platform scripts
+5. **Regenerate the index** using `./index/scripts/index.sh` or `.\index\scripts\index.ps1`
+
+### Key Requirements
+
+- ✅ `SKILL.md` must contain **only frontmatter** (no body content)
+- ✅ Skills must follow the [canonical schema](./docs/04_SCHEMAS.md)
+- ✅ Skillsets must use the strict `metadata.skillset` schema
+- ✅ Scripts should support both Unix (`.sh`) and Windows (`.ps1`)
+- ✅ Reference files must follow `NN_TOPIC.md` naming convention
+
+See the [Contributing Guidelines](./docs/05_CONTRIBUTING.md) for complete details.
 
 ## License
 
