@@ -2,11 +2,33 @@
 
 Execute these steps literally, in order.
 
-## Step 1 — Create the phase directory
+## Step 1 — Create the phase directory (prefer scripts)
+
+Preferred: use a script if available.
+
+### macOS / Linux / WSL (bash)
+
+If `scripts/new-phase-dir.sh` exists:
+
+- Run: `bash scripts/new-phase-dir.sh`
+- Capture the printed output path as `PHASE_DIR`
+- Derive `<N>` from that path (e.g., `docs/planning/phase-30/` → N=30)
+
+### Windows (PowerShell)
+
+If `scripts/new-phase-dir.ps1` exists:
+
+- Run: `powershell -ExecutionPolicy Bypass -File scripts/new-phase-dir.ps1`
+- Capture the printed output path as `PHASE_DIR`
+- Derive `<N>` from that path
+
+### Fallback (scripts missing)
 
 Create:
 
 - `docs/planning/phase-<N>/`
+
+(Use `<N>` computed per Preconditions.)
 
 ## Step 2 — Write the root plan
 

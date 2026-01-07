@@ -2,23 +2,24 @@
 
 ## Step 1 — Determine active subphase
 
-A subphase is considered complete if its `plan.md` includes a non-empty **Output** and a non-empty **Handoff**.
+A roman file is considered complete if it includes a non-empty **Output** and a non-empty **Handoff**.
 
-1. Starting from `a`, find the first subphase that is not complete.
-2. That is the active subphase.
-3. If all are complete, proceed to Phase wrap-up (Step 5).
+1. Starting from `a`, scan `i.md` → `ii.md` → `iii.md` → `iv.md` for the first incomplete file.
+2. If all roman files under the current letter are complete, move to the next letter.
+3. The first incomplete roman file is the active subphase step.
+4. If all letters are complete, proceed to Phase wrap-up (Step 5).
 
 ## Step 2 — Load only what you need
 
 Read:
 
 - Root: `docs/planning/phase-<N>/plan.md`
-- Active: `docs/planning/phase-<N>/<letter>/plan.md`
+- Active: `docs/planning/phase-<N>/<letter>/<roman>.md`
 - Any referenced artifacts mentioned in Inputs (only as needed)
 
 ## Step 3 — Execute the active subphase
 
-In the active subphase `plan.md`:
+In the active roman file:
 
 - Expand **Work** into a concrete sequence of steps that can be performed now.
 - Perform the steps.
@@ -29,14 +30,15 @@ Do not perform steps that belong to later subphases.
 
 ## Step 4 — Advance to the next subphase
 
-After completing `<letter>`:
+After completing `<roman>`:
 
-- Move to the next letter in the root Subphase Index.
+- Move to the next roman file within the same letter.
+- If the current roman is `iv`, move to the next letter in the root Subphase Index.
 - Repeat Steps 2–4.
 
 If the next subphase folder does not exist but the index includes it:
 
-- Create it and scaffold `plan.md` using the same template structure already present.
+- Create it and scaffold `i.md`–`iv.md` using the same template structure already present.
 
 ## Step 5 — Phase wrap-up
 

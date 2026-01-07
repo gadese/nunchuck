@@ -2,15 +2,15 @@
 
 ## Missing planning directory
 
-If `docs/planning/` does not exist, create it, then proceed.
+Handled by scripts. If scripts are missing, create `docs/planning/` then proceed.
 
 ## Non-standard folders
 
-Ignore anything not matching `phase-<number>`.
+Handled by scripts. Ignore anything not matching `phase-<number>`.
 
 ## Gaps in numbering
 
-If phase-1 and phase-3 exist (gap at 2), still pick `max + 1` (phase-4).
+Handled by scripts. If phase-1 and phase-3 exist, still pick `max + 1` (phase-4).
 
 ## Ambiguous subtasks
 

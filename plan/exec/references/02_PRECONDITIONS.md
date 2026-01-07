@@ -3,7 +3,7 @@
 Before executing, verify:
 
 1. `docs/planning/phase-<N>/plan.md` exists.
-2. At least one subphase folder exists (e.g., `a/plan.md`).
+2. At least one subphase folder exists with roman numeral files (e.g., `a/i.md`).
 3. Read the root plan and identify:
    - Phase title, objectives, constraints, success criteria
    - Subphase Index (letters + names)
