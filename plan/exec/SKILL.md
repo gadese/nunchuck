@@ -2,7 +2,9 @@
 name: plan-exec
 license: MIT
 description: >
-  Execute an existing docs/planning/phase-N plan sequentially by completing lettered subphases and roman numeral steps (i–iv), appending Output and Handoff, and finishing with a root plan wrap-up.
+  Execute an existing docs/planning/phase-N plan sequentially by completing
+  lettered sub-plans and roman numeral tasks, appending Output and Handoff,
+  and finishing with a root plan wrap-up.
 metadata:
   author: Jordan Godau
   references:
@@ -17,11 +19,12 @@ metadata:
     - execute
     - plan
     - phase
-    - subphase
     - task
     - tasks
     - subtask
     - subtasks
     - roman numerals
     - handoff
+    - sub-plan
+    - task file
 ---

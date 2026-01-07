@@ -1,13 +1,13 @@
 # Preconditions
 
-Before writing any files:
+Before writing any files for a new plan:
 
 1. Verify the repository contains (or can create) `docs/planning/`.
-2. Determine the next phase number `<N>` from the filesystem.
+2. Determine the next plan number `<N>` from the filesystem.
 
 ## Deterministic path (preferred)
 
-If `scripts/new-phase-dir.sh` or `scripts/new-phase-dir.ps1` exists, run it to:
+If `scripts/dirs.sh` or `scripts/dirs.ps1` exists, run it to:
 
 - ensure `docs/planning/` exists
 - compute `N = max(existing) + 1` (or 1 if none)

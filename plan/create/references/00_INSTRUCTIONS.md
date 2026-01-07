@@ -8,11 +8,11 @@
 
 ### Always
 
-1. Always prefer scripts for deterministic filesystem steps.
-  a. If running on Windows, always run `scripts/dirs.ps1`.
-  b. Otherwise, always run `scripts/dirs.sh`.
+1. Prefer scripts for deterministic filesystem steps when not in dry-run mode.
+  a. If running on Windows, run `scripts/dirs.ps1`.
+  b. Otherwise, run `scripts/dirs.sh`.
 
 ### Never
 
 1. Never guess the next phase number `<N>`; it must be produced by the script or computed from the filesystem per Preconditions.
-2. Never create root phase files other than `plan.md`.
+2. Never create root plan files other than `plan.md`.

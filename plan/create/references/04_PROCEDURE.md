@@ -11,7 +11,11 @@ If the user explicitly requests a dry-run or no files to be written:
 - Provide an in-chat walk-through and overall impression only.
 - Stop after responding in-chat.
 
+<<<<<<< Updated upstream
 ## Step 1 — Create the phase directory (prefer scripts)
+=======
+## Step 1 - Create the plan directory (prefer scripts)
+>>>>>>> Stashed changes
 
 Preferred: use a script if available.
 
@@ -20,15 +24,20 @@ Preferred: use a script if available.
 If `scripts/dirs.sh` exists:
 
 - Run: `bash scripts/dirs.sh`
+<<<<<<< Updated upstream
 - Capture the printed output path as `PHASE_DIR`
 - Derive `<N>` from that path (e.g., `docs/planning/phase-30/` → N=30)
+=======
+- Capture the printed output path as `PLAN_DIR`
+- Derive `<N>` from that path (e.g., `docs/planning/phase-30/` -> N=30)
+>>>>>>> Stashed changes
 
 ### Windows (PowerShell)
 
 If `scripts/dirs.ps1` exists:
 
-- Run: `powershell -ExecutionPolicy Bypass -File scripts/new-phase-dir.ps1`
-- Capture the printed output path as `PHASE_DIR`
+- Run: `powershell -ExecutionPolicy Bypass -File scripts/dirs.ps1`
+- Capture the printed output path as `PLAN_DIR`
 - Derive `<N>` from that path
 
 ### Fallback (scripts missing)
@@ -39,40 +48,52 @@ Create:
 
 (Use `<N>` computed per Preconditions.)
 
-## Step 2 — Write the root plan
+## Step 2 - Write the root plan
 
 Create and write:
 
 - `docs/planning/phase-<N>/plan.md`
 
-Use the template from `04_TEMPLATES.md` and fill it from the **current conversation**.
+Use the template from `05_TEMPLATES.md` and fill it from the **current conversation**.
 
-### Rules for Subphase Index
+### Rules for Sub-plan Index
 
-- Subtasks MUST be derived from the discussion (no "filler tasks").
-- Prefer 2–6 subphases. Use more only if clearly justified by the discussion.
-- Each subphase should be independently completable and produce a tangible output.
+- Sub-plans MUST be derived from the discussion (no "filler tasks").
+- Each sub-plan should be independently completable and produce a tangible output.
 
-## Step 3 — Create subphase directories and scaffolds
+## Step 3 - Create sub-plan directories and scaffolds
 
-For each listed letter in the Subphase Index:
+For each listed letter in the Sub-plan Index:
 
 Create:
 
 - `docs/planning/phase-<N>/<letter>/`
-- `docs/planning/phase-<N>/<letter>/plan.md`
+- `docs/planning/phase-<N>/<letter>/index.md`
+- Task files `docs/planning/phase-<N>/<letter>/i.md`, `ii.md`, `iii.md`, ...
+  as needed
 
-Populate each subphase plan using the subphase template from `04_TEMPLATES.md`.
+Populate each `index.md` using the Sub-plan Index Template from `05_TEMPLATES.md`.
+
+Populate each task file using the Task Template from `05_TEMPLATES.md`.
+
+### Task scoping
+
+- Derive the tasks required for each sub-plan from the conversation and list them
+  in `index.md` with brief descriptions.
+- Use roman numeral ordering only (`i`, `ii`, `iii`, `iv`, `v`, ...).
+- Only create task files that are listed in the sub-plan's `index.md`.
 
 ### Dependency rule
 
-The output of `<N>/a/plan.md` becomes an input to `<N>/b/plan.md`, etc., in alphabetical order.
+The output of the last completed task in `<N>/a/` becomes an input to
+`<N>/b/index.md`, etc., in alphabetical order.
 
 ## Output checklist
 
 Confirm on disk before finishing:
 
 - `docs/planning/phase-<N>/plan.md` exists and is populated
-- Each listed subphase directory exists
-- Each subphase has a populated plan.md
-- Root plan has a Subphase Index matching the created subphase folders
+- Each listed sub-plan directory exists
+- Each sub-plan has a populated `index.md`
+- Each task listed in `index.md` exists and is populated
+- Root plan has a Sub-plan Index matching the created sub-plan folders
