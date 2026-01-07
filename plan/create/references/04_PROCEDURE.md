@@ -11,11 +11,7 @@ If the user explicitly requests a dry-run or no files to be written:
 - Provide an in-chat walk-through and overall impression only.
 - Stop after responding in-chat.
 
-<<<<<<< Updated upstream
-## Step 1 — Create the phase directory (prefer scripts)
-=======
 ## Step 1 - Create the plan directory (prefer scripts)
->>>>>>> Stashed changes
 
 Preferred: use a script if available.
 
@@ -24,13 +20,8 @@ Preferred: use a script if available.
 If `scripts/dirs.sh` exists:
 
 - Run: `bash scripts/dirs.sh`
-<<<<<<< Updated upstream
-- Capture the printed output path as `PHASE_DIR`
-- Derive `<N>` from that path (e.g., `docs/planning/phase-30/` → N=30)
-=======
 - Capture the printed output path as `PLAN_DIR`
 - Derive `<N>` from that path (e.g., `docs/planning/phase-30/` -> N=30)
->>>>>>> Stashed changes
 
 ### Windows (PowerShell)
 
@@ -82,7 +73,7 @@ Populate each task file using the Task Template from `05_TEMPLATES.md`.
   in `index.md` with brief descriptions.
 - Use roman numeral ordering only (`i`, `ii`, `iii`, `iv`, `v`, ...).
 - Only create task files that are listed in the sub-plan's `index.md`.
-
+ 
 ### Dependency rule
 
 The output of the last completed task in `<N>/a/` becomes an input to

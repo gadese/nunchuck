@@ -22,9 +22,6 @@ sub-plans over many vague ones.
 If the user asks for planning but explicitly wants no files written, follow the
 Dry-run / no-files mode in the Procedure and avoid all filesystem changes.
 
-If the user requests a dry-run, follow the Dry-run / no-files mode in the Procedure
-and avoid all filesystem changes.
-
 ## Examples
 
 ### Existing phases

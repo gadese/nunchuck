@@ -1,6 +1,6 @@
 # Intent
 
-This skill "materializes" the current discussion into a **new plan** on disk:
+This skill "materializes" the current discussion into a **new planning phase** on disk:
 
 - Creates `docs/planning/phase-<N>/`
 - Writes `docs/planning/phase-<N>/plan.md` summarizing the current discussion
