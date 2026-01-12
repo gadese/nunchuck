@@ -7,13 +7,13 @@ Run the status script:
 ### macOS / Linux / WSL
 
 ```bash
-.codex/skills/plan/status/scripts/status.sh [phase-number]
+.codex/skills/plan/plan-status/scripts/status.sh [phase-number]
 ```
 
 ### Windows (PowerShell)
 
 ```powershell
-.codex\skills\plan\status\scripts\status.ps1 [phase-number]
+.codex\skills\plan\plan-status\scripts\status.ps1 [phase-number]
 ```
 
 If no phase number is provided, defaults to the highest-numbered phase.

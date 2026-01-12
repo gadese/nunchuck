@@ -13,11 +13,11 @@ metadata:
     eject: scripts/eject.sh
     list: scripts/list.sh
   references:
-    - references/00_PROTOCOL.md
-    - references/01_GUARDRAILS.md
-    - references/02_ORCHESTRATION.md
-    - references/03_TRUE_FORM.md
-    - references/04_ACTIVATION.md
+    - 00_PROTOCOL.md
+    - 01_GUARDRAILS.md
+    - 02_ORCHESTRATION.md
+    - 03_TRUE_FORM.md
+    - 04_ACTIVATION.md
   keywords:
     - mimic
     - persona

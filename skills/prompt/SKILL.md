@@ -16,7 +16,7 @@ metadata:
       - prompt-exec
 
     resources:
-      root: .prompt-forge
+      root: .prompt
       assets: []
       scripts: []
       references: []

@@ -21,6 +21,9 @@ $RepoRoot = (Resolve-Path "$ScriptDir\..\..").Path
 if (-not $SkillsDir) { $SkillsDir = Join-Path $RepoRoot "skills" }
 if (-not $OutputFile) { $OutputFile = Join-Path $SkillsDir "INDEX.md" }
 
+$IndexPlain = Join-Path $SkillsDir "INDEX.md"
+$IndexDot = Join-Path $SkillsDir ".INDEX.md"
+
 # Data collections
 $QuickRef = @()
 $Skillsets = @()
@@ -289,5 +292,12 @@ foreach ($kw in $Keywords.Keys | Sort-Object) {
 $output += "`n"
 
 Set-Content -Path $OutputFile -Value $output -Encoding UTF8
+
+if ($OutputFile -ne $IndexPlain) {
+    Set-Content -Path $IndexPlain -Value $output -Encoding UTF8
+}
+if ($OutputFile -ne $IndexDot) {
+    Set-Content -Path $IndexDot -Value $output -Encoding UTF8
+}
 
 Write-Host "Generated: $OutputFile"

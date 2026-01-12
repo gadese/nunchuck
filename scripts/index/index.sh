@@ -14,6 +14,9 @@ REPO_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
 SKILLS_DIR="${1:-$REPO_ROOT/skills}"
 OUTPUT_FILE="${2:-$SKILLS_DIR/INDEX.md}"
 
+INDEX_PLAIN="$SKILLS_DIR/INDEX.md"
+INDEX_DOT="$SKILLS_DIR/.INDEX.md"
+
 # Temporary files for collecting data
 TMP_DIR=$(mktemp -d)
 trap 'rm -rf "$TMP_DIR"' EXIT
@@ -295,5 +298,12 @@ HEADER
     '
 
 } > "$OUTPUT_FILE"
+
+if [[ "$OUTPUT_FILE" != "$INDEX_PLAIN" ]]; then
+    cp "$OUTPUT_FILE" "$INDEX_PLAIN"
+fi
+if [[ "$OUTPUT_FILE" != "$INDEX_DOT" ]]; then
+    cp "$OUTPUT_FILE" "$INDEX_DOT"
+fi
 
 echo "Generated: $OUTPUT_FILE"

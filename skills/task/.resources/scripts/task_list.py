@@ -75,6 +75,8 @@ def _parse_simple_yaml(raw: str) -> dict:
                 value = True
             elif value.lower() == "false":
                 value = False
+            elif value.isdigit():
+                value = int(value)
             result[key.strip()] = value
     return result
 

@@ -39,6 +39,7 @@ Generates `command` adapters in the current directory.
 
 ## 3. Next Steps
 
+- **Validate** (repo as a pack): `PYTHONPATH=src python3 -m nunchuck validate .`
 - **Reference**: [Skills Reference](./SKILLS.md)
 - **Orchestration**: [Skillsets Documentation](./SKILLSETS.md)
 - **Schemas**: [Schema Documentation](./schema/SKILL.md)

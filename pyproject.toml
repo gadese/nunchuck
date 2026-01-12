@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nunchuck"
+version = "0.0.0"
+description = "nunchuck CLI for installing and validating agent skill packs"
+readme = "README.md"
+requires-python = ">=3.11"
+
+[project.scripts]
+nunchuck = "nunchuck.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

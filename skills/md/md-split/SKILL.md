@@ -15,10 +15,10 @@ metadata:
     - 05_EDGE_CASES.md
     - 06_TEMPLATES.md
   scripts:
-    - scripts/split.sh
-    - scripts/split.ps1
-    - scripts/index/index.sh
-    - scripts/index/index.ps1
+    - split.sh
+    - split.ps1
+    - index.sh
+    - index.ps1
   assets:
     - assets/EXAMPLE.md
   keywords:

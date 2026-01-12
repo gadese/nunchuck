@@ -97,25 +97,9 @@ Dependencies that the skillset assumes or provisions. Implementation is to be de
 
 ## Available Skillsets
 
-### `adapter`
-
-**Path:** `adapter/`
-
-Orchestrates IDE adapter generation for multiple platforms.
-
-**Member Skills:**
-- `adapter-windsurf` - Generate Windsurf workflows
-- `adapter-cursor` - Generate Cursor commands
-
-**Default Pipeline:** `adapter-windsurf` → `adapter-cursor`
-
-**Use Case:** Keep all IDE integrations in sync by regenerating adapters for all supported IDEs.
-
----
-
 ### `plan`
 
-**Path:** `plan/`
+**Path:** `skills/plan/`
 
 Orchestrates development phase management from planning through execution to status tracking.
 
@@ -142,7 +126,7 @@ Orchestrates development phase management from planning through execution to sta
 
 ### `refactor`
 
-**Path:** `refactor/`
+**Path:** `skills/refactor/`
 
 Orchestrates comprehensive code quality audits and structural improvements.
 

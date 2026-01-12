@@ -2,17 +2,17 @@
 
 This document provides a comprehensive reference of all individual skills available in this repository. For information about skillsets (orchestrator skills), see [Skillsets Documentation](./SKILLSETS.md).
 
-> **Note:** This is a curated view of skills from the auto-generated [INDEX.md](../INDEX.md). The index includes additional metadata like keywords and pipelines.
+> **Note:** This is a curated view of skills from the auto-generated [INDEX.md](../skills/INDEX.md). The index includes additional metadata like keywords and pipelines.
 
 ---
 
-## Adapter Skills
+## Adapter Scripts
 
 Adapter skills generate IDE and tool integrations from agent skills.
 
-### `adapter-cursor`
+### Cursor
 
-**Path:** `adapter/cursor/`
+**Path:** `scripts/adapter/cursor.sh` and `scripts/adapter/cursor.ps1`
 
 Generate Cursor commands from agent skills. Creates plain markdown command files that delegate to skill references, enabling Cursor to invoke agent skills.
 
@@ -24,9 +24,9 @@ Generate Cursor commands from agent skills. Creates plain markdown command files
 
 ---
 
-### `adapter-windsurf`
+### Windsurf
 
-**Path:** `adapter/windsurf/`
+**Path:** `scripts/adapter/windsurf.sh` and `scripts/adapter/windsurf.ps1`
 
 Generate Windsurf workflows from agent skills. Creates thin workflow adapters that point to skill references, enabling Windsurf to invoke agent skills via slash commands.
 
@@ -38,13 +38,13 @@ Generate Windsurf workflows from agent skills. Creates thin workflow adapters th
 
 ---
 
-## Index Skill
+## Index
 
 Skill indexing and discovery functionality.
 
-### `index`
+### Index generator
 
-**Path:** `index/`
+**Path:** `scripts/index/`
 
 Generate a hierarchical index of all skills from SKILL.md files. Produces a Markdown index optimized for agent lookup with skillsets, member skills, keywords, and pipelines.
 
@@ -62,7 +62,7 @@ Development phase management skills for creating, executing, and tracking plans.
 
 ### `plan-create`
 
-**Path:** `plan/create/`
+**Path:** `skills/plan/plan-create/`
 
 Materialize the current conversation into a new `docs/planning/phase-N` plan (root plan plus sub-plans and task files).
 
@@ -85,7 +85,7 @@ Materialize the current conversation into a new `docs/planning/phase-N` plan (ro
 
 ### `plan-exec`
 
-**Path:** `plan/exec/`
+**Path:** `skills/plan/plan-exec/`
 
 Execute an existing `docs/planning/phase-N` plan sequentially by completing subtasks.
 
@@ -103,7 +103,7 @@ Execute an existing `docs/planning/phase-N` plan sequentially by completing subt
 
 ### `plan-status`
 
-**Path:** `plan/status/`
+**Path:** `skills/plan/plan-status/`
 
 Display the execution status of a plan by parsing frontmatter metadata. Shows progress at-a-glance without requiring manual inspection of each file.
 
@@ -130,7 +130,7 @@ Code quality audit and refactoring skills for improving code structure and maint
 
 ### `refactor-dictionaries`
 
-**Path:** `refactor/dictionaries/`
+**Path:** `skills/refactor/refactor-dictionaries/`
 
 Audit dictionary usage against the Dictionary Usage Doctrine. Produces a severity-grouped report with minimal refactor suggestions.
 
@@ -148,7 +148,7 @@ Audit dictionary usage against the Dictionary Usage Doctrine. Produces a severit
 
 ### `refactor-import-hygiene`
 
-**Path:** `refactor/import-hygiene/`
+**Path:** `skills/refactor/refactor-import-hygiene/`
 
 Audit Python imports to preserve semantic context and prevent shadowing after refactors.
 
@@ -166,7 +166,7 @@ Audit Python imports to preserve semantic context and prevent shadowing after re
 
 ### `refactor-inline-complexity`
 
-**Path:** `refactor/inline-complexity/`
+**Path:** `skills/refactor/refactor-inline-complexity/`
 
 Audit inline complexity and recommend variable extraction. Produces a report with flattening suggestions for nested expressions.
 
@@ -184,7 +184,7 @@ Audit inline complexity and recommend variable extraction. Produces a report wit
 
 ### `refactor-lexical-ontology`
 
-**Path:** `refactor/lexical-ontology/`
+**Path:** `skills/refactor/refactor-lexical-ontology/`
 
 Audit identifiers and namespaces for lexical-semantic and ontological correctness.
 
@@ -202,7 +202,7 @@ Audit identifiers and namespaces for lexical-semantic and ontological correctnes
 
 ### `refactor-module-stutter`
 
-**Path:** `refactor/module-stutter/`
+**Path:** `skills/refactor/refactor-module-stutter/`
 
 Detect module/package name stutter in Python public APIs. Produces a Markdown report and optional CI gate.
 

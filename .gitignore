@@ -5,7 +5,9 @@
 ### Agents
 .codex/
 .cursor/
-.windsurf/
+.windsurf/*
+!.windsurf/workflows/
+!.windsurf/workflows/**
 
 ### IDE
 .vscode/
