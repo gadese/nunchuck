@@ -1,3 +1,7 @@
+---
+status: complete
+---
+
 # Task B.iii: Implement skill removal logic
 
 ## Focus
@@ -15,3 +19,30 @@ Remove skills from global store safely
 4. Remove skill directory and update index
 5. Clean up any orphaned files
 6. Test removal with and without dependencies
+
+## Output
+
+- Enhanced `Store.remove_skill()` method:
+  - Added `force` parameter to bypass dependency checks
+  - Checks current project for skill usage
+  - Scans multiple locations for skill references
+  - Prompts user before removing if dependencies found
+  - Cleans up skill directory and updates index
+- Dependency checking implementation:
+  - Checks `.nunchuck/skills/<name>` directory
+  - Checks `skills/<name>` directory  
+  - Checks `.nunchuck-<name>` file
+  - Scans config files for skill name references
+- Updated CLI integration:
+  - `--force` flag bypasses all confirmations
+  - Clear error messages for missing skills
+  - Proper cancellation when user declines
+- Successfully tested:
+  - Normal removal with confirmation
+  - Dependency detection and warning
+  - Force removal bypassing dependencies
+  - Index properly updated after removal
+
+## Handoff
+
+Skill removal logic is fully implemented with safety checks and dependency awareness. The system warns users before removing skills that are in use and provides a force option for override. Proceed to Task B.iv to add skill listing functionality with filtering and status display.

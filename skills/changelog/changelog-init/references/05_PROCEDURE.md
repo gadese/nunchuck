@@ -3,7 +3,7 @@
 ## Step 1: Check Existing
 
 ```bash
-./skill.sh locate
+../.shared/scripts/skill.sh locate
 ```
 
 If found, confirm user wants to overwrite.
@@ -11,7 +11,7 @@ If found, confirm user wants to overwrite.
 ## Step 2: Initialize
 
 ```bash
-./skill.sh init [--force]
+../.shared/scripts/skill.sh init [--force]
 ```
 
 ## Step 3: Customize

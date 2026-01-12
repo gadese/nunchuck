@@ -70,3 +70,9 @@ def main(argv: list[str] | None = None) -> int:
         return 0
 
     return 2
+
+
+def _entry_point():
+    """Entry point for the nunchuck CLI."""
+    import sys
+    sys.exit(main())

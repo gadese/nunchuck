@@ -1,3 +1,7 @@
+---
+status: complete
+---
+
 # Task C.iii: Implement auto-detection logic
 
 ## Focus
@@ -15,3 +19,16 @@ Detect IDE and generate appropriate adapters
 4. Add explicit flags (--windsurf, --cursor)
 5. Manage adapter updates and conflicts
 6. Test auto-detection scenarios
+
+## Output
+
+Auto-detection logic was already implemented in Task C.i:
+- Detects Windsurf by checking for .windsurf directory
+- Detects Cursor by checking for .cursor directory
+- Supports both IDEs in the same project
+- Explicit flags (--windsurf, --cursor) override auto-detection
+- Error message when no IDE detected
+
+## Handoff
+
+Auto-detection is complete. The adapter command automatically detects IDEs and generates appropriate adapters. Sub-plan C (Adapter Generation Migration) is now complete. Proceed to Sub-plan D: Command Interface Updates.

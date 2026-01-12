@@ -4,13 +4,18 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "nunchuck"
-version = "0.0.0"
-description = "nunchuck CLI for installing and validating agent skill packs"
+version = "0.1.0"
+description = "nunchuck CLI for managing agent skills with adapter generation"
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.10"
+dependencies = [
+    "click>=8.0.0",
+    "PyYAML>=6.0",
+    "tomli>=2.0.0; python_version<'3.11'",
+]
 
 [project.scripts]
-nunchuck = "nunchuck.cli:main"
+nunchuck = "nunchuck.cli_simplified:main"
 
 [tool.setuptools]
 package-dir = {"" = "src"}

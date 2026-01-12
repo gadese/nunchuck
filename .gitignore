@@ -1,13 +1,12 @@
 ### Generated files
-.codex/skills/INDEX.md
-.prompt-forge/
+.prompt/
+.nunchuck/
+.plan/
 
 ### Agents
 .codex/
 .cursor/
 .windsurf/
-!.windsurf/workflows/
-!.windsurf/workflows/**
 
 ### IDE
 .vscode/

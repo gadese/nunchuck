@@ -3,6 +3,7 @@
 ## Step 1: Gather Context
 
 Ask user or infer:
+
 - What changed?
 - Which category? (Added/Changed/Fixed/etc.)
 - Is there a PR/issue reference?
@@ -10,7 +11,7 @@ Ask user or infer:
 ## Step 2: Check for Suggestions
 
 ```bash
-./skill.sh suggest
+../.shared/scripts/skill.sh suggest
 ```
 
 Use as reference, but curate.
@@ -18,16 +19,17 @@ Use as reference, but curate.
 ## Step 3: Add Entry
 
 ```bash
-./skill.sh add <category> "<entry text>"
+../.shared/scripts/skill.sh add <category> "<entry text>"
 ```
 
 Example:
+
 ```bash
-./skill.sh add Fixed "Resolve authentication timeout issue (#123)"
+../.shared/scripts/skill.sh add Fixed "Resolve authentication timeout issue (#123)"
 ```
 
 ## Step 4: Verify
 
 ```bash
-./skill.sh verify
+../.shared/scripts/skill.sh verify
 ```
