@@ -7,19 +7,25 @@ This directory contains utility scripts for the nunchuck CLI.
 ### Unix/Linux/macOS
 
 ```bash
+# Install using uv (fastest, recommended for development)
+./scripts/install.sh uv
+
 # Install in development mode (editable)
 ./scripts/install.sh dev
 
 # Install for current user
 ./scripts/install.sh user
 
-# Install using pipx (recommended)
+# Install using pipx (recommended for users)
 ./scripts/install.sh pipx
 ```
 
 ### Windows (PowerShell)
 
 ```powershell
+# Install using uv (fastest, recommended for development)
+.\scripts\install.ps1 uv
+
 # Install in development mode (editable)
 .\scripts\install.ps1 dev
 
@@ -31,9 +37,16 @@ This directory contains utility scripts for the nunchuck CLI.
 
 - Python 3.10 or later
 - pip (usually included with Python)
+- uv (optional - will be auto-installed when using uv mode)
+
+## What Gets Installed
+
+1. **nunchuck CLI** - The command-line tool
+2. **Skills** - All skills from the repo are copied to `~/.nunchuck/skills`
 
 ## Notes
 
+- **uv mode**: Fastest installation using uv (recommended for development)
 - **Development mode**: Installs in editable mode, linking to the source code
 - **User mode**: Installs for the current user only
 - **pipx mode**: Uses pipx for isolated installation (Unix only)

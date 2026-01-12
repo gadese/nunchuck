@@ -19,4 +19,3 @@ This workflow delegates to the agent skill at `skills/task/task-list/`.
 
 - **Path:** `skills/task/task-list/`
 - **References:** `references/`
-

@@ -100,69 +100,102 @@ Dependencies that the skillset assumes or provisions. Implementation is to be de
 
 ## Available Skillsets
 
+### `changelog`
+
+**Path:** `skills/changelog/`
+
+Manages Keep a Changelog format files with deterministic operations, chrono-aware guardrails, and git integration.
+
+**Member Skills:**
+
+- `changelog-init` - Initialize a new changelog from template
+- `changelog-update` - Add entries to [Unreleased] section
+- `changelog-release` - Cut a release by versioning [Unreleased]
+- `changelog-verify` - Verify changelog format compliance
+
+**Use Case:** Maintain a consistent, spec-compliant changelog with duplicate detection and semantic versioning.
+
+---
+
+### `doctor`
+
+**Path:** `skills/doctor/`
+
+Diagnoses software failures by combining deterministic evidence gathering with agent judgment. Models failures as medical cases. Idempotent — run repeatedly until confident diagnosis.
+
+**Key Features:**
+
+- Evidence-based diagnosis with `.doctor/` artifacts
+- Hypothesis generation and testing
+- Treatment plan generation
+
+**Use Case:** Debug complex issues systematically with medical-style triage.
+
+---
+
+### `md`
+
+**Path:** `skills/md/`
+
+Orchestrates markdown document workflows with deterministic operations.
+
+**Member Skills:**
+
+- `md-split` - Split large markdown files into chunks
+- `md-merge` - Merge markdown chunks back together
+- `md-review` - Agent review of markdown content
+
+**Use Case:** Process large markdown documents that exceed context windows.
+
+---
+
 ### `plan`
 
 **Path:** `skills/plan/`
 
-Orchestrates development phase management from planning through execution to status tracking.
+Manages bounded work units with structured plans stored in `.plan/`.
 
 **Member Skills:**
+
 - `plan-create` - Create execution plans
 - `plan-exec` - Execute existing plans
 - `plan-status` - Track plan progress
+- `plan-review` - Review plan completion
 
-**Default Pipeline:** `plan-create` → `plan-exec`
-
-**Allowed Combinations:**
-- `[plan-create]` - Just create a plan
-- `[plan-exec]` - Just execute an existing plan
-- `[plan-status]` - Just check status
-- `[plan-create, plan-exec]` - Create and execute
-
-**Use Case:** Manage complex development phases with structured planning, execution, and progress tracking.
-
-**Shared Resources:**
-- `DEFINITIONS.md` - Common terminology
-- `FRONTMATTER.md` - Plan artifact frontmatter schema
+**Use Case:** Manage complex development phases with structured planning.
 
 ---
 
-### `refactor`
+### `prompt`
 
-**Path:** `skills/refactor/`
+**Path:** `skills/prompt/`
 
-Orchestrates comprehensive code quality audits and structural improvements.
+Separates intent formation from execution to protect humans from premature or misaligned action.
 
 **Member Skills:**
-- `refactor-lexical-ontology` - Audit identifiers and namespaces
-- `refactor-module-stutter` - Detect module name stutter
-- `refactor-semantic-noise` - Audit semantic noise
-- `refactor-dictionaries` - Audit dictionary usage
-- `refactor-inline-complexity` - Audit inline complexity
-- `refactor-import-hygiene` - Audit Python imports
-- `refactor-structural-duplication` - Identify structural duplication
 
-**Default Pipeline:** 
-Recommended audit sequence (naming → structure → hygiene):
-1. `refactor-lexical-ontology`
-2. `refactor-module-stutter`
-3. `refactor-semantic-noise`
-4. `refactor-dictionaries`
-5. `refactor-inline-complexity`
-6. `refactor-import-hygiene`
-7. `refactor-structural-duplication`
+- `prompt-forge` - Create structured prompts from intent
+- `prompt-compile` - Compile YAML artifact into PROMPT.md
+- `prompt-exec` - Execute compiled prompts
 
-**Allowed Combinations:**
-- Any individual skill
-- Naming cluster: `[refactor-lexical-ontology, refactor-module-stutter, refactor-semantic-noise]`
-- Post-refactor hygiene: `[refactor-import-hygiene, refactor-inline-complexity]`
-- Full audit: All skills in default order
+**Use Case:** Ensure human oversight of agent actions through deliberate prompt engineering.
 
-**Use Case:** Perform systematic code quality audits with recommended sequencing to avoid conflicts.
+---
 
-**Shared Resources:**
-- `OUTPUT_FORMAT.md` - Standard report format
-- `SEVERITY_LEVELS.md` - Severity classification
+### `task`
+
+**Path:** `skills/task/`
+
+Manages bounded work units with single-file tasks stored in `.tasks/`.
+
+**Member Skills:**
+
+- `task-create` - Create new tasks
+- `task-list` - List available tasks
+- `task-select` - Select a task to work on
+- `task-close` - Close completed tasks
+
+**Use Case:** Track work items with skepticism-aware hashing and staleness detection.
 
 ---
 

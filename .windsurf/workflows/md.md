@@ -19,4 +19,3 @@ This workflow delegates to the agent skill at `skills/md/`.
 
 - **Path:** `skills/md/`
 - **References:** `references/`
-

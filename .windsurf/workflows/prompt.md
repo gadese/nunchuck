@@ -19,4 +19,3 @@ This workflow delegates to the agent skill at `skills/prompt/`.
 
 - **Path:** `skills/prompt/`
 - **References:** `references/`
-

@@ -1,12 +1,12 @@
 ---
-description: Scaffold and populate a new plan in `.plan/<N>/` with root plan,
-sub-plans, and task files.
+description: Merges markdown chunks back into a single document, reversing the split
+operation with integrity checks.
 auto_execution_mode: 1
 ---
 
-# plan-create
+# md-merge
 
-This workflow delegates to the agent skill at `skills/plan/plan-create/`.
+This workflow delegates to the agent skill at `skills/md/md-merge/`.
 
 ## Instructions
 
@@ -17,5 +17,5 @@ This workflow delegates to the agent skill at `skills/plan/plan-create/`.
 
 ## Skill Location
 
-- **Path:** `skills/plan/plan-create/`
+- **Path:** `skills/md/md-merge/`
 - **References:** `references/`

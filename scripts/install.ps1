@@ -1,14 +1,15 @@
 #
 # nunchuck.ps1 - Install nunchuck CLI on Windows
 #
-# Usage: .\nunchuck.ps1 [dev|user]
-#   dev:  Install in development mode (editable)
-#   user: Install for current user only (default)
+# Usage: .\install.ps1 [dev|user|uv]
+#   dev:  Install in development mode (editable) using pip
+#   user: Install for current user only using pip (default)
+#   uv:   Install using uv (fastest, recommended for development)
 #
 
 param(
-    [ValidateSet("dev", "user")]
-    [string]$Mode = "user"
+    [ValidateSet("dev", "user", "uv")]
+    [string]$Mode = "uv"
 )
 
 # Colors for output
@@ -19,6 +20,28 @@ $Colors = @{
 }
 
 Write-Host "Installing nunchuck CLI..." -ForegroundColor $Colors.Green
+
+# Check if uv is installed (for uv mode)
+if ($Mode -eq "uv") {
+    try {
+        uv --version | Out-Null
+        Write-Host "Found uv" -ForegroundColor $Colors.Green
+    } catch {
+        Write-Host "uv not found. Installing uv..." -ForegroundColor $Colors.Yellow
+        # Install uv using PowerShell installer
+        irm https://astral.sh/uv/install.ps1 | iex
+        
+        # Try to find uv in PATH
+        try {
+            uv --version | Out-Null
+            Write-Host "uv installed successfully" -ForegroundColor $Colors.Green
+        } catch {
+            Write-Host "Please add uv to your PATH and restart PowerShell" -ForegroundColor $Colors.Yellow
+            Write-Host "Or use: pip install uv" -ForegroundColor $Colors.Yellow
+            exit 1
+        }
+    }
+}
 
 # Check if Python is installed
 try {
@@ -70,6 +93,10 @@ pip install --upgrade pip setuptools wheel
 
 # Install nunchuck
 switch ($Mode) {
+    "uv" {
+        Write-Host "Installing with uv..." -ForegroundColor $Colors.Yellow
+        uv pip install -e .
+    }
     "dev" {
         Write-Host "Installing in development mode..." -ForegroundColor $Colors.Yellow
         pip install -e .
@@ -92,12 +119,47 @@ try {
     Write-Host "Or use Python launcher: py -m nunchuck --help"
 }
 
+# Copy skills to ~/.nunchuck
+$NunchuckDir = if ($env:NUNCHUCK_DIR) { $env:NUNCHUCK_DIR } else { "$env:USERPROFILE\.nunchuck" }
+$SkillsSrc = Join-Path $RepoRoot "skills"
+
+if (Test-Path $SkillsSrc) {
+    Write-Host "Installing skills to $NunchuckDir..." -ForegroundColor $Colors.Yellow
+    $SkillsDest = Join-Path $NunchuckDir "skills"
+    
+    # Create destination directory
+    if (-not (Test-Path $SkillsDest)) {
+        New-Item -ItemType Directory -Path $SkillsDest -Force | Out-Null
+    }
+    
+    # Copy each skill directory
+    $skillCount = 0
+    Get-ChildItem -Path $SkillsSrc -Directory | ForEach-Object {
+        $skillName = $_.Name
+        $destPath = Join-Path $SkillsDest $skillName
+        
+        if (Test-Path $destPath) {
+            Write-Host "  Updating $skillName..."
+            Remove-Item -Path $destPath -Recurse -Force
+        } else {
+            Write-Host "  Installing $skillName..."
+        }
+        
+        Copy-Item -Path $_.FullName -Destination $destPath -Recurse
+        $skillCount++
+    }
+    
+    Write-Host "✓ Installed $skillCount skills to $NunchuckDir" -ForegroundColor $Colors.Green
+} else {
+    Write-Host "No skills directory found in repository" -ForegroundColor $Colors.Yellow
+}
+
 Write-Host "Installation complete!" -ForegroundColor $Colors.Green
 Write-Host ""
 Write-Host "Usage:"
-Write-Host "  nunchuck --help          Show help"
-Write-Host "  nunchuck install <repo>  Install skills to central directory"
 Write-Host "  nunchuck list            List available skills"
-Write-Host "  nunchuck use <skill>     Use skill in current directory"
-Write-Host "  nunchuck adapter generate  Generate IDE adapters"
-Write-Host "  nunchuck validate <path>      Validate a skill"
+Write-Host "  nunchuck use <skill>     Copy skill to current project"
+Write-Host "  nunchuck validate <path> Validate a skill"
+Write-Host "  nunchuck adapter         Generate IDE adapters"
+Write-Host ""
+Write-Host "Skills are installed to: $NunchuckDir\skills"

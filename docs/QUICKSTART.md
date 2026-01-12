@@ -1,6 +1,6 @@
 # Quickstart
 
-Simplified setup for agent skills in your preferred environment.
+Get up and running with nunchuck and agent skills in minutes.
 
 ## 1. Clone the Repository
 
@@ -10,37 +10,94 @@ git clone https://github.com/JordanGunn/skills.git && cd skills
 
 ---
 
-## 2. Installation
+## 2. Install nunchuck CLI
 
-Run the relevant install script for your agent or IDE.
+The nunchuck CLI manages skills and generates IDE adapters.
 
-### Codex (CLI)
+### Unix (macOS/Linux/WSL)
 
-Installs skills to `$HOME/.codex/skills/` for global availability.
+```bash
+# Install with uv (recommended - fastest)
+./scripts/install.sh uv
 
-- **Unix:** `./scripts/install/unix/codex.sh`
-- **Windows:** `.\scripts\install\windows\codex.ps1`
+# Or use pipx for isolated installation
+./scripts/install.sh pipx
 
-### Windsurf
+# Or use pip for user installation
+./scripts/install.sh user
+```
 
-Generates `workflow` adapters in the current directory.
+### Windows (PowerShell)
 
-- **Unix:** `./scripts/install/unix/windsurf.sh`
-- **Windows:** `.\scripts\install\windows\windsurf.ps1`
+```powershell
+# Install with uv (recommended - fastest)
+.\scripts\install.ps1 uv
 
-### Cursor
+# Or use pip for user installation
+.\scripts\install.ps1 user
+```
 
-Generates `command` adapters in the current directory.
+The installer will:
 
-- **Unix:** `./scripts/install/unix/cursor.sh`
-- **Windows:** `.\scripts\install\windows\cursor.ps1`
+1. Install the `nunchuck` CLI tool
+2. Copy all skills to `~/.nunchuck/skills/`
 
 ---
 
-## 3. Next Steps
+## 3. Using Skills
 
-- **Validate** (repo as a pack): `PYTHONPATH=src python3 -m nunchuck validate .`
-- **Reference**: [Skills Reference](./SKILLS.md)
-- **Orchestration**: [Skillsets Documentation](./SKILLSETS.md)
-- **Schemas**: [Schema Documentation](./schema/SKILL.md)
-- **Contribute**: [Contributing Guidelines](../CONTRIBUTING.md)
+### List Available Skills
+
+```bash
+nunchuck list
+```
+
+### Copy a Skill to Your Project
+
+```bash
+# Copy to current directory
+nunchuck use doctor
+
+# Copy to specific directory
+nunchuck use doctor ./my-project/skills/
+```
+
+### Generate IDE Adapters
+
+```bash
+# Auto-detect IDE from current directory
+nunchuck adapter
+
+# Generate Windsurf workflows
+nunchuck adapter --windsurf
+
+# Generate Cursor commands
+nunchuck adapter --cursor
+```
+
+### Validate a Skill
+
+```bash
+nunchuck validate path/to/skill
+```
+
+---
+
+## 4. IDE Integration
+
+### Windsurf
+
+After running `nunchuck adapter --windsurf`, workflows appear in `.windsurf/workflows/`. Use slash commands like `/doctor` or `/plan-create` to invoke skills.
+
+### Cursor
+
+After running `nunchuck adapter --cursor`, commands appear in `.cursor/commands/`. Access via the command palette.
+
+---
+
+## 5. Next Steps
+
+- **[Skills Reference](./SKILLS.md)** - Browse all available skills
+- **[Skillsets Documentation](./SKILLSETS.md)** - Learn about orchestrator skills
+- **[Schema Documentation](./schema/SKILL.md)** - Technical reference
+- **[Contributing Guidelines](../CONTRIBUTING.md)** - Add your own skills

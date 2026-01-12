@@ -1,12 +1,12 @@
 ---
-description: Scaffold and populate a new plan in `.plan/<N>/` with root plan,
-sub-plans, and task files.
+description: Agent review for markdown quality, clarity, and structural integrity.
+Leverages deterministic lint output as input for subjective assessment.
 auto_execution_mode: 1
 ---
 
-# plan-create
+# md-review
 
-This workflow delegates to the agent skill at `skills/plan/plan-create/`.
+This workflow delegates to the agent skill at `skills/md/md-review/`.
 
 ## Instructions
 
@@ -17,5 +17,5 @@ This workflow delegates to the agent skill at `skills/plan/plan-create/`.
 
 ## Skill Location
 
-- **Path:** `skills/plan/plan-create/`
+- **Path:** `skills/md/md-review/`
 - **References:** `references/`

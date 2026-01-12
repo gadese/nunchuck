@@ -19,4 +19,3 @@ This workflow delegates to the agent skill at `skills/plan/`.
 
 - **Path:** `skills/plan/`
 - **References:** `references/`
-

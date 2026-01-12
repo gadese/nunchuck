@@ -1,12 +1,12 @@
 ---
-description: Scaffold and populate a new plan in `.plan/<N>/` with root plan,
-sub-plans, and task files.
+description: Final agent review pass on a completed plan. Verifies success criteria,
+checks for gaps, and produces a summary assessment.
 auto_execution_mode: 1
 ---
 
-# plan-create
+# plan-review
 
-This workflow delegates to the agent skill at `skills/plan/plan-create/`.
+This workflow delegates to the agent skill at `skills/plan/plan-review/`.
 
 ## Instructions
 
@@ -17,5 +17,5 @@ This workflow delegates to the agent skill at `skills/plan/plan-create/`.
 
 ## Skill Location
 
-- **Path:** `skills/plan/plan-create/`
+- **Path:** `skills/plan/plan-review/`
 - **References:** `references/`

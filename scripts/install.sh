@@ -2,16 +2,17 @@
 #
 # nunchuck.sh - Install nunchuck CLI on Unix-like systems
 #
-# Usage: ./nunchuck.sh [dev|user|pipx]
-#   dev:  Install in development mode (editable)
+# Usage: ./install.sh [dev|user|pipx|uv]
+#   dev:  Install in development mode (editable) using pip
 #   user: Install for current user only using pip
 #   pipx: Install using pipx (recommended)
+#   uv:   Install using uv (fastest, recommended for development)
 #
 
 set -euo pipefail
 
 # Default installation mode
-MODE="${1:-pipx}"
+MODE="${1:-uv}"
 
 # Colors for output
 RED='\033[0;31m'
@@ -20,6 +21,20 @@ YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
 echo -e "${GREEN}Installing nunchuck CLI...${NC}"
+
+# Check if uv is installed (for uv mode)
+if [ "$MODE" = "uv" ]; then
+    if ! command -v uv &> /dev/null; then
+        echo -e "${YELLOW}uv not found. Installing uv...${NC}"
+        curl -LsSf https://astral.sh/uv/install.sh | sh
+        
+        # Add uv to PATH if not already there
+        if ! command -v uv &> /dev/null; then
+            export PATH="$HOME/.cargo/bin:$PATH"
+            echo -e "${YELLOW}Adding ~/.cargo/bin to PATH for this session${NC}"
+        fi
+    fi
+fi
 
 # Check if Python 3.10+ is installed
 if ! command -v python3 &> /dev/null; then
@@ -48,6 +63,10 @@ cd "$REPO_ROOT"
 
 # Install nunchuck
 case "$MODE" in
+    "uv")
+        echo -e "${YELLOW}Installing with uv...${NC}"
+        uv pip install -e .
+        ;;
     "dev")
         echo -e "${YELLOW}Installing in development mode...${NC}"
         python3 -m pip install -e . --user || {
@@ -85,7 +104,7 @@ case "$MODE" in
         }
         ;;
     *)
-        echo -e "${RED}Error: Invalid mode '$MODE'. Use 'dev', 'user', or 'pipx'${NC}"
+        echo -e "${RED}Error: Invalid mode '$MODE'. Use 'dev', 'user', 'pipx', or 'uv'${NC}"
         exit 1
         ;;
 esac
@@ -97,23 +116,50 @@ if command -v nunchuck &> /dev/null; then
     nunchuck --version
 else
     echo -e "${YELLOW}Warning: nunchuck command not found in PATH${NC}"
-    if [ "$MODE" = "pipx" ]; then
-        echo "You may need to add ~/.local/bin to your PATH:"
-        echo "  export PATH=\"\$HOME/.local/bin:\$PATH\""
-        echo "Add this line to your ~/.bashrc or ~/.zshrc"
-    else
-        echo "You may need to add ~/.local/bin to your PATH:"
-        echo "  export PATH=\"\$HOME/.local/bin:\$PATH\""
-        echo "Add this line to your ~/.bashrc or ~/.zshrc"
-    fi
+    echo "You may need to add ~/.local/bin to your PATH:"
+    echo "  export PATH=\"\$HOME/.local/bin:\$PATH\""
+    echo "Add this line to your ~/.bashrc or ~/.zshrc"
+fi
+
+# Copy skills to ~/.nunchuck
+NUNCHUCK_DIR="${NUNCHUCK_DIR:-$HOME/.nunchuck}"
+SKILLS_SRC="$REPO_ROOT/skills"
+
+if [ -d "$SKILLS_SRC" ]; then
+    echo -e "${YELLOW}Installing skills to $NUNCHUCK_DIR...${NC}"
+    mkdir -p "$NUNCHUCK_DIR/skills"
+    
+    # Copy each skill directory
+    for skill in "$SKILLS_SRC"/*/; do
+        if [ -d "$skill" ]; then
+            skill_name=$(basename "$skill")
+            dest="$NUNCHUCK_DIR/skills/$skill_name"
+            
+            if [ -d "$dest" ]; then
+                echo -e "  Updating $skill_name..."
+                rm -rf "$dest"
+            else
+                echo -e "  Installing $skill_name..."
+            fi
+            
+            cp -r "$skill" "$dest"
+        fi
+    done
+    
+    # Count installed skills
+    skill_count=$(find "$NUNCHUCK_DIR/skills" -maxdepth 1 -type d | wc -l)
+    skill_count=$((skill_count - 1))  # Subtract 1 for the skills directory itself
+    echo -e "${GREEN}✓ Installed $skill_count skills to $NUNCHUCK_DIR${NC}"
+else
+    echo -e "${YELLOW}No skills directory found in repository${NC}"
 fi
 
 echo -e "${GREEN}Installation complete!${NC}"
 echo ""
 echo "Usage:"
-echo "  nunchuck --help          Show help"
-echo "  nunchuck install <repo>  Install skills to central directory"
 echo "  nunchuck list            List available skills"
-echo "  nunchuck use <skill>     Use skill in current directory"
-echo "  nunchuck adapter generate  Generate IDE adapters"
-echo "  nunchuck validate <path>      Validate a skill"
+echo "  nunchuck use <skill>     Copy skill to current project"
+echo "  nunchuck validate <path> Validate a skill"
+echo "  nunchuck adapter         Generate IDE adapters"
+echo ""
+echo "Skills are installed to: $NUNCHUCK_DIR/skills"

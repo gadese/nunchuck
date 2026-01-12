@@ -19,4 +19,3 @@ This workflow delegates to the agent skill at `skills/prompt/prompt-forge/`.
 
 - **Path:** `skills/prompt/prompt-forge/`
 - **References:** `references/`
-

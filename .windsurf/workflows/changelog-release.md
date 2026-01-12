@@ -1,12 +1,11 @@
 ---
-description: Scaffold and populate a new plan in `.plan/<N>/` with root plan,
-sub-plans, and task files.
+description: Cut a release by transforming [Unreleased] into versioned section.
 auto_execution_mode: 1
 ---
 
-# plan-create
+# changelog-release
 
-This workflow delegates to the agent skill at `skills/plan/plan-create/`.
+This workflow delegates to the agent skill at `skills/changelog/changelog-release/`.
 
 ## Instructions
 
@@ -17,5 +16,5 @@ This workflow delegates to the agent skill at `skills/plan/plan-create/`.
 
 ## Skill Location
 
-- **Path:** `skills/plan/plan-create/`
+- **Path:** `skills/changelog/changelog-release/`
 - **References:** `references/`

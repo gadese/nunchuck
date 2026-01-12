@@ -19,4 +19,3 @@ This workflow delegates to the agent skill at `skills/task/task-create/`.
 
 - **Path:** `skills/task/task-create/`
 - **References:** `references/`
-

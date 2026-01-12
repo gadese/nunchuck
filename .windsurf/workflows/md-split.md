@@ -21,4 +21,3 @@ This workflow delegates to the agent skill at `skills/md/md-split/`.
 - **Path:** `skills/md/md-split/`
 - **References:** `references/`
 - **Scripts:** `scripts/`
-

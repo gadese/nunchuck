@@ -1,12 +1,12 @@
 ---
-description: Scaffold and populate a new plan in `.plan/<N>/` with root plan,
-sub-plans, and task files.
+description: Compile the YAML artifact into PROMPT.md with deterministic structure.
+A final agent pass polishes for fluidity, conciseness, and correctness.
 auto_execution_mode: 1
 ---
 
-# plan-create
+# prompt-compile
 
-This workflow delegates to the agent skill at `skills/plan/plan-create/`.
+This workflow delegates to the agent skill at `skills/prompt/prompt-compile/`.
 
 ## Instructions
 
@@ -17,5 +17,5 @@ This workflow delegates to the agent skill at `skills/plan/plan-create/`.
 
 ## Skill Location
 
-- **Path:** `skills/plan/plan-create/`
+- **Path:** `skills/prompt/prompt-compile/`
 - **References:** `references/`

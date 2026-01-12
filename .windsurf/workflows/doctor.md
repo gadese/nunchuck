@@ -22,4 +22,3 @@ This workflow delegates to the agent skill at `skills/doctor/`.
 - **Path:** `skills/doctor/`
 - **References:** `references/`
 - **Scripts:** `scripts/`
-
