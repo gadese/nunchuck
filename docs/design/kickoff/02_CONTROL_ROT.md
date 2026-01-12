@@ -19,3 +19,12 @@
 
 * Maintain a controlled list of categories/tags.
 * Don’t let “misc” become a landfill without review.
+
+### Never hide environment mutation
+
+* Scripts MUST NOT install packages, dependencies, or tooling implicitly.
+* Validation may detect and report missing dependencies, but must not modify state.
+* Installation steps must be explicit, copy-pasteable, and user-initiated.
+
+Auto-installation is a major source of hidden drift in agent-driven systems.
+Prefer loud failure with clear instructions over “helpful” mutation.

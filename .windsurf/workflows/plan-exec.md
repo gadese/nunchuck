@@ -1,5 +1,5 @@
 ---
-description: Execute an existing docs/planning/phase-N plan sequentially by completing
+description: Execute plan tasks by performing actual work. Writes concrete Output
 auto_execution_mode: 1
 ---
 
@@ -12,11 +12,8 @@ This workflow delegates to the agent skill at `skills/plan/plan-exec/`.
 1. Read the skill manifest: `skills/plan/plan-exec/SKILL.md`
 2. Read all references listed in `metadata.references` in order:
    - 00_INSTRUCTIONS.md
-   - 01_INTENT.md
-   - 02_PRECONDITIONS.md
-   - 03_RULES.md
+   - 01_PROCEDURE.md
    - 04_PROCEDURE.md
-   - 05_OUTPUT.md
 3. Execute the skill procedure as documented
 4. Produce output in the format specified by the skill
 
@@ -27,4 +24,4 @@ This workflow delegates to the agent skill at `skills/plan/plan-exec/`.
 
 ## Keywords
 
-`complete,execute plan,phase task,tasks subtask,subtasks roman numerals,handoff sub-plan,task file`
+`plan,execute implement,work task`

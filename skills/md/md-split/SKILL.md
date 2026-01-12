@@ -1,30 +1,31 @@
 ---
 name: md-split
+license: MIT
 description: >
-  Splits a Markdown file by H2 headings into numbered documents, generates
-  .INDEX.md, and scaffolds .SUMMARY.md workflow.
+  Splits a Markdown file by H2 headings into numbered documents and generates
+  an index file.
 metadata:
   author: Jordan Godau
   version: 0.1.0
   references:
-    - 00_INSTRUCTIONS.md
-    - 01_INTENT.md
-    - 02_PRECONDITIONS.md
-    - 03_SCRIPTS.md
-    - 04_PROCEDURE.md
-    - 05_EDGE_CASES.md
-    - 06_TEMPLATES.md
+    - 00_INDEX.md
+    - 01_SUMMARY.md
+    - 02_TRIGGERS.md
+    - 03_ALWAYS.md
+    - 04_NEVER.md
+    - 05_PROCEDURE.md
+    - 06_FAILURES.md
   scripts:
     - split.sh
     - split.ps1
     - index.sh
     - index.ps1
-  assets:
-    - assets/EXAMPLE.md
-  artifacts: []
   keywords:
     - markdown
     - split
     - chunking
-    - docs
 ---
+
+# INSTRUCTIONS
+
+1. Refer to `metadata.references`.

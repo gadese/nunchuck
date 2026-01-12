@@ -5,7 +5,7 @@
 ### Agents
 .codex/
 .cursor/
-.windsurf/*
+.windsurf/
 !.windsurf/workflows/
 !.windsurf/workflows/**
 
@@ -44,6 +44,8 @@ __pycache__/
 env/
 venv/
 .venv/
+uv.lock
+*.egg-info/
 
 ### Personal dev
 .dev/

@@ -1,5 +1,5 @@
 ---
-description: Create a new task directory with 00_TASK.md from template.
+description: Create a new task file in `.tasks/<id>.md` from template. Sets timestamps,
 auto_execution_mode: 1
 ---
 
@@ -12,19 +12,15 @@ This workflow delegates to the agent skill at `skills/task/task-create/`.
 1. Read the skill manifest: `skills/task/task-create/SKILL.md`
 2. Read all references listed in `metadata.references` in order:
    - 00_INSTRUCTIONS.md
-   - 01_INTENT.md
-   - 02_PROCEDURE.md
-   - 03_OUTPUTS.md
-3. If scripts are present in `scripts/`, follow any automated steps first
-4. Execute the skill procedure as documented
-5. Produce output in the format specified by the skill
+   - 01_PROCEDURE.md
+3. Execute the skill procedure as documented
+4. Produce output in the format specified by the skill
 
 ## Skill Location
 
 - **Path:** `skills/task/task-create/`
 - **References:** `references/`
-- **Scripts:** `scripts/`
 
 ## Keywords
 
-`task,create new,initialize init,start begin`
+`task,create new,init start`

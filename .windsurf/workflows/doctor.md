@@ -1,5 +1,5 @@
 ---
-description: Orchestrator skill for the `doctor` skillset. A diagnostic protocol that
+description: Diagnoses software failures by combining deterministic evidence gathering
 auto_execution_mode: 1
 ---
 
@@ -11,25 +11,23 @@ This workflow delegates to the agent skill at `skills/doctor/`.
 
 1. Read the skill manifest: `skills/doctor/SKILL.md`
 2. Read all references listed in `metadata.references` in order:
-   - ONTOLOGY.md
-   - PHILOSOPHY.md
-   - OPERATING_RULES.md
-3. Execute the skill procedure as documented
-4. Produce output in the format specified by the skill
+   - 00_INDEX.md
+   - 01_SUMMARY.md
+   - 02_TRIGGERS.md
+   - 03_ALWAYS.md
+   - 04_NEVER.md
+   - 05_PROCEDURE.md
+   - 06_FAILURES.md
+3. If scripts are present in `scripts/`, follow any automated steps first
+4. Execute the skill procedure as documented
+5. Produce output in the format specified by the skill
 
 ## Skill Location
 
 - **Path:** `skills/doctor/`
 - **References:** `references/`
+- **Scripts:** `scripts/`
 
-## Skillset
+## Keywords
 
-This is an orchestrator skill with member skills.
-
-- **Members:** doctor-intake, doctor-triage, doctor-exam, doctor-treatment
-- **Default Pipeline:** doctor-intake -> doctor-triage -> doctor-exam -> doctor-treatment
-
-To run the full pipeline, invoke this workflow.
-To run individual skills, use their specific workflows.
-
-
+`diagnose,debug investigate,evidence hypothesis,treatment`

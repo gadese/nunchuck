@@ -1,6 +1,6 @@
-# 1) Categorize Everything
+# Step 1: Categorize Everything
 
-### Deterministic → `scripts/`
+## Deterministic → `scripts/`
 
 **Goal:** repeatable, testable, language/SDK-agnostic automation.
 
@@ -21,7 +21,7 @@
 
 ---
 
-### Static → `assets/`
+## Static → `assets/`
 
 **Goal:** stable, reusable materials that do not require judgment.
 
@@ -38,7 +38,7 @@
 
 ---
 
-### Subjective → `references/`
+## Subjective → `references/`
 
 **Goal:** explicit, agent-facing judgment, interpretation, and conditional behavior.
 

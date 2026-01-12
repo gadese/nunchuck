@@ -1,4 +1,4 @@
-# 5) “Kickoff Questions” (Use Every Time)
+# Step 5: Use these questions every time
 
 * What **must** be true, always? (invariants → scripts)
 * What can be **computed** instead of documented? (generate it)

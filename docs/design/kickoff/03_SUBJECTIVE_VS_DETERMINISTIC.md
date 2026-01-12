@@ -1,4 +1,4 @@
-# 3) Decide What Must Be Subjective vs Deterministic
+# Step 3: Decide What Must Be Subjective vs Deterministic
 
 Use this checklist:
 

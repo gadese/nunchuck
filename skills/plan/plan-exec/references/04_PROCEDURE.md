@@ -1,117 +1,80 @@
 # Procedure
 
-## Section ownership (critical)
+## Section Ownership
 
-`plan-exec` does NOT populate Focus, Inputs, or Work — those are `plan-create` artifacts.
+`plan-exec` populates **Output** and **Handoff** only.
 
-`plan-exec` ONLY populates:
+Focus, Inputs, and Work come from `plan-create`. If these contain placeholders, halt and notify the user.
 
-- **Output**: Results of executing the Work steps
-- **Handoff**: Instruction for the next task
+## Step 1: Find Active Task
 
-If Focus, Inputs, or Work are incomplete or contain placeholders, the plan is
-malformed. Do not proceed — notify the user that `plan-create` did not complete properly.
+```bash
+./skill.sh status <N>
+```
 
-## Legacy plans
+The first task with `status: pending` or `status: in_progress` is the active task.
 
-Plans created before the frontmatter convention may lack `status` fields or have
-Output/Handoff sections containing placeholder descriptions rather than actual results.
-
-For legacy plans:
-
-- Treat missing `status` as `pending`
-- Treat Output/Handoff containing descriptions (not concrete results) as incomplete
-- Add frontmatter and update status as you execute
-
-## Step 1 - Determine active task
-
-A task file is considered complete if:
-
-- Frontmatter `status: complete`
-- Non-empty **Output** section
-- Non-empty **Handoff** section
-
-1. Starting from sub-plan `a`, read `<letter>/index.md` to identify the ordered
-   task list (roman numerals).
-2. Scan tasks in order for the first task with `status: pending` or `status: in_progress`.
-3. If all tasks under the current sub-plan are complete, move to the next letter.
-4. The first non-complete task file is the active task.
-5. If all sub-plans are complete, proceed to Plan wrap-up (Step 5).
-
-If `index.md` does not specify tasks, default to scanning roman numeral task
-files present in the sub-plan folder in ascending order.
-
-## Step 2 - Load and validate
+## Step 2: Load and Validate
 
 Read:
+- Root: `.plan/<N>/plan.md`
+- Sub-plan: `.plan/<N>/<letter>/index.md`
+- Active: `.plan/<N>/<letter>/<roman>.md`
 
-- Root: `docs/planning/phase-<N>/plan.md`
-- Sub-plan: `docs/planning/phase-<N>/<letter>/index.md`
-- Active: `docs/planning/phase-<N>/<letter>/<roman>.md`
-- Any referenced artifacts mentioned in Inputs (only as needed)
+Verify Work section has actionable steps (not placeholders).
 
-### Validation
+## Step 3: Execute
 
-Before executing, verify the active task has:
+### Update Status
 
-- Non-placeholder Focus (concrete goal)
-- Non-placeholder Inputs (specific references)
-- Non-placeholder Work (actionable steps)
+Set `status: in_progress` in the task frontmatter.
 
-If any are missing or contain `<...>` placeholders, halt and notify the user.
+### Perform the Work
 
-## Step 3 - Execute the active task
+**This is the critical step.** For each item in Work:
 
-### Status update (start)
+1. Read the instruction
+2. **Do it** — write code, create files, run commands
+3. Verify the result exists on disk
 
-Update the active task's frontmatter: `status: in_progress`
+### Record Output
 
-If this is the first task in the sub-plan, also update the sub-plan's `index.md`
-frontmatter to `status: in_progress`.
+Write concrete results:
 
-If this is the first task in the entire plan, also update the root `plan.md`
-frontmatter to `status: in_progress`.
+```markdown
+## Output
 
-### Execution
+- Created `src/utils/parser.py` (47 lines)
+- Updated `config.yaml` with new endpoint
+- Ran tests: 12 passed, 0 failed
+```
 
-- Follow the steps in **Work** exactly as written.
-- Perform the steps.
-- Record the results under **Output**.
-- Write a clear **Handoff** for the next task.
+**Bad Output (failure mode):**
 
-Do not perform steps that belong to later sub-plans.
+```markdown
+## Output
 
-### Status update (complete)
+Would create a parser module that handles...
+```
 
-Update the active task's frontmatter: `status: complete`
+### Write Handoff
 
-If this was the last task in the sub-plan, also update the sub-plan's `index.md`
-frontmatter to `status: complete`.
+Provide explicit next step for the following task.
 
-## Step 4 - Advance to the next task
+### Update Status
 
-After completing `<roman>`:
+Set `status: complete` in the task frontmatter.
 
-- Move to the next task within the same sub-plan.
-- If the current task is the last in the sub-plan, move to the next letter in
-  the root Sub-plan Index.
-- Repeat Steps 2-4.
+## Step 4: Advance
 
-If the next sub-plan folder does not exist but the index includes it:
+Move to next task (i → ii → iii) or next sub-plan (a → b → c).
 
-- Create it and scaffold `index.md` and task files using the same template
-  structure already present in the plan and listed in the new `index.md`.
+Repeat Steps 2-4 until all tasks complete.
 
-## Step 5 - Plan wrap-up
+## Step 5: Wrap-up
 
-When all sub-plans in the root Sub-plan Index are complete:
+When all sub-plans complete:
 
-1. Update `docs/planning/phase-<N>/plan.md`:
-   - Update frontmatter: `status: complete`
-   - Check off the root Success Criteria that were met.
-   - If any success criteria were not met, add a short note explaining what remains.
-2. Append a short **Plan Summary** section at the end of the root plan:
-   - What was done
-   - Key decisions
-   - Links/paths to produced artifacts
-   - Any follow-up plan suggestion if needed
+1. Update `plan.md` frontmatter: `status: complete`
+2. Check off success criteria with evidence
+3. Append **Plan Summary** section

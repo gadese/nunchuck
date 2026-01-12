@@ -1,5 +1,5 @@
 ---
-description: Orchestrator skill for the `prompt` skillset. Dispatches to member skills in a s
+description: Orchestrator skill for the `prompt` skillset. Separates intent formation from
 auto_execution_mode: 1
 ---
 
@@ -23,8 +23,7 @@ This workflow delegates to the agent skill at `skills/prompt/`.
 
 This is an orchestrator skill with member skills.
 
-- **Members:** prompt-forge, prompt-exec
-- **Default Pipeline:** prompt-forge -> prompt-exec
+- **Members:** prompt-forge, prompt-compile, prompt-exec
 
 To run the full pipeline, invoke this workflow.
 To run individual skills, use their specific workflows.

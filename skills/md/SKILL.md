@@ -1,25 +1,28 @@
 ---
 name: md
 description: >
-  Orchestrates markdown chunking workflows (split → index → summary)
+  Orchestrates markdown document workflows with deterministic operations
+  (split, merge, lint) and agent review.
 metadata:
   author: Jordan Godau
-  version: 0.1.0
-  keywords:
-    - markdown
-    - split
-    - index
-    - summary
-    - docs
-    - progressive-disclosure
+  version: 0.2.0
   skillset:
     name: md
     schema_version: 1
     skills:
       - md-split
-    pipelines:
-      default:
-        - md-split
-      allowed:
-        - [md-split]
+      - md-merge
+      - md-review
+    shared:
+      root: .shared
+  keywords:
+    - markdown
+    - split
+    - merge
+    - lint
+    - review
 ---
+
+# INSTRUCTIONS
+
+1. Refer to `.pipelines/.INDEX.md`.

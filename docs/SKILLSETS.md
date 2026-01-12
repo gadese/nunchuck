@@ -16,6 +16,7 @@ Skillsets leverage a **strict custom schema** within the `metadata.skillset` fie
 ### Spec-Compliant Parent Skill
 
 A skillset is simply a `SKILL.md` file that:
+
 1. Follows the standard Agent Skills specification
 2. Adds a custom `metadata.skillset` field with a strict schema
 3. Acts as an orchestrator that dispatches to member skills
@@ -23,6 +24,7 @@ A skillset is simply a `SKILL.md` file that:
 ### Non-Breaking Innovation
 
 The skillset concept is **novel but non-breaking** because:
+
 - It uses the existing `SKILL.md` format
 - The `metadata` field is designed for custom extensions
 - Agents that don't understand skillsets simply see a regular skill
@@ -31,6 +33,7 @@ The skillset concept is **novel but non-breaking** because:
 ### Optional Grouping
 
 Member skills can be:
+
 - **Used individually** - Each skill is fully functional on its own
 - **Used as a group** - The skillset orchestrates execution
 - **Used in custom combinations** - Users can pick specific skills

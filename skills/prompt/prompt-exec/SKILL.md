@@ -2,21 +2,33 @@
 name: prompt-exec
 license: MIT
 description: >
-  Execute the forged prompt exactly as written, with no reinterpretation.
-  Requires explicit user consent and a ready prompt artifact on disk.
-  Deletes the canonical prompt after successful execution.
+  Execute the forged prompt exactly as written. Requires explicit consent
+  and a ready artifact. Deletes artifact after successful execution.
 metadata:
   author: Jordan Godau
+  version: 0.1.0
   references:
-    - 00_INSTRUCTIONS.md
-    - 01_PRECONDITIONS.md
-    - 02_PROCEDURE.md
-    - 03_EDGE_CASES.md
+    - 00_INDEX.md
+    - 01_SUMMARY.md
+    - 02_TRIGGERS.md
+    - 03_ALWAYS.md
+    - 04_NEVER.md
+    - 05_PROCEDURE.md
+    - 06_FAILURES.md
+  scripts:
+    - ../.shared/scripts/skill.sh
+    - ../.shared/scripts/skill.ps1
+  artifacts:
+    - .prompt/receipts/
   keywords:
     - prompt
     - execute
     - run
     - proceed
-    - confirm
     - go
 ---
+
+# INSTRUCTIONS
+
+1. Refer to `metadata.references`.
+2. Use CLI at `../.shared/scripts/skill.sh` for deterministic operations.

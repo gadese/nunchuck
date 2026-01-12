@@ -1,0 +1,50 @@
+# Compaction Output Schema
+# Validates output from all compact-* skills
+
+type: object
+required:
+  - content
+  - compaction
+
+properties:
+  content:
+    type: string
+    description: The compacted content
+
+  compaction:
+    type: object
+    required:
+      - target
+      - mode
+      - source_hash
+      - output_hash
+    properties:
+      target:
+        type: string
+        description: Identifier of compacted target
+      mode:
+        type: string
+        enum: [light, heavy, auto]
+      source_hash:
+        type: string
+        description: SHA-256 hash of source content
+      output_hash:
+        type: string
+        description: SHA-256 hash of compacted content
+      timestamp:
+        type: string
+        format: date-time
+
+  # Required for auto mode only
+  auto_decision:
+    type: object
+    properties:
+      effective_mode:
+        type: string
+        enum: [light, heavy, mixed]
+      confidence:
+        type: string
+        enum: [low, medium, high]
+      justification:
+        type: string
+        description: Why this mode was selected

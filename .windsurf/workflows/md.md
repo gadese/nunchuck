@@ -1,5 +1,5 @@
 ---
-description: Orchestrates markdown chunking workflows (split → index → summary)
+description: Orchestrates markdown document workflows with deterministic operations
 auto_execution_mode: 1
 ---
 
@@ -23,12 +23,11 @@ This workflow delegates to the agent skill at `skills/md/`.
 
 This is an orchestrator skill with member skills.
 
-- **Members:** md-split
-- **Default Pipeline:** md-split
+- **Members:** md-split, md-merge, md-review
 
 To run the full pipeline, invoke this workflow.
 To run individual skills, use their specific workflows.
 
 ## Keywords
 
-`markdown,split index,summary docs,progressive-disclosure`
+`markdown,split merge,lint review`
