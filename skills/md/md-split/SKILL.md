@@ -21,6 +21,7 @@ metadata:
     - index.ps1
   assets:
     - assets/EXAMPLE.md
+  artifacts: []
   keywords:
     - markdown
     - split

@@ -1,0 +1,21 @@
+{
+  "version": "1.0",
+  "input": "docs/guidelines/FRAMEWORK.md",
+  "output_dir": "docs/guidelines/FRAMEWORK/",
+  "created_at": "2026-01-12T07:45:46Z",
+  "rules": {
+    "split_on": "h2",
+    "promote_heading": "h2_to_h1",
+    "naming": "<NN>_<NAME_UPPERCASE>.md",
+    "intro_file": "00_INTRO.md"
+  },
+  "files": [
+    {"index": 1, "filename": "01_CORE_DESIGN_GOALS.md", "title": "Core Design Goals", "source_heading": "## Core Design Goals"},
+    {"index": 2, "filename": "02_CANONICAL_EXECUTION_FLOW.md", "title": "Canonical Execution Flow", "source_heading": "## Canonical Execution Flow"},
+    {"index": 3, "filename": "03_DETERMINISM_FIRST_SUBJECTIVITY_LAST.md", "title": "Determinism First, Subjectivity Last", "source_heading": "## Determinism First, Subjectivity Last"},
+    {"index": 4, "filename": "04_ARTIFACTS_AS_COMPLETION_SIGNALS.md", "title": "Artifacts as Completion Signals", "source_heading": "## Artifacts as Completion Signals"},
+    {"index": 5, "filename": "05_HOOKS_PHILOSOPHY.md", "title": "Hooks Philosophy", "source_heading": "## Hooks Philosophy"},
+    {"index": 6, "filename": "06_WHAT_THIS_FRAMEWORK_IS_NOT.md", "title": "What This Framework Is *Not*", "source_heading": "## What This Framework Is *Not*"},
+    {"index": 7, "filename": "07_MENTAL_MODEL_TLDR.md", "title": "Mental Model (TL;DR)", "source_heading": "## Mental Model (TL;DR)"}
+  ]
+}
