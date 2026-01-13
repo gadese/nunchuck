@@ -5,6 +5,7 @@ import argparse
 import json
 import subprocess
 import sys
+import shutil
 from pathlib import Path
 
 
@@ -12,12 +13,50 @@ def find_script(name: str) -> Path | None:
     """Find a script in the md-split/scripts directory."""
     base = Path(__file__).parent.parent.parent.parent
     split_scripts = base / "md-split" / "scripts"
-    
-    for ext in [".sh", ".ps1"]:
+
+    exts = [".sh", ".ps1"]
+    if sys.platform.startswith("win"):
+        exts = [".ps1", ".sh"]
+
+    for ext in exts:
         script = split_scripts / f"{name}{ext}"
         if script.exists():
             return script
     return None
+
+
+def run_script(script: Path, args_sh: list[str], args_ps1: list[str]) -> int:
+    suffix = script.suffix.lower()
+
+    if suffix == ".sh":
+        bash = shutil.which("bash")
+        if bash is None:
+            print("error: bash not found", file=sys.stderr)
+            return 1
+        result = subprocess.run([bash, str(script), *args_sh])
+        return result.returncode
+
+    if suffix == ".ps1":
+        pwsh = shutil.which("pwsh") or shutil.which("powershell")
+        if pwsh is None:
+            print("error: pwsh/powershell not found", file=sys.stderr)
+            return 1
+
+        result = subprocess.run(
+            [
+                pwsh,
+                "-NoProfile",
+                "-ExecutionPolicy",
+                "Bypass",
+                "-File",
+                str(script),
+                *args_ps1,
+            ]
+        )
+        return result.returncode
+
+    print(f"error: unsupported script type '{script.suffix}'", file=sys.stderr)
+    return 1
 
 
 def cmd_help(args: argparse.Namespace) -> int:
@@ -71,6 +110,18 @@ def cmd_validate(args: argparse.Namespace) -> int:
     index_script = find_script("index")
     if index_script is None:
         errors.append("missing script: md-split/scripts/index.sh")
+
+    if split_script is not None:
+        if split_script.suffix == ".sh" and shutil.which("bash") is None:
+            errors.append("missing command: bash")
+        if split_script.suffix == ".ps1" and (shutil.which("pwsh") is None and shutil.which("powershell") is None):
+            errors.append("missing command: pwsh/powershell")
+
+    if index_script is not None:
+        if index_script.suffix == ".sh" and shutil.which("bash") is None:
+            errors.append("missing command: bash")
+        if index_script.suffix == ".ps1" and (shutil.which("pwsh") is None and shutil.which("powershell") is None):
+            errors.append("missing command: pwsh/powershell")
     
     if errors:
         for e in errors:
@@ -87,17 +138,21 @@ def cmd_split(args: argparse.Namespace) -> int:
     if script is None:
         print("error: split script not found", file=sys.stderr)
         return 1
-    
-    cmd = ["bash", str(script), "--in", args.file]
+
+    args_sh: list[str] = ["--in", args.file]
+    args_ps1: list[str] = ["-in", args.file]
+
     if args.out:
-        cmd.extend(["--out", args.out])
+        args_sh.extend(["--out", args.out])
+        args_ps1.extend(["-out", args.out])
     if args.force:
-        cmd.append("--force")
+        args_sh.append("--force")
+        args_ps1.append("-force")
     if args.dry_run:
-        cmd.append("--dry-run")
-    
-    result = subprocess.run(cmd)
-    return result.returncode
+        args_sh.append("--dry-run")
+        args_ps1.append("-dryRun")
+
+    return run_script(script, args_sh=args_sh, args_ps1=args_ps1)
 
 
 def cmd_merge(args: argparse.Namespace) -> int:
@@ -176,9 +231,36 @@ def cmd_lint(args: argparse.Namespace) -> int:
         print("no markdown files found")
         return 0
     
-    issues = []
+    issues: list[tuple[Path, int, str]] = []
+
+    def fix_content(text: str) -> str:
+        # Deterministic, safe fixes only.
+        lines = text.split("\n")
+
+        # 1) Strip trailing whitespace.
+        lines = [ln.rstrip() for ln in lines]
+
+        # 2) Collapse runs of 3+ blank lines to 2 blank lines.
+        fixed: list[str] = []
+        blank_run = 0
+        for ln in lines:
+            if ln.strip() == "":
+                blank_run += 1
+                if blank_run <= 2:
+                    fixed.append(ln)
+                continue
+            blank_run = 0
+            fixed.append(ln)
+
+        return "\n".join(fixed)
     for f in files:
         content = f.read_text(encoding="utf-8")
+        if args.fix:
+            fixed = fix_content(content)
+            if fixed != content:
+                f.write_text(fixed, encoding="utf-8")
+                content = fixed
+
         lines = content.split("\n")
         
         # Simple lint checks
@@ -192,7 +274,7 @@ def cmd_lint(args: argparse.Namespace) -> int:
                 if i > 2 and lines[i-2].strip() == "":
                     issues.append((f, i, "multiple consecutive blank lines"))
             
-            # Heading without space after #
+            # Heading without space after # (lint only; no auto-fix)
             if line.startswith("#") and not line.startswith("# ") and line != "#":
                 if not line.startswith("## ") and not line.startswith("### "):
                     issues.append((f, i, "heading missing space after #"))
@@ -215,10 +297,11 @@ def cmd_index(args: argparse.Namespace) -> int:
     if script is None:
         print("error: index script not found", file=sys.stderr)
         return 1
-    
-    cmd = ["bash", str(script), args.dir]
-    result = subprocess.run(cmd)
-    return result.returncode
+
+    # index.sh expects flags; index.ps1 expects -dir.
+    args_sh: list[str] = ["--dir", args.dir]
+    args_ps1: list[str] = ["-dir", args.dir]
+    return run_script(script, args_sh=args_sh, args_ps1=args_ps1)
 
 
 def cmd_clean(args: argparse.Namespace) -> int:

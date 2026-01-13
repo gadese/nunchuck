@@ -35,6 +35,8 @@ while [[ "$#" -gt 0 ]]; do
         --dry-run) DRY_RUN=true ;;
         --force) FORCE=true ;;
         --no-intro) KEEP_INTRO=false ;;
+        --manifest) GEN_MANIFEST=true ;;
+        --no-manifest) GEN_MANIFEST=false ;;
         --help) show_help ;;
         *) echo "Unknown parameter: $1"; exit 1 ;;
     esac
