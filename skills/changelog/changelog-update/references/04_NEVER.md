@@ -1,3 +1,8 @@
+---
+description: Forbidden behaviors for this skill.
+index: []
+---
+
 # Never
 
 - Never paste raw commit logs into the changelog.

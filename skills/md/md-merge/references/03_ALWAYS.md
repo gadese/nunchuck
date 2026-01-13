@@ -1,3 +1,10 @@
+---
+description: Non-negotiable invariants for this skill.
+index:
+  - Merge Rules
+  - Output Rules
+---
+
 # Always
 
 ## Merge Rules

@@ -1,3 +1,13 @@
+---
+description: What this skill is and is not.
+index:
+  - What It Does
+  - What Problems It Solves
+  - What It Is Not
+  - Key Invariant
+  - Scripts
+---
+
 # Summary
 
 The **md-split** skill splits markdown files by H2 headings into numbered documents.

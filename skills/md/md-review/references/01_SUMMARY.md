@@ -1,3 +1,11 @@
+---
+description: What this skill is and is not.
+index:
+  - What It Does
+  - What It Is Not
+  - Key Pattern
+---
+
 # Summary
 
 The **md-review** skill provides agent-driven quality assessment for markdown documents.

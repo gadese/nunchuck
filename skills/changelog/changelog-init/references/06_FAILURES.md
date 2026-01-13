@@ -1,3 +1,11 @@
+---
+description: What to do when things go wrong.
+index:
+  - Changelog already exists
+  - `uv` missing / CLI not runnable
+  - Remote URL not detected
+---
+
 # Failures
 
 ## Changelog already exists

@@ -1,3 +1,12 @@
+---
+description: Reference file for Procedure.
+index:
+  - Step 1: Load Plan
+  - Step 2: Review Each Task
+  - Step 3: Verify Success Criteria
+  - Step 4: Produce Assessment
+---
+
 # Procedure
 
 ## Step 1: Load Plan

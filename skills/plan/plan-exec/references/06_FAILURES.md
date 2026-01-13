@@ -1,3 +1,11 @@
+---
+description: What to do when things go wrong.
+index:
+  - Missing or invalid plan
+  - Placeholder Work
+  - Commands not runnable
+---
+
 # Failures
 
 ## Missing or invalid plan

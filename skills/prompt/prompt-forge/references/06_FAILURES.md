@@ -1,3 +1,11 @@
+---
+description: What to do when things go wrong.
+index:
+  - Failure Modes
+  - Recovery
+  - Shared Context
+---
+
 # Failures
 
 ## Failure Modes

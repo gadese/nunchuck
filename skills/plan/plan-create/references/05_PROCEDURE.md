@@ -1,3 +1,13 @@
+---
+description: Canonical execution path for this skill.
+index:
+  - Step 1: Surface scan
+  - Step 2: Initialize plan
+  - Step 3: Populate plan files
+  - Step 4: Validate
+  - Additional reference
+---
+
 # Procedure
 
 ## Step 1: Surface scan

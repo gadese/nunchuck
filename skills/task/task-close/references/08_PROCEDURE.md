@@ -1,3 +1,10 @@
+---
+description: Reference file for Procedure.
+index:
+  - Close
+  - Verify
+---
+
 # Procedure
 
 This file is kept for continuity. Prefer `05_PROCEDURE.md`.

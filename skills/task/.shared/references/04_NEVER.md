@@ -1,3 +1,12 @@
+---
+description: Forbidden behaviors for this skill.
+index:
+  - No Multiple Active
+  - No Hidden State
+  - No Data Loss
+  - No Scope Confusion
+---
+
 # Never
 
 Forbidden behaviors for the task skillset.

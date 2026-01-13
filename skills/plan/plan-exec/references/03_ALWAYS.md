@@ -1,3 +1,8 @@
+---
+description: Non-negotiable invariants for this skill.
+index: []
+---
+
 # Always
 
 - Always perform the Work steps as actual implementation (no “would do” outputs).

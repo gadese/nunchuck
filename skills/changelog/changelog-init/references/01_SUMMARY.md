@@ -1,3 +1,9 @@
+---
+description: What this skill is and is not.
+index:
+  - When to Use
+---
+
 # Summary
 
 Creates a new CHANGELOG.md from the Keep a Changelog template.

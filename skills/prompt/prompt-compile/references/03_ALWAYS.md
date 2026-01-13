@@ -1,3 +1,10 @@
+---
+description: Non-negotiable invariants for this skill.
+index:
+  - Invariants
+  - Shared Context
+---
+
 # Always
 
 ## Invariants

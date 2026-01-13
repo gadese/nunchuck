@@ -1,3 +1,11 @@
+---
+description: What to do when things go wrong.
+index:
+  - Common Failure Cases
+  - When to Abort
+  - When to Continue
+---
+
 # Failures
 
 Handling errors in the prompt skillset.

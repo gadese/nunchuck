@@ -1,3 +1,11 @@
+---
+description: Reference file for Instructions.
+index:
+  - Initialize
+  - Critical: Execution Means Implementation
+  - Policies
+---
+
 # Instructions
 
 ## Initialize

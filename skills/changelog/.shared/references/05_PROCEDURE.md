@@ -1,3 +1,11 @@
+---
+description: Canonical execution path for this skill.
+index:
+  - Commands
+  - Categories
+  - Typical Flows
+---
+
 # Procedure
 
 CLI commands for the changelog skillset.

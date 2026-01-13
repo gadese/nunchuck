@@ -1,3 +1,12 @@
+---
+description: Forbidden behaviors for this skill.
+index:
+  - No False Completion
+  - No Scope Creep
+  - No Hidden State
+  - No Premature Action
+---
+
 # Never
 
 Forbidden behaviors for the plan skillset.

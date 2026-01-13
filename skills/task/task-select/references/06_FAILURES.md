@@ -1,3 +1,10 @@
+---
+description: What to do when things go wrong.
+index:
+  - Task not found
+  - CLI not runnable
+---
+
 # Failures
 
 ## Task not found

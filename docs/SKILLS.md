@@ -2,8 +2,6 @@
 
 Complete reference of all skills and skillsets available in nunchuck.
 
-> **Tip:** Use `nunchuck list` to see all installed skills, or browse [INDEX.md](../INDEX.md) for the auto-generated index.
-
 ---
 
 ## Skillsets (Orchestrators)
@@ -25,17 +23,50 @@ Manages Keep a Changelog format files with deterministic operations, chrono-awar
 
 **Keywords:** `changelog`, `keepachangelog`, `release`, `versioning`
 
+[Read more](../skills/changelog/README.md)
+
 ---
 
 ### doctor
 
 **Path:** `skills/doctor/`
 
-Diagnoses software failures by combining deterministic evidence gathering with agent judgment. Models failures as medical cases.
+Diagnoses software failures by combining deterministic evidence gathering with agent judgment. Models failures as medical cases. Idempotent — run repeatedly until confident diagnosis.
 
 **Keywords:** `diagnose`, `debug`, `investigate`, `evidence`, `hypothesis`, `treatment`
 
-**References:** `00_INDEX.md` through `06_FAILURES.md`
+[Read more](../skills/doctor/README.md)
+
+---
+
+### dtx
+
+**Path:** `skills/dtx/`
+
+Manages an agent's working context via explicit, auditable `.dtx/` artifacts.
+
+**Member Skills:**
+
+- `dtx-gather` - Deterministic evidence gathering (glob + ripgrep)
+- `dtx-state` - Present current admissible working set
+- `dtx-forget` - Revoke a premise from the contract
+- `dtx-validate` - Validate artifacts for integrity and staleness
+
+**Keywords:** `context`, `evidence`, `contract`, `gather`, `forget`
+
+[Read more](../skills/dtx/README.md)
+
+---
+
+### grape
+
+**Path:** `skills/grape/`
+
+AI-enabled, deterministic codebase search. Converts vague intent into explicit, auditable grep parameters and executes a stable surface scan over disk.
+
+**Keywords:** `search`, `grep`, `codebase`, `find`, `scan`
+
+[Read more](../skills/grape/README.md)
 
 ---
 
@@ -52,6 +83,8 @@ Orchestrates markdown document workflows with deterministic operations (split, m
 - `md-review` - Agent review of markdown content
 
 **Keywords:** `markdown`, `split`, `merge`, `lint`, `review`
+
+[Read more](../skills/md/README.md)
 
 ---
 
@@ -70,6 +103,8 @@ Manages bounded work units with structured plans stored in `.plan/`.
 
 **Keywords:** `plan`, `planning`, `execute`, `status`
 
+[Read more](../skills/plan/README.md)
+
 ---
 
 ### prompt
@@ -85,6 +120,8 @@ Separates intent formation from execution to protect humans from premature or mi
 - `prompt-exec` - Execute compiled prompts
 
 **Keywords:** `prompt`, `intent`, `forge`, `compile`, `execute`
+
+[Read more](../skills/prompt/README.md)
 
 ---
 
@@ -103,34 +140,11 @@ Manages bounded work units with single-file tasks stored in `.tasks/`, skepticis
 
 **Keywords:** `task`, `create`, `list`, `select`, `close`
 
----
-
-## Using Skills
-
-### Via nunchuck CLI
-
-```bash
-# List all available skills
-nunchuck list
-
-# Copy a skill to your project
-nunchuck use doctor
-
-# Generate IDE adapters
-nunchuck adapter --windsurf
-```
-
-### Via IDE Integration
-
-After running `nunchuck adapter`, use slash commands:
-
-- **Windsurf:** `/doctor`, `/plan-create`, `/changelog-init`
-- **Cursor:** Access via command palette
+[Read more](../skills/task/README.md)
 
 ---
 
 ## See Also
 
-- [Skillsets Documentation](./SKILLSETS.md) - Learn about orchestrator skills
-- [Auto-generated INDEX.md](../INDEX.md) - Complete index with pipelines
-- [Schema Documentation](./schema/SKILL.md) - Understand skill structure
+- [Skillsets Documentation](./SKILLSETS.md) - Spec-compliant agent skill groups
+- [Contributing Guidelines](../CONTRIBUTING.md) - Add your own skills

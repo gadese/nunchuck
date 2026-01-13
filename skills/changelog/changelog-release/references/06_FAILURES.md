@@ -1,3 +1,10 @@
+---
+description: What to do when things go wrong.
+index:
+  - Verification fails
+  - Empty `[Unreleased]`
+---
+
 # Failures
 
 ## Verification fails

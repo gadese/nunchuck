@@ -1,3 +1,10 @@
+---
+description: Non-negotiable invariants for this skill.
+index:
+  - Entry Quality
+  - Duplicate Prevention
+---
+
 # Always
 
 ## Entry Quality

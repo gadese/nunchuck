@@ -1,3 +1,13 @@
+---
+description: What this skill is and is not.
+index:
+  - What It Does
+  - What Problems It Solves
+  - What It Is Not
+  - Key Invariant
+  - Artifact Location
+---
+
 # Summary
 
 The **task** skillset manages lightweight task tracking with content-addressed storage.

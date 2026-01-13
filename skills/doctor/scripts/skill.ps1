@@ -20,6 +20,11 @@ function Invoke-Validate {
         $errors++
     }
 
+    if (-not (Get-Command grep -ErrorAction SilentlyContinue)) {
+        Write-Error "error: grep not found"
+        $errors++
+    }
+
     $pyproject = Join-Path $IncludeDir "pyproject.toml"
     if (-not (Test-Path $pyproject)) {
         Write-Error "error: missing $pyproject"
@@ -49,7 +54,7 @@ $command = if ($args.Count -gt 0) { $args[0] } else { "help" }
 switch ($command) {
     "help" { Show-Help }
     "validate" { Invoke-Validate }
-    { $_ -in @("status", "init", "surface", "grep", "symptom", "hypothesize", "diagnose", "treat", "clean") } {
+    { $_ -in @("status", "init", "surface", "grep", "symptom", "intake", "hypothesize", "diagnose", "treat", "clean") } {
         Invoke-Dispatch -Arguments $args
     }
     default {

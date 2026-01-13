@@ -10,75 +10,22 @@ git clone https://github.com/JordanGunn/skills.git && cd skills
 
 ---
 
-## 2. Install nunchuck CLI
+## 2. Copy skills into your project
 
-The nunchuck CLI manages skills and generates IDE adapters.
-
-### Unix (macOS/Linux/WSL)
-
-```bash
-# Install with uv (recommended - fastest)
-./scripts/install.sh uv
-
-# Or use pipx for isolated installation
-./scripts/install.sh pipx
-
-# Or use pip for user installation
-./scripts/install.sh user
-```
-
-### Windows (PowerShell)
-
-```powershell
-# Install with uv (recommended - fastest)
-.\scripts\install.ps1 uv
-
-# Or use pip for user installation
-.\scripts\install.ps1 user
-```
-
-The installer will:
-
-1. Install the `nunchuck` CLI tool
-2. Copy all skills to `~/.nunchuck/skills/`
+Copy the `skills/` directory wherever you want to use it.
 
 ---
 
 ## 3. Using Skills
 
-### List Available Skills
-
-```bash
-nunchuck list
-```
-
-### Copy a Skill to Your Project
-
-```bash
-# Copy to current directory
-nunchuck use doctor
-
-# Copy to specific directory
-nunchuck use doctor ./my-project/skills/
-```
-
 ### Generate IDE Adapters
 
 ```bash
-# Auto-detect IDE from current directory
-nunchuck adapter
-
 # Generate Windsurf workflows
-nunchuck adapter --windsurf
+bash scripts/adapters/windsurf/run.sh --skills-root skills --output-root .
 
 # Generate Cursor commands
-nunchuck adapter --cursor
-```
-
-### Validate a Skill
-
-```bash
-nunchuck validate path/to/skill
+bash scripts/adapters/cursor/run.sh --skills-root skills --output-root .
 ```
 
 ---
@@ -87,17 +34,16 @@ nunchuck validate path/to/skill
 
 ### Windsurf
 
-After running `nunchuck adapter --windsurf`, workflows appear in `.windsurf/workflows/`. Use slash commands like `/doctor` or `/plan-create` to invoke skills.
+After generating workflows, they appear in `.windsurf/workflows/`. Use slash commands like `/doctor` or `/plan-create` to invoke skills.
 
 ### Cursor
 
-After running `nunchuck adapter --cursor`, commands appear in `.cursor/commands/`. Access via the command palette.
+After generating commands, they appear in `.cursor/commands/`. Access via the command palette.
 
 ---
 
 ## 5. Next Steps
 
 - **[Skills Reference](./SKILLS.md)** - Browse all available skills
-- **[Skillsets Documentation](./SKILLSETS.md)** - Learn about orchestrator skills
-- **[Schema Documentation](./schema/SKILL.md)** - Technical reference
+- **[Skillsets Documentation](./SKILLSETS.md)** - Orchestrator skills and schema
 - **[Contributing Guidelines](../CONTRIBUTING.md)** - Add your own skills

@@ -1,3 +1,12 @@
+---
+description: Non-negotiable invariants for this skill.
+index:
+  - Execution Rules
+  - Status Rules
+  - Artifact Rules
+  - Scope Rules
+---
+
 # Always
 
 Non-negotiable invariants for the plan skillset.

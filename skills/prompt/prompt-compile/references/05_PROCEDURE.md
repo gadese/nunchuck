@@ -1,3 +1,13 @@
+---
+description: Canonical execution path for this skill.
+index:
+  - Step 1: Verify Artifact (Deterministic)
+  - Step 2: Compile to Markdown (Deterministic)
+  - Step 3: Review Output (Subjective)
+  - Step 4: Polish (Subjective, Single Pass)
+  - Step 5: Confirm
+---
+
 # Procedure
 
 ## Step 1: Verify Artifact (Deterministic)

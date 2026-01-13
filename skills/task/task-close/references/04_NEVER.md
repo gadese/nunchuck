@@ -1,3 +1,8 @@
+---
+description: Forbidden behaviors for this skill.
+index: []
+---
+
 # Never
 
 - Never close a task without a reason.

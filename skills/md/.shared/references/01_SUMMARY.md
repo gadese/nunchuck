@@ -1,3 +1,13 @@
+---
+description: What this skill is and is not.
+index:
+  - What It Does
+  - What Problems It Solves
+  - What It Is Not
+  - Key Invariant
+  - Artifact Location
+---
+
 # Summary
 
 The **md** skillset manages markdown document workflows with deterministic operations and agent review.

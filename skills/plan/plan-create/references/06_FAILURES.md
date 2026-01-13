@@ -1,3 +1,11 @@
+---
+description: What to do when things go wrong.
+index:
+  - `uv` missing / CLI not runnable
+  - Could not determine next `<N>`
+  - Placeholder Work steps
+---
+
 # Failures
 
 ## `uv` missing / CLI not runnable

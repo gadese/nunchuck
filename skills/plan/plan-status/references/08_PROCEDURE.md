@@ -1,3 +1,12 @@
+---
+description: Reference file for Procedure.
+index:
+  - Automated (Preferred)
+  - Manual (Fallback)
+  - Output Format
+  - Interpreting Status
+---
+
 # Procedure
 
 ## Automated (Preferred)

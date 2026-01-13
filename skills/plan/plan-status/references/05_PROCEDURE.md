@@ -1,3 +1,11 @@
+---
+description: Canonical execution path for this skill.
+index:
+  - Step 1: Run status
+  - Step 2: Report
+  - Additional reference
+---
+
 # Procedure
 
 ## Step 1: Run status

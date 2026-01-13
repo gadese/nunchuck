@@ -1,3 +1,11 @@
+---
+description: When to invoke or exit this skill.
+index:
+  - Invoke when
+  - Do not invoke when
+  - Exit immediately if
+---
+
 # Triggers
 
 ## Invoke when

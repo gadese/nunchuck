@@ -1,3 +1,11 @@
+---
+description: Non-negotiable invariants for this skill.
+index:
+  - Split Rules
+  - Output Rules
+  - Script Rules
+---
+
 # Always
 
 Non-negotiable invariants for the md-split skill.

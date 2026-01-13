@@ -1,3 +1,13 @@
+---
+description: Non-negotiable invariants for this skill.
+index:
+  - Evidence Rules
+  - Session Rules
+  - Uncertainty Rules
+  - Artifact Rules
+  - Scope Rules
+---
+
 # Always
 
 Non-negotiable invariants for the doctor skill.

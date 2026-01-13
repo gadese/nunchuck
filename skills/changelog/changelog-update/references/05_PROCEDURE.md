@@ -1,3 +1,12 @@
+---
+description: Canonical execution path for this skill.
+index:
+  - Step 1: Gather Context
+  - Step 2: Check for Suggestions
+  - Step 3: Add Entry
+  - Step 4: Verify
+---
+
 # Procedure
 
 ## Step 1: Gather Context

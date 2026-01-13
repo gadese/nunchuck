@@ -1,3 +1,12 @@
+---
+description: When to invoke or exit this skill.
+index:
+  - Invoke When
+  - Do Not Invoke When
+  - Exit Immediately If
+  - Do Not Infer
+---
+
 # Triggers
 
 When to activate or exit the doctor skill.

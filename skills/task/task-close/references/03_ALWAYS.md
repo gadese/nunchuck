@@ -1,3 +1,8 @@
+---
+description: Non-negotiable invariants for this skill.
+index: []
+---
+
 # Always
 
 - Always close via the deterministic CLI (`../.shared/scripts/skill.sh close <id> --reason ...`).

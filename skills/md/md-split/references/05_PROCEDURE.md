@@ -1,3 +1,13 @@
+---
+description: Canonical execution path for this skill.
+index:
+  - Step 1: Verify Source
+  - Step 2: Run Split Script
+  - Step 3: Generate Index
+  - Step 4: Verify Output
+  - Output Structure
+---
+
 # Procedure
 
 Execution path for the md-split skill.

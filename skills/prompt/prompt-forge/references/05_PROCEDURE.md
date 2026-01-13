@@ -1,3 +1,14 @@
+---
+description: Canonical execution path for this skill.
+index:
+  - Step 1: Check State (Deterministic)
+  - Step 2: Gather Intent (Subjective)
+  - Step 3: Reflect Understanding (Subjective)
+  - Step 4: Update Artifact
+  - Step 5: Mark Ready (Deterministic)
+  - Step 6: Stop (Handoff)
+---
+
 # Procedure
 
 ## Step 1: Check State (Deterministic)

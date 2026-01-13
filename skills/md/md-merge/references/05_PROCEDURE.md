@@ -1,3 +1,12 @@
+---
+description: Canonical execution path for this skill.
+index:
+  - Step 1: Pre-merge Lint
+  - Step 2: Merge
+  - Step 3: Post-merge Lint
+  - Step 4: Review
+---
+
 # Procedure
 
 ## Step 1: Pre-merge Lint

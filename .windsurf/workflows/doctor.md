@@ -1,24 +1,18 @@
 ---
-description: Diagnoses software failures by combining deterministic evidence gathering
-with agent judgment. Models failures as medical cases. Idempotent — run
-repeatedly until confident diagnosis, then generate schema-based treatment.
+description: "Diagnoses software failures by combining deterministic evidence gathering with agent judgment. Models failures as medical cases. Idempotent \u2014 run repeatedly until confident diagnosis, then generate schema-based treatment."
 auto_execution_mode: 1
 ---
 
 # doctor
 
-This workflow delegates to the agent skill at `skills/doctor/`.
+This workflow delegates to the agent skill at `/home/jgodau/work/personal/nunchuck/skills/doctor/`.
 
-## Instructions
+## Skill Root
 
-1. Read the skill manifest: `skills/{skill_dir}/SKILL.md`
-2. Read all references listed in `metadata.references` in order:
-3. If scripts are present in `scripts/`, follow any automated steps first
-4. Execute the skill procedure as documented
-5. Produce output in the format specified by the skill
+- **Path:** `/home/jgodau/work/personal/nunchuck/skills/`
 
 ## Skill Location
 
-- **Path:** `skills/doctor/`
-- **References:** `references/`
-- **Scripts:** `scripts/`
+- **Path:** `/home/jgodau/work/personal/nunchuck/skills/doctor/`
+- **Manifest:** `/home/jgodau/work/personal/nunchuck/skills/doctor/SKILL.md`
+

@@ -1,3 +1,10 @@
+---
+description: Reference file for Instructions.
+index:
+  - Initialize
+  - Policies
+---
+
 # Instructions
 
 This file is kept for continuity. Prefer the canonical reference set (00–06).

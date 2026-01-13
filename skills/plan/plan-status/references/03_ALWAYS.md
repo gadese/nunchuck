@@ -1,3 +1,8 @@
+---
+description: Non-negotiable invariants for this skill.
+index: []
+---
+
 # Always
 
 - Always use deterministic parsing (CLI) rather than guessing plan state.

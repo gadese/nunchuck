@@ -1,3 +1,13 @@
+---
+description: Canonical execution path for this skill.
+index:
+  - Step 1: Identify target plan
+  - Step 2: Load task files
+  - Step 3: Execute work
+  - Step 4: Record results
+  - Additional reference
+---
+
 # Procedure
 
 ## Step 1: Identify target plan

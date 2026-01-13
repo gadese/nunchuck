@@ -1,3 +1,10 @@
+---
+description: What to do when things go wrong.
+index:
+  - Missing Chunks
+  - Lint Errors
+---
+
 # Failures
 
 ## Missing Chunks

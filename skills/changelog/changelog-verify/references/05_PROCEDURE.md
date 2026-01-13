@@ -1,3 +1,11 @@
+---
+description: Canonical execution path for this skill.
+index:
+  - Step 1: Run Verify
+  - Step 2: Review Output
+  - Step 3: Report
+---
+
 # Procedure
 
 ## Step 1: Run Verify

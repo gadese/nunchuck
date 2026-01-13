@@ -147,7 +147,8 @@ def surface_scan(patterns: list[str] | None = None, path: str = ".") -> list[str
         for f in base.rglob(pattern):
             # Skip hidden directories and common noise
             parts = f.parts
-            if any(p.startswith(".") and p not in [".doctor"] for p in parts):
+            allowed_hidden = {".doctor", ".github", ".circleci", ".devcontainer"}
+            if any(p.startswith(".") and p not in allowed_hidden for p in parts):
                 continue
             if any(p in ["node_modules", "__pycache__", "venv", ".venv", "dist", "build"] for p in parts):
                 continue
@@ -164,6 +165,9 @@ def grep_search(term: str, path: str = ".", file_type: str = "") -> tuple[list[d
     - Script returns deterministic results
     """
     cmd = ["grep", "-rn", "--color=never"]
+
+    for d in [".git", "node_modules", "__pycache__", "venv", ".venv", "dist", "build", "vendor"]:
+        cmd.extend(["--exclude-dir", d])
     if file_type:
         cmd.extend(["--include", f"*.{file_type}"])
     cmd.extend([term, path])
@@ -220,40 +224,77 @@ def save_evidence(term: str, matches: list[dict], count: int) -> str:
 
 def generate_treatment(diagnosis: dict[str, Any], options: list[dict[str, Any]], recommended: str = "") -> str:
     """Generate treatment plan markdown from schema."""
-    content = "# Treatment Plan\n\n"
-    content += f"**Generated:** {to_rfc3339(now_utc())}\n\n"
+    normalized_options: list[dict[str, Any]] = []
+    for opt in options:
+        risk = opt.get("risk", "medium")
+        if risk not in RISK_LEVELS:
+            risk = "medium"
+
+        effort = opt.get("effort", "medium")
+        if effort not in EFFORT_LEVELS:
+            effort = "medium"
+
+        normalized_options.append(
+            {
+                "name": opt.get("name", "Unnamed"),
+                "description": opt.get("description", ""),
+                "risk": risk,
+                "effort": effort,
+                "reversible": bool(opt.get("reversible", True)),
+                "steps": opt.get("steps", []) or [],
+            }
+        )
+
+    treatment_obj = {
+        "diagnosis_summary": diagnosis.get("summary", "N/A"),
+        "confidence": int(diagnosis.get("confidence", 0) or 0),
+        "root_cause": diagnosis.get("root_cause", "N/A"),
+        "options": normalized_options,
+        "recommended": recommended,
+        "caveats": [],
+        "follow_up": [],
+    }
+
+    generated_at = to_rfc3339(now_utc())
+
+    content = "---\n"
+    content += yaml.safe_dump(treatment_obj, sort_keys=False)
     content += "---\n\n"
-    
+
+    content += "# Treatment Plan\n\n"
+    content += f"**Generated:** {generated_at}\n\n"
+    content += "---\n\n"
+
     content += "## Diagnosis\n\n"
-    content += f"**Summary:** {diagnosis.get('summary', 'N/A')}\n"
-    content += f"**Confidence:** {diagnosis.get('confidence', 0)}%\n"
-    content += f"**Root Cause:** {diagnosis.get('root_cause', 'N/A')}\n\n"
-    
+    content += f"**Summary:** {treatment_obj['diagnosis_summary']}\n"
+    content += f"**Confidence:** {treatment_obj['confidence']}%\n"
+    content += f"**Root Cause:** {treatment_obj['root_cause']}\n\n"
+
     factors = diagnosis.get("contributing_factors", [])
     if factors:
         content += "**Contributing Factors:**\n"
         for f in factors:
             content += f"- {f}\n"
         content += "\n"
-    
+
     content += "---\n\n"
     content += "## Treatment Options\n\n"
-    
-    for i, opt in enumerate(options, 1):
-        rec_marker = " ⭐ *Recommended*" if opt.get("name") == recommended else ""
+
+    for i, opt in enumerate(treatment_obj["options"], 1):
+        rec_marker = " ⭐ *Recommended*" if opt.get("name") == treatment_obj.get("recommended") else ""
         content += f"### Option {i}: {opt.get('name', 'Unnamed')}{rec_marker}\n\n"
         content += f"{opt.get('description', '')}\n\n"
         content += f"- **Risk:** {opt.get('risk', 'unknown')}\n"
         content += f"- **Effort:** {opt.get('effort', 'unknown')}\n"
         content += f"- **Reversible:** {'Yes' if opt.get('reversible', True) else 'No'}\n\n"
-        
+
         steps = opt.get("steps", [])
         if steps:
             content += "**Steps:**\n\n"
             for j, step in enumerate(steps, 1):
                 content += f"{j}. {step}\n"
             content += "\n"
-    
+
     content += "---\n\n"
     content += "## Caveats\n\n"
     content += "*None specified*\n\n"

@@ -1,3 +1,12 @@
+---
+description: Forbidden behaviors for this skill.
+index:
+  - No Premature Execution
+  - No Artifact Destruction
+  - No Scope Confusion
+  - No Hidden State
+---
+
 # Never
 
 Forbidden behaviors for the prompt skillset.

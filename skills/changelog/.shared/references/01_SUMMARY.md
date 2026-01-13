@@ -1,3 +1,13 @@
+---
+description: What this skill is and is not.
+index:
+  - What It Does
+  - What Problems It Solves
+  - What It Is Not
+  - Key Invariant
+  - Artifact Location
+---
+
 # Summary
 
 The **changelog** skillset manages Keep a Changelog format files with deterministic operations and chrono-aware guardrails.

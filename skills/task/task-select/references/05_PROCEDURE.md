@@ -1,3 +1,12 @@
+---
+description: Canonical execution path for this skill.
+index:
+  - Step 1: Identify the task
+  - Step 2: Select
+  - Step 3: Verify
+  - Additional reference
+---
+
 # Procedure
 
 ## Step 1: Identify the task

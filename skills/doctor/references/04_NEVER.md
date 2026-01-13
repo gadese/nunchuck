@@ -1,3 +1,13 @@
+---
+description: Forbidden behaviors for this skill.
+index:
+  - No Side Effects
+  - No False Certainty
+  - No Scope Creep
+  - No Premature Treatment
+  - No Hidden State
+---
+
 # Never
 
 Forbidden behaviors for the doctor skill.

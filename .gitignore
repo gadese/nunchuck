@@ -2,10 +2,18 @@
 .prompt/
 .nunchuck/
 .plan/
+.dtx/
 
 ### Agents
 .codex/
-.cursor/
+
+### Internal workflows
+.windsurf/workflows/kickoff.md 
+.windsurf/workflows/spec-references.md 
+.windsurf/workflows/spec-scripts.md 
+.windsurf/workflows/spec-skillmd.md 
+.windsurf/workflows/spec-skillset.md 
+.windsurf/workflows/specs.md
 
 ### IDE
 .vscode/
@@ -44,6 +52,8 @@ venv/
 .venv/
 uv.lock
 *.egg-info/
+nunchuck.toml
+pyproject.toml
 
 ### Personal dev
 .dev/

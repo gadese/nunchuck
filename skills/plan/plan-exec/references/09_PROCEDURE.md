@@ -1,3 +1,14 @@
+---
+description: Reference file for Procedure.
+index:
+  - Section Ownership
+  - Step 1: Find Active Task
+  - Step 2: Load and Validate
+  - Step 3: Execute
+  - Step 4: Advance
+  - Step 5: Wrap-up
+---
+
 # Procedure
 
 ## Section Ownership

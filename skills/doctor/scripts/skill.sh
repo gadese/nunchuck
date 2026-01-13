@@ -46,7 +46,7 @@ case "${1:-help}" in
     validate)
         cmd_validate
         ;;
-    status|init|surface|grep|symptom|hypothesize|diagnose|treat|clean)
+    status|init|surface|grep|symptom|intake|hypothesize|diagnose|treat|clean)
         cmd_dispatch "$@"
         ;;
     *)

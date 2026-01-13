@@ -1,3 +1,10 @@
+---
+description: Forbidden behaviors for this skill.
+index:
+  - Forbidden Actions
+  - Shared Context
+---
+
 # Never
 
 ## Forbidden Actions

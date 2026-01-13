@@ -3,6 +3,7 @@
 
 import argparse
 import sys
+from pathlib import Path
 
 from doctor_parse import (
     DOCTOR_DIR,
@@ -220,6 +221,7 @@ Commands:
   surface              Scan for relevant files (globbing)
   grep <term>          Search for term (parameterized determinism)
   symptom <desc>       Add a symptom to the session
+  intake <desc>        Alias for symptom
   hypothesize <desc>   Add a hypothesis with confidence
   diagnose <summary>   Set the diagnosis
   treat                Generate treatment plan from schema
@@ -231,6 +233,7 @@ Usage:
   doctor grep "connection timeout" --save
   doctor grep "database" --type py --path src/
   doctor symptom "API returns 500" --category error
+  doctor intake "API returns 500" --category error
   doctor hypothesize "Race condition in cache" --confidence 70
   doctor diagnose "Cache invalidation bug" --confidence 85 --cause "Stale TTL"
   doctor treat --option "Fix TTL:Update cache TTL logic:low"
@@ -248,22 +251,25 @@ Key Pattern:
 
 def cmd_validate(args: argparse.Namespace) -> int:
     """Validate CLI is runnable."""
-    import importlib.util
     import shutil
     errors = []
-    
-    if importlib.util.find_spec("yaml") is None:
-        errors.append("missing dependency: pyyaml")
-    
+
+    if shutil.which("uv") is None:
+        errors.append("missing command: uv")
+
     if shutil.which("grep") is None:
         errors.append("missing command: grep")
+
+    include_dir = Path(__file__).resolve().parent
+    if not (include_dir / "pyproject.toml").is_file():
+        errors.append(f"missing {include_dir / 'pyproject.toml'}")
     
     if errors:
         for e in errors:
             print(f"error: {e}", file=sys.stderr)
         return 1
     
-    print("ok: doctor CLI is runnable")
+    print("ok: doctor skill is runnable")
     return 0
 
 
@@ -293,6 +299,11 @@ def main() -> int:
     p_symptom.add_argument("description", help="Symptom description")
     p_symptom.add_argument("--category", help="Category")
     p_symptom.add_argument("--evidence", help="Evidence string")
+
+    p_intake = subparsers.add_parser("intake", help="Alias for symptom")
+    p_intake.add_argument("description", help="Symptom description")
+    p_intake.add_argument("--category", help="Category")
+    p_intake.add_argument("--evidence", help="Evidence string")
     
     p_hypo = subparsers.add_parser("hypothesize", help="Add hypothesis")
     p_hypo.add_argument("description", help="Hypothesis")
@@ -306,7 +317,7 @@ def main() -> int:
     p_diag.add_argument("--factors", nargs="*", help="Contributing factors")
     
     p_treat = subparsers.add_parser("treat", help="Generate treatment")
-    p_treat.add_argument("--option", nargs="*", help="Options (name:desc:risk)")
+    p_treat.add_argument("--option", action="append", help="Option (name:desc:risk); repeatable")
     p_treat.add_argument("--recommend", help="Recommended option name")
     
     p_clean = subparsers.add_parser("clean", help="Remove artifacts")
@@ -322,6 +333,7 @@ def main() -> int:
         "surface": cmd_surface,
         "grep": cmd_grep,
         "symptom": cmd_symptom,
+        "intake": cmd_symptom,
         "hypothesize": cmd_hypothesize,
         "diagnose": cmd_diagnose,
         "treat": cmd_treat,

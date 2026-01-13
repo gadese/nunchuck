@@ -1,3 +1,12 @@
+---
+description: Canonical execution path for this skill.
+index:
+  - Step 1: Check Existing
+  - Step 2: Initialize
+  - Step 3: Customize
+  - Step 4: Commit
+---
+
 # Procedure
 
 ## Step 1: Check Existing

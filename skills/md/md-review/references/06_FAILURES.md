@@ -1,3 +1,11 @@
+---
+description: What to do when things go wrong.
+index:
+  - Lint Not Run
+  - No Issues Found
+  - Disagreement with User
+---
+
 # Failures
 
 ## Lint Not Run

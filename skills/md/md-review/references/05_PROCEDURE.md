@@ -1,3 +1,13 @@
+---
+description: Canonical execution path for this skill.
+index:
+  - Step 1: Run Lint
+  - Step 2: Review Structure
+  - Step 3: Review Clarity
+  - Step 4: Document Findings
+  - Step 5: Handoff
+---
+
 # Procedure
 
 ## Step 1: Run Lint

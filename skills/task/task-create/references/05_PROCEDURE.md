@@ -1,3 +1,12 @@
+---
+description: Canonical execution path for this skill.
+index:
+  - Step 1: Gather inputs
+  - Step 2: Create
+  - Step 3: Verify
+  - Additional reference
+---
+
 # Procedure
 
 ## Step 1: Gather inputs

@@ -1,3 +1,10 @@
+---
+description: What this skill is and is not.
+index:
+  - When to Use
+  - Key Principle
+---
+
 # Summary
 
 Adds curated entries to the [Unreleased] section.

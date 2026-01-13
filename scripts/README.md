@@ -1,83 +1,47 @@
-# Nunchuck Scripts
+# Scripts
 
-This directory contains utility scripts for the nunchuck CLI.
+Utility scripts for skill management and IDE integration.
 
-## Installation Scripts
+## IDE Adapters
 
-### Unix/Linux/macOS
+Generate IDE-specific configurations that reference skills without duplicating content. This keeps skills spec-compliant while providing native IDE integration.
 
-```bash
-# Install using uv (fastest, recommended for development)
-./scripts/install.sh uv
+### Windsurf
 
-# Install in development mode (editable)
-./scripts/install.sh dev
-
-# Install for current user
-./scripts/install.sh user
-
-# Install using pipx (recommended for users)
-./scripts/install.sh pipx
-```
-
-### Windows (PowerShell)
-
-```powershell
-# Install using uv (fastest, recommended for development)
-.\scripts\install.ps1 uv
-
-# Install in development mode (editable)
-.\scripts\install.ps1 dev
-
-# Install for current user
-.\scripts\install.ps1 user
-```
-
-## Requirements
-
-- Python 3.10 or later
-- pip (usually included with Python)
-- uv (optional - will be auto-installed when using uv mode)
-
-## What Gets Installed
-
-1. **nunchuck CLI** - The command-line tool
-2. **Skills** - All skills from the repo are copied to `~/.nunchuck/skills`
-
-## Notes
-
-- **uv mode**: Fastest installation using uv (recommended for development)
-- **Development mode**: Installs in editable mode, linking to the source code
-- **User mode**: Installs for the current user only
-- **pipx mode**: Uses pipx for isolated installation (Unix only)
-
-## Quick Start
-
-After installation:
+Generates `.windsurf/workflows/` with slash commands for each skill.
 
 ```bash
-# Install skills from a repository to central directory
-nunchuck install /path/to/nunchuck-repo
+# Unix
+bash scripts/adapters/windsurf/run.sh --skills-root skills --output-root .
 
-# List available skills
-nunchuck list
-
-# Use a skill in your current directory
-nunchuck use doctor
-
-# Generate IDE adapters
-nunchuck adapter generate
-
-# Validate a skill
-nunchuck validate skills/doctor
+# Windows
+.\scripts\adapters\windsurf\run.ps1 --skills-root skills --output-root .
 ```
 
-## Legacy Scripts
+### Cursor
 
-The following directories contain legacy scripts that have been migrated to the Python CLI:
+Generates `.cursor/commands/` with command palette entries for each skill.
 
-- `adapter/` - Old adapter generation scripts (replaced by `nunchuck adapter generate`)
-- `index/` - Old indexing scripts (replaced by `nunchuck util index`)
-- `nunchuck/` - Old validation scripts (replaced by `nunchuck validate`)
+```bash
+# Unix
+bash scripts/adapters/cursor/run.sh --skills-root skills --output-root .
 
-These are kept for reference but are no longer used.
+# Windows
+.\scripts\adapters\cursor\run.ps1 --skills-root skills --output-root .
+```
+
+## Index Generator
+
+Generates `.SKILLS.md` listing all skills with descriptions for agent discovery.
+
+```bash
+# Unix
+bash scripts/index/run.sh --skills-root skills
+
+# Windows
+.\scripts\index\run.ps1 --skills-root skills
+```
+
+## Design Rationale
+
+These scripts exist as thin integration layers. Skills remain portable and spec-compliant, ready to transfer cleanly when IDEs adopt agent skills natively. The adapters generate references to skills rather than copying content, avoiding duplication and drift.

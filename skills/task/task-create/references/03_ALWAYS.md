@@ -1,3 +1,8 @@
+---
+description: Non-negotiable invariants for this skill.
+index: []
+---
+
 # Always
 
 - Always create tasks via the deterministic CLI (`../.shared/scripts/skill.sh create`).

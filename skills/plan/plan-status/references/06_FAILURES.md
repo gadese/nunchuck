@@ -1,3 +1,10 @@
+---
+description: What to do when things go wrong.
+index:
+  - No plans found
+  - CLI not runnable
+---
+
 # Failures
 
 ## No plans found

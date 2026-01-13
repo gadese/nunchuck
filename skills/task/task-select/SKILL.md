@@ -7,7 +7,7 @@ description: >
 metadata:
   author: Jordan Godau
   references:
-    - 00_INDEX.md
+    - 00_ROUTER.md
     - 01_SUMMARY.md
     - 02_TRIGGERS.md
     - 03_ALWAYS.md

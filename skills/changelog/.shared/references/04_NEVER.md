@@ -1,3 +1,12 @@
+---
+description: Forbidden behaviors for this skill.
+index:
+  - No Commit Dumps
+  - No Format Violations
+  - No Duplicate Spam
+  - No Silent Changes
+---
+
 # Never
 
 Forbidden behaviors for the changelog skillset.

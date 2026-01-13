@@ -1,3 +1,8 @@
+---
+description: Forbidden behaviors for this skill.
+index: []
+---
+
 # Never
 
 - Never mark a task complete without doing the work.

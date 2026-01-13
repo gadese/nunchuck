@@ -1,3 +1,12 @@
+---
+description: What this skill is and is not.
+index:
+  - Purpose
+  - Mental Model
+  - Scope
+  - Shared Context
+---
+
 # Summary
 
 ## Purpose

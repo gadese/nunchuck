@@ -1,3 +1,11 @@
+---
+description: Non-negotiable invariants for this skill.
+index:
+  - Pre-Review Rules
+  - Review Rules
+  - Output Rules
+---
+
 # Always
 
 ## Pre-Review Rules

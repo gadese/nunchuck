@@ -1,3 +1,10 @@
+---
+description: What to do when things go wrong.
+index:
+  - Task already exists
+  - CLI not runnable
+---
+
 # Failures
 
 ## Task already exists

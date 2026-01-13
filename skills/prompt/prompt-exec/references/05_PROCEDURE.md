@@ -1,3 +1,14 @@
+---
+description: Canonical execution path for this skill.
+index:
+  - Preconditions
+  - Step 1: Verify Preconditions (Deterministic)
+  - Step 2: Quote Before Execute (Subjective)
+  - Step 3: Execute (Deterministic)
+  - Step 4: Perform the Prompt (Subjective)
+  - Step 5: Confirm Completion
+---
+
 # Procedure
 
 ## Preconditions

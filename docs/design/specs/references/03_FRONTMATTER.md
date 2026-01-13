@@ -1,51 +1,57 @@
 # Reference Frontmatter
 
-Reference frontmatter may be included to provide additional metadata about the reference.
+Reference frontmatter shall be included in all references files to:
 
-## Principle
+1. Provide additional metadata about the reference.
+2. Enable deterministic anchor-level routing.
+3. Describe the reference file content.
 
-> **Reference frontmatter describes intent and verification —
-> not behavior, not reasoning, not prose.**
-
-If metadata cannot be validated or enforced, it does not belong here.
-
-## Rules
-
-1. Frontmatter is **optional**
-2. If present, it must be valid `YAML`
-3. Only the keys defined below are allowed
-4. Frontmatter is **descriptive**, not instructional
-5. Instructions live in Markdown body content
+---
 
 ## Fields
 
-### `executes`
+### Required
 
-- Type: `string[]`
-- Purpose: List of scripts executed by the reference
+#### `description`
 
-### `uses`
+A short description of the reference file purpose and intents.
 
-- Type: `string[]`
-- Purpose: List of assets used by the reference
+#### `index`
 
-### `produces`
+A flat list of H2 anchors in the reference file for section-level routing.
 
-- Type: `string[]`
-- Purpose: List of artifacts produced by the reference
+**Constraints:**
+
+- Only H2 headers are indexed (H3+ navigated naturally by agent)
+- Entries must match actual H2 headers in the file body
+- Order should reflect document structure
+
+### Optional
+
+#### `summary`
+
+A short summary of the reference file purpose and intents.
+
+**Character limit:** 256
+
+#### `tags`
+
+A list of tags that can be used to search for the reference file.
+
+---
 
 ## Example
 
-```md
----
-executes:
-  - scripts/index.sh
-  - scripts/index.ps1
-uses:
-  - assets/schema.json
-  - assets/example.md
-outputs: 
-  - index-md
----
-...
+```yaml
+description: Canonical execution path for the skill.
+summary: Step-by-step procedure from inputs to outputs.
+tags:
+  - procedure
+  - execution
+  - steps
+index:
+  - Inputs
+  - Steps
+  - Outputs
+  - Checkpoints
 ```

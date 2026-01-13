@@ -1,3 +1,11 @@
+---
+description: When to invoke or exit this skill.
+index:
+  - When to Activate
+  - When to Exit
+  - Shared Context
+---
+
 # Triggers
 
 ## When to Activate

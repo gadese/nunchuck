@@ -1,3 +1,10 @@
+---
+description: What this skill is and is not.
+index:
+  - What It Does
+  - What It Is Not
+---
+
 # Summary
 
 The **md-merge** skill merges markdown chunks back into a single document.

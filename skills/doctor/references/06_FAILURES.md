@@ -1,3 +1,13 @@
+---
+description: What to do when things go wrong.
+index:
+  - Common Failure Cases
+  - When to Abort
+  - When to Continue
+  - Surfacing Uncertainty
+  - The Final Rule
+---
+
 # Failures
 
 Handling uncertainty and errors in the doctor skill.

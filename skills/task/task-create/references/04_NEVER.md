@@ -1,3 +1,8 @@
+---
+description: Forbidden behaviors for this skill.
+index: []
+---
+
 # Never
 
 - Never manually create `.tasks/<id>.md` when the CLI can do it.

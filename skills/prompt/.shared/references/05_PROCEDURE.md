@@ -1,3 +1,11 @@
+---
+description: Canonical execution path for this skill.
+index:
+  - Commands
+  - Typical Flow
+  - Artifact Structure
+---
+
 # Procedure
 
 CLI commands for the prompt skillset.

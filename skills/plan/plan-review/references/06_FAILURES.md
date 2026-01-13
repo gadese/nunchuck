@@ -1,3 +1,10 @@
+---
+description: What to do when things go wrong.
+index:
+  - Plan not found
+  - Missing evidence
+---
+
 # Failures
 
 ## Plan not found

@@ -1,3 +1,8 @@
+---
+description: Non-negotiable invariants for this skill.
+index: []
+---
+
 # Always
 
 - Always check for an existing changelog before creating one.

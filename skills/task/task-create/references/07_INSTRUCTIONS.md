@@ -1,3 +1,10 @@
+---
+description: Reference file for Instructions.
+index:
+  - Initialize
+  - Policies
+---
+
 # Instructions
 
 ## Initialize

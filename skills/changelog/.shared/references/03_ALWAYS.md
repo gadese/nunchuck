@@ -1,3 +1,12 @@
+---
+description: Non-negotiable invariants for this skill.
+index:
+  - Format Rules
+  - Duplicate Prevention
+  - Git Integration
+  - CLI Usage
+---
+
 # Always
 
 Non-negotiable invariants for the changelog skillset.

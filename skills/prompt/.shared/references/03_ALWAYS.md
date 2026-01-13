@@ -1,3 +1,12 @@
+---
+description: Non-negotiable invariants for this skill.
+index:
+  - Artifact Rules
+  - Forge Rules
+  - Execution Rules
+  - CLI Rules
+---
+
 # Always
 
 Non-negotiable invariants for the prompt skillset.

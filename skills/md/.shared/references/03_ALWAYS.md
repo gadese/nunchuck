@@ -1,3 +1,12 @@
+---
+description: Non-negotiable invariants for this skill.
+index:
+  - Determinism Rules
+  - Quality Rules
+  - Artifact Rules
+  - CLI Rules
+---
+
 # Always
 
 Non-negotiable invariants for the md skillset.

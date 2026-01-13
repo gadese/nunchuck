@@ -1,3 +1,13 @@
+---
+description: Canonical execution path for this skill.
+index:
+  - Step 1: Load plan status
+  - Step 2: Review tasks
+  - Step 3: Review success criteria
+  - Step 4: Write assessment
+  - Additional reference
+---
+
 # Procedure
 
 ## Step 1: Load plan status

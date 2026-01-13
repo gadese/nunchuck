@@ -1,3 +1,11 @@
+---
+description: Forbidden behaviors for this skill.
+index:
+  - No Data Loss
+  - No Format Changes
+  - No Scope Creep
+---
+
 # Never
 
 Forbidden behaviors for the md-split skill.

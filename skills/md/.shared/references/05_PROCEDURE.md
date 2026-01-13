@@ -1,3 +1,13 @@
+---
+description: Canonical execution path for this skill.
+index:
+  - Commands
+  - Split Flow
+  - Merge Flow
+  - Review Flow
+  - Output Structure
+---
+
 # Procedure
 
 CLI commands for the md skillset.

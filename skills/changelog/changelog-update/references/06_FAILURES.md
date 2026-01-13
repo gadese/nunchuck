@@ -1,3 +1,11 @@
+---
+description: What to do when things go wrong.
+index:
+  - Changelog not found
+  - Duplicate entry detected
+  - Missing category section
+---
+
 # Failures
 
 ## Changelog not found

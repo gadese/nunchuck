@@ -1,3 +1,17 @@
+---
+description: Canonical execution path for this skill.
+index:
+  - Step 1: Initialize Session
+  - Step 2: Record Symptoms
+  - Step 3: Surface Scan
+  - Step 4: Parameterized Evidence Gathering
+  - Step 5: Form Hypotheses
+  - Step 6: Iterate
+  - Step 7: Diagnose
+  - Step 8: Generate Treatment
+  - Step 9: Handoff
+---
+
 # Procedure
 
 Canonical execution path for the doctor skill.

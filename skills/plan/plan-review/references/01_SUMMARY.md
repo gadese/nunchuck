@@ -1,3 +1,8 @@
+---
+description: What this skill is and is not.
+index: []
+---
+
 # Summary
 
 Reviews a completed `.plan/<N>/` plan and produces an assessment in the plan artifact.

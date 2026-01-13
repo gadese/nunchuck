@@ -1,3 +1,10 @@
+---
+description: What to do when things go wrong.
+index:
+  - Changelog not found
+  - Issues reported
+---
+
 # Failures
 
 ## Changelog not found

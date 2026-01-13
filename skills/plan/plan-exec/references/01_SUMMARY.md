@@ -1,3 +1,8 @@
+---
+description: What this skill is and is not.
+index: []
+---
+
 # Summary
 
 Executes the tasks defined by an existing `.plan/<N>/` plan by performing the real work and recording concrete results.

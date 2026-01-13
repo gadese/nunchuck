@@ -1,3 +1,10 @@
+---
+description: What this skill is and is not.
+index:
+  - When to Use
+  - What It Checks
+---
+
 # Summary
 
 Checks changelog for format compliance and common issues.

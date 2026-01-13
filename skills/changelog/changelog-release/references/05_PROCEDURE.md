@@ -1,3 +1,13 @@
+---
+description: Canonical execution path for this skill.
+index:
+  - Step 1: Verify First
+  - Step 2: Determine Version
+  - Step 3: Cut Release
+  - Step 4: Verify Again
+  - Step 5: Commit
+---
+
 # Procedure
 
 ## Step 1: Verify First

@@ -1,3 +1,11 @@
+---
+description: Reference file for Instructions.
+index:
+  - Initialize
+  - Usage
+  - Output
+---
+
 # Instructions
 
 ## Initialize

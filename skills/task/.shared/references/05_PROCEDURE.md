@@ -1,3 +1,12 @@
+---
+description: Canonical execution path for this skill.
+index:
+  - Commands
+  - Typical Flow
+  - Task Structure
+  - Task File Format
+---
+
 # Procedure
 
 CLI commands for the task skillset.

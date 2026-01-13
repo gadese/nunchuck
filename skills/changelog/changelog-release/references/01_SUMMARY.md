@@ -1,3 +1,10 @@
+---
+description: What this skill is and is not.
+index:
+  - When to Use
+  - What It Does
+---
+
 # Summary
 
 Transforms [Unreleased] section into a versioned release.
