@@ -14,7 +14,7 @@ index:
 List tasks:
 
 ```bash
-../.shared/scripts/skill.sh list
+../task-list/scripts/run.sh
 ```
 
 ## Step 2: Select
@@ -22,13 +22,13 @@ List tasks:
 From `skills/task/task-select/`, run:
 
 ```bash
-../.shared/scripts/skill.sh select <id>
+scripts/run.sh <id>
 ```
 
 ## Step 3: Verify
 
 ```bash
-../.shared/scripts/skill.sh list
+../task-list/scripts/run.sh
 ```
 
 ## Additional reference

@@ -15,7 +15,7 @@ index:
 
 ### Always
 
-1. Create tasks via `../.shared/scripts/skill.sh create`.
+1. Create tasks via `scripts/run.sh`.
 2. Use kebab-case task IDs.
 3. Use `--select` when the user wants the task activated.
 

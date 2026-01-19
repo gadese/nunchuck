@@ -29,22 +29,21 @@ The repository already supports structure, but only if:
 
 ## What plan is
 
-`plan` is an orchestrator skill for the `plan` skillset.
+`plan` is a **container of standalone skills** that work together.
 
 It manages bounded work units with structured plans stored in `.plan/`.
 
-It is a single skillset entrypoint that:
+These skills:
 
-* guides create → exec → review workflows via `.pipelines/`
-* keeps plan state on disk (auditable, durable)
-* encourages outcome-oriented, scoped milestones
+- keep plan state on disk (auditable, durable)
+- encourage outcome-oriented, scoped milestones
+- make control flow explicit (you choose which skill to run next)
 
 Member skills:
 
 * `plan-create`
+* `plan-discuss`
 * `plan-exec`
-* `plan-status`
-* `plan-review`
 
 ---
 
@@ -68,9 +67,12 @@ It only provides a structure that makes decisions and progress inspectable.
 
 * **Structure on disk**
 
-  * plans live in `.plan/<N>/`
+  * plan intent lives in `.plan/active.yaml`
+  * the compiled active plan lives in `.plan/active/`
+  * archived plans live in `.plan/archive/<id>/`
   * tasks and milestones are explicit
-  * status can be derived from frontmatter metadata
+  * frontmatter is validated against JSON Schemas shipped inside each skill’s `assets/`
+  * status and progress are derived from schema-validated frontmatter
 
 * **Agentic reasoning**
 
@@ -78,7 +80,16 @@ It only provides a structure that makes decisions and progress inspectable.
   * selecting what to execute next
   * producing outputs and handoffs that reviewers can verify
 
-To run the workflow, follow `SKILL.md` and the pipelines in `.pipelines/.INDEX.md`.
+To run the workflow, use:
+
+- `plan-discuss` to stabilize intent in `.plan/active.yaml`
+- `plan-create` to compile `.plan/active/`
+- `plan-exec` to execute tasks and archive on completion
+
+### Determinism note
+
+The YAML frontmatter is the *authoritative state* and is checked under the hood on each `plan-exec` run.
+The Markdown body is intentionally free-form and non-authoritative.
 
 ---
 

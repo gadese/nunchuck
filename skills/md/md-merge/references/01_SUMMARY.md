@@ -14,7 +14,7 @@ The **md-merge** skill merges markdown chunks back into a single document.
 - Reads numbered chunks in order
 - Converts H1 back to H2 (reverses split promotion)
 - Produces a single merged markdown file
-- Validates chunk integrity before merge
+- Uses `.SPLIT.json` ordering when present
 
 ## What It Is Not
 

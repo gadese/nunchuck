@@ -5,5 +5,5 @@ index: []
 
 # Always
 
-- Always run verification via `../.shared/scripts/skill.sh verify`.
+- Always run verification via `scripts/run.sh`.
 - Always report concrete issues found by the verifier.

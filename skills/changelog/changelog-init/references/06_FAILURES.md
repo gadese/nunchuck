@@ -16,7 +16,7 @@ index:
 ## `uv` missing / CLI not runnable
 
 - Instruct the user to install `uv`.
-- Rerun `../.shared/scripts/skill.sh validate`.
+- Rerun `scripts/validate.sh`.
 
 ## Remote URL not detected
 

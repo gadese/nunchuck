@@ -4,26 +4,26 @@ index:
   - Purpose
   - Mental Model
   - Scope
-  - Shared Context
+  - Non-Goals
 ---
 
 # Summary
 
 ## Purpose
 
-Compile the YAML artifact into PROMPT.md with deterministic structure. A final agent pass polishes for fluidity, conciseness, and correctness.
+Compile `.prompt/active.yaml` into a human-readable markdown artifact at `.prompt/PROMPT.md`.
 
 ## Mental Model
 
-The agent acts as a **technical writer** — taking structured data and producing readable prose.
+The agent acts as a technical writer: it renders structured data into a stable markdown representation.
 
 ## Scope
 
-- Verify artifact exists and is valid
-- Run CLI `compile` to generate deterministic output
-- Apply single subjective polish pass
-- Preserve the YAML artifact
+- Generate `.prompt/PROMPT.md` from `.prompt/active.yaml` without mutating the source artifact
+- Optionally apply a single subjective polish pass to the generated markdown
+- Keep all state changes scoped to `.prompt/`
 
-## Shared Context
+## Non-Goals
 
-Refer to `../../.shared/references/01_SUMMARY.md` for skillset-level summary.
+- Modifying `.prompt/active.yaml` intent or prompt text
+- Executing prompts

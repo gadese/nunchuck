@@ -2,7 +2,7 @@
 description: What to do when things go wrong.
 index:
   - `uv` missing / CLI not runnable
-  - Could not determine next `<N>`
+  - Intent missing or not ready
   - Placeholder Work steps
 ---
 
@@ -12,9 +12,9 @@ index:
 
 - Stop and instruct the user to install `uv`.
 
-## Could not determine next `<N>`
+## Intent missing or not ready
 
-- Stop and run `../.shared/scripts/skill.sh list` / `../.shared/scripts/skill.sh next` to compute it deterministically.
+- Stop and run `plan-discuss` until `.plan/active.yaml` exists, is schema-valid, and is `status: ready`.
 
 ## Placeholder Work steps
 

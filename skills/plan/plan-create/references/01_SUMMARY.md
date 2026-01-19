@@ -5,7 +5,9 @@ index: []
 
 # Summary
 
-Creates a new plan under `.plan/<N>/` by scanning the work surface, creating the plan skeleton, and populating root/sub-plan/task files.
+Compiles the plan intent artifact `.plan/active.yaml` into a schema-validated active plan directory at `.plan/active/`.
+
+The frontmatter for `plan.md`, each `index.md`, and each task file is **schema-validated**. The Markdown body is non-authoritative.
 
 This skill is responsible for defining:
 

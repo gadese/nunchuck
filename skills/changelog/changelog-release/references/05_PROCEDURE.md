@@ -13,7 +13,7 @@ index:
 ## Step 1: Verify First
 
 ```bash
-../.shared/scripts/skill.sh verify
+../changelog-verify/scripts/run.sh
 ```
 
 Fix any issues before proceeding.
@@ -25,19 +25,19 @@ Get explicit version from user (e.g., "1.2.0").
 ## Step 3: Cut Release
 
 ```bash
-../.shared/scripts/skill.sh release 1.2.0
+scripts/run.sh 1.2.0
 ```
 
 Optionally specify date:
 
 ```bash
-../.shared/scripts/skill.sh release 1.2.0 --date 2024-01-15
+scripts/run.sh 1.2.0 --date 2024-01-15
 ```
 
 ## Step 4: Verify Again
 
 ```bash
-../.shared/scripts/skill.sh verify
+../changelog-verify/scripts/run.sh
 ```
 
 ## Step 5: Commit

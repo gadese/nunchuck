@@ -10,17 +10,21 @@ fi
 
 cmd_help() {
     cat <<'EOF'
-plan-exec - Execute plan tasks by performing actual work
+plan-exec - Execute tasks in the active plan directory
 
 Commands:
   help      Show this help message
   validate  Verify the skill is runnable (read-only)
 
 Usage:
+  plan-exec
   plan-exec help
   plan-exec validate
 
-This skill is primarily procedure-driven. Refer to the documents in metadata.references for the canonical execution path.
+Deterministic behavior:
+- Validates `.plan/active/` schemas/invariants
+- If terminal (all tasks complete/deferred), archives to `.plan/archive/<id>/`
+- Otherwise prints the current `in_progress` task path
 EOF
 }
 
@@ -50,10 +54,13 @@ cmd_validate() {
 }
 
 cmd_run() {
-    PYTHONPATH="$INCLUDE_DIR" uv run python "$INCLUDE_DIR/plan_exec_cli.py" "$@"
+    uv run --project "$INCLUDE_DIR" -- python "$INCLUDE_DIR/plan_exec_cli.py" "$@"
 }
 
-case "${1:-help}" in
+case "${1:-}" in
+    "")
+        cmd_run
+        ;;
     help)
         cmd_help
         ;;

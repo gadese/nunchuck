@@ -10,17 +10,21 @@ if (Test-Path $ConfigPath) {
 
 function Show-Help {
     @"
-plan-exec - Execute plan tasks by performing actual work
+plan-exec - Execute tasks in the active plan directory
 
 Commands:
   help      Show this help message
   validate  Verify the skill is runnable (read-only)
 
 Usage:
+  plan-exec
   plan-exec help
   plan-exec validate
 
-This skill is primarily procedure-driven. Refer to the documents in metadata.references for the canonical execution path.
+Deterministic behavior:
+- Validates `.plan/active/` schemas/invariants
+- If terminal (all tasks complete/deferred), archives to `.plan/archive/<id>/`
+- Otherwise prints the current `in_progress` task path
 "@
 }
 
@@ -54,16 +58,15 @@ function Invoke-Validate {
 function Invoke-Run {
     param([string[]]$Arguments)
 
-    Push-Location $IncludeDir
-    try {
-        & uv run python plan_exec_cli.py @Arguments
-    } finally {
-        Pop-Location
-    }
+    & uv run --project $IncludeDir -- python (Join-Path $IncludeDir "plan_exec_cli.py") @Arguments
 }
 
-$command = if ($args.Count -gt 0) { $args[0] } else { "help" }
+if ($args.Count -eq 0) {
+    Invoke-Run -Arguments @()
+    exit 0
+}
 
+$command = $args[0]
 switch ($command) {
     "help" { Show-Help }
     "validate" { Invoke-Validate }

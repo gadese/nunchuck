@@ -31,6 +31,9 @@ $skillsRootAbs = (Resolve-Path -LiteralPath $SkillsRoot).Path
 $outDir = Join-Path $OutputRoot ".cursor/commands"
 New-Item -ItemType Directory -Force -Path $outDir | Out-Null
 
+# Ensure output reflects the current skill set (remove stale commands).
+Get-ChildItem -LiteralPath $outDir -File -Filter "*.md" -ErrorAction SilentlyContinue | Remove-Item -Force -ErrorAction SilentlyContinue
+
 function Get-FrontmatterDescription([string]$path) {
   $lines = Get-Content -LiteralPath $path
 

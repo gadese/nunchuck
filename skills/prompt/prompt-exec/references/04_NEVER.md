@@ -2,7 +2,6 @@
 description: Forbidden behaviors for this skill.
 index:
   - Forbidden Actions
-  - Shared Context
 ---
 
 # Never
@@ -15,6 +14,3 @@ index:
 4. Never leave a live prompt behind after successful execution
 5. Never reinterpret, optimize, or clean up the prompt text
 
-## Shared Context
-
-Refer to `../../.shared/references/04_NEVER.md` for skillset-level prohibitions.

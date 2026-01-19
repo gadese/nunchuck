@@ -30,18 +30,6 @@ bash scripts/adapters/cursor/run.sh --skills-root skills --output-root .
 .\scripts\adapters\cursor\run.ps1 --skills-root skills --output-root .
 ```
 
-## Index Generator
-
-Generates `.SKILLS.md` listing all skills with descriptions for agent discovery.
-
-```bash
-# Unix
-bash scripts/index/run.sh --skills-root skills
-
-# Windows
-.\scripts\index\run.ps1 --skills-root skills
-```
-
 ## Design Rationale
 
 These scripts exist as thin integration layers. Skills remain portable and spec-compliant, ready to transfer cleanly when IDEs adopt agent skills natively. The adapters generate references to skills rather than copying content, avoiding duplication and drift.

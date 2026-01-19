@@ -2,7 +2,7 @@
 
 ## What problem this solves
 
-Changelogs are high‑signal, low‑maintenance artifacts—when done correctly. In practice, they often drift, duplicate entries, or get ignored entirely. This skillset exists to make **maintaining a useful `CHANGELOG.md` the path of least resistance**, without turning it into an automatic commit dump or a noisy ritual.
+Changelogs are high‑signal, low‑maintenance artifacts—when done correctly. In practice, they often drift, duplicate entries, or get ignored entirely. This set of skills exists to make **maintaining a useful `CHANGELOG.md` the path of least resistance**, without turning it into an automatic commit dump or a noisy ritual.
 
 The goal is not to *generate* release notes, but to **curate human‑readable change history** with strong guardrails, minimal friction, and deterministic behavior.
 
@@ -36,7 +36,7 @@ Think of the changelog as a **curated event log**, not a mirror of git history.
 * Git tells you *what happened*
 * The changelog explains *why it matters*
 
-This skillset enforces that distinction by:
+This set of skills enforces that distinction by:
 
 * writing only to `[Unreleased]` until a release is cut
 * grouping changes by intent (Added, Changed, Fixed, etc.)
@@ -46,7 +46,7 @@ This skillset enforces that distinction by:
 
 ## How it works
 
-The skillset is composed of small, focused skills that can be run independently or as pipelines:
+The skills are composed of small, focused skills that can be run independently:
 
 * **`changelog-init`**
   * Creates a canonical `CHANGELOG.md`
@@ -67,6 +67,13 @@ The skillset is composed of small, focused skills that can be run independently 
 
 Each skill relies on deterministic shell or PowerShell scripts and lightweight agent judgment only where unavoidable.
 
+## Suggested workflows
+
+- Verify → Update (pre-merge / after landing a change)
+  - Run `changelog-verify`, then add an entry via `changelog-update`.
+- Verify → Release (when cutting a release)
+  - Run `changelog-verify`, then cut a release via `changelog-release`, then verify again.
+
 ---
 
 ## What this deliberately does *not* do
@@ -82,7 +89,7 @@ If you want automatic release notes, this is not that tool.
 
 ## Reference material
 
-This skillset is informed by *Keep a Changelog 1.1.0*, but ships with:
+This set of skills is informed by *Keep a Changelog 1.1.0*, but ships with:
 
 * Chunked, trimmed reference docs
 * Only core rules and workflows
@@ -112,4 +119,8 @@ This keeps the runtime experience fast and avoids repeatedly ingesting a massive
 
 ## TLDR
 
-A small, deterministic skillset that makes maintaining a clean, human‑first changelog easy—without automating away judgment or flooding history with noise.
+A small, deterministic set of skills that makes maintaining a clean, human‑first changelog easy—without automating away judgment or flooding history with noise.
+
+> **Make state explicit.
+> Make control flow visible.
+> Make irreversible actions deliberate.**

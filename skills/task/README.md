@@ -29,11 +29,9 @@ Durable task artifacts help — but only if:
 
 ## What task is
 
-`task` is an orchestrator skill for the `task` skillset.
+`task` is a small set of standalone skills for managing bounded work units with single-file tasks stored in `.tasks/`, skepticism-aware hashing, and staleness detection.
 
-It manages bounded work units with single-file tasks stored in `.tasks/`, skepticism-aware hashing, and staleness detection.
-
-It is a single skillset entrypoint that:
+Together, the skills:
 
 * keeps task state on disk (durable, auditable)
 * supports selecting a current task (`.tasks/.active`)
@@ -47,7 +45,11 @@ Member skills:
 * `task-select`
 * `task-close`
 
-To run the workflow, follow `SKILL.md` and the pipelines in `.pipelines/.INDEX.md`.
+Each member skill is independently invokable and self-contained. Use the deterministic entrypoints under each skill’s `scripts/` directory (e.g., `scripts/run.sh`, `scripts/validate.sh`).
+
+> **Make state explicit.
+> Make control flow visible.
+> Make irreversible actions deliberate.**
 
 ---
 

@@ -10,12 +10,13 @@ index:
 
 ## Invoke when
 
-- A plan exists under `.plan/<N>/` and the user wants execution.
+- An active plan exists under `.plan/active/` and the user wants execution.
 - There are pending/in-progress tasks that must be completed.
 
 ## Do not invoke when
 
-- The user wants to create a new plan (use `plan-create`).
+- The user wants to discuss/clarify intent (use `plan-discuss`).
+- The user wants to compile a plan (use `plan-create`).
 
 ## Exit immediately if
 

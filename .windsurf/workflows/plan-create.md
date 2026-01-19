@@ -1,5 +1,5 @@
 ---
-description: "Scaffold and populate a new plan in `.plan/<N>/` with root plan, sub-plans, and task files."
+description: "Compile `.plan/active.yaml` into a schema-validated active plan directory under `.plan/active/`."
 auto_execution_mode: 1
 ---
 

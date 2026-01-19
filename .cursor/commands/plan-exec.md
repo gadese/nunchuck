@@ -1,15 +1,15 @@
 # plan-exec
 
-Execute plan tasks by performing actual work. Writes concrete Output and Handoff for each task. Execution means implementation.
+Execute tasks in the active plan under `.plan/active/`. Writes concrete Output and Handoff for each task and archives the plan once terminal.
 
-This command delegates to the agent skill at `/home/jgodau/work/personal/nunchuck/skills/plan/plan-exec/`.
+This command delegates to the agent skill at `skills/plan/plan-exec/`.
 
 ## Skill Root
 
-- **Path:** `/home/jgodau/work/personal/nunchuck/skills/`
+- **Path:** `skills/`
 
 ## Skill Location
 
-- **Path:** `/home/jgodau/work/personal/nunchuck/skills/plan/plan-exec/`
-- **Manifest:** `/home/jgodau/work/personal/nunchuck/skills/plan/plan-exec/SKILL.md`
+- **Path:** `skills/plan/plan-exec/`
+- **Manifest:** `skills/plan/plan-exec/SKILL.md`
 

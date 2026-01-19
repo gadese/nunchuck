@@ -4,7 +4,7 @@ set -euo pipefail
 usage() {
   cat <<'EOF'
 Usage:
-  scripts/adapters/unix/windsurf.sh [--skills-root <dir>] [--output-root <dir>]
+  scripts/adapters/windsurf/run.sh [--skills-root <dir>] [--output-root <dir>]
 
 Generates Windsurf workflows into:
   <output-root>/.windsurf/workflows/
@@ -45,9 +45,26 @@ if [[ ! -d "$SKILLS_ROOT" ]]; then
   exit 1
 fi
 
-SKILLS_ROOT_REL="$SKILLS_ROOT"
+SKILLS_ROOT_ABS="$(python3 -c 'import os,sys; print(os.path.realpath(sys.argv[1]))' "$SKILLS_ROOT")"
 OUT_DIR="$OUTPUT_ROOT/.windsurf/workflows"
 mkdir -p "$OUT_DIR"
+
+# Ensure output reflects the current skill set (remove stale generated workflows).
+# Only remove files that look like generator output and whose basename is not a current skill.
+declare -A _EXPECTED=()
+while IFS= read -r -d '' _sf; do
+  _EXPECTED["$(basename "$(dirname "$_sf")")"]=1
+done < <(find "$SKILLS_ROOT" -type f -name "SKILL.md" -print0)
+
+while IFS= read -r -d '' _wf; do
+  _base="$(basename "$_wf" .md)"
+  if [[ -n "${_EXPECTED[$_base]:-}" ]]; then
+    continue
+  fi
+  if grep -q "This workflow delegates to the agent skill at" "$_wf"; then
+    rm -f "$_wf"
+  fi
+done < <(find "$OUT_DIR" -maxdepth 1 -type f -name "*.md" -print0)
 
 extract_description() {
   awk '
@@ -95,8 +112,10 @@ while IFS= read -r -d '' skill_file; do
   skill_dir="$(dirname "$skill_file")"
   name="$(basename "$skill_dir")"
 
-  rel_dir="$skill_dir"
-  rel_dir="${rel_dir#"$SKILLS_ROOT"/}"
+  skill_dir_abs="$(python3 -c 'import os,sys; print(os.path.realpath(sys.argv[1]))' "$skill_dir")"
+
+  rel_dir="$skill_dir_abs"
+  rel_dir="${rel_dir#"$SKILLS_ROOT_ABS"/}"
 
   desc_raw="$(extract_description "$skill_file" | tr '\n' ' ' | sed -e 's/[[:space:]]\+/ /g' -e 's/^ //g' -e 's/ $//g')"
   desc_yaml="$(printf '%s' "$desc_raw" | sanitize_yaml_string)"
@@ -111,16 +130,16 @@ while IFS= read -r -d '' skill_file; do
     echo
     echo "# $name"
     echo
-    echo "This workflow delegates to the agent skill at \`$SKILLS_ROOT_REL/$rel_dir/\`."
+    echo "This workflow delegates to the agent skill at \`$skill_dir_abs/\`."
     echo
     echo "## Skill Root"
     echo
-    echo "- **Path:** \`$SKILLS_ROOT_REL/\`"
+    echo "- **Path:** \`$SKILLS_ROOT_ABS/\`"
     echo
     echo "## Skill Location"
     echo
-    echo "- **Path:** \`$SKILLS_ROOT_REL/$rel_dir/\`"
-    echo "- **Manifest:** \`$SKILLS_ROOT_REL/$rel_dir/SKILL.md\`"
+    echo "- **Path:** \`$skill_dir_abs/\`"
+    echo "- **Manifest:** \`$skill_dir_abs/SKILL.md\`"
     echo
   } > "$workflow_file"
 

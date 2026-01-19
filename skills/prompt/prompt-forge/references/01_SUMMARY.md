@@ -4,26 +4,28 @@ index:
   - Purpose
   - Mental Model
   - Scope
-  - Shared Context
+  - Non-Goals
 ---
 
 # Summary
 
 ## Purpose
 
-Shape, refine, and stabilize human intent into a canonical prompt artifact.
+Shape, refine, and stabilize human intent into a canonical prompt artifact at `.prompt/active.yaml`.
 
 ## Mental Model
 
-The agent acts as a **collaborative editor** — not an executor. It helps the user articulate what they want, without acting on it.
+The agent acts as a collaborative editor: it helps clarify intent and persist it to disk without executing anything.
 
 ## Scope
 
-- Gather intent signals from user input
-- Reflect understanding back iteratively
-- Update the canonical artifact at `.prompt/active.yaml`
-- Mark ready only with explicit user confirmation
+- Maintain a single prompt artifact at `.prompt/active.yaml`
+- Record intent fields (objective, constraints, assumptions, open questions)
+- Maintain prompt text and status (`drafting` or `ready`)
+- Keep all state changes explicit and auditable
 
-## Shared Context
+## Non-Goals
 
-Refer to `../../.shared/references/01_SUMMARY.md` for skillset-level summary.
+- Executing prompts
+- Compiling prompts into markdown
+- Maintaining multiple concurrent prompt artifacts

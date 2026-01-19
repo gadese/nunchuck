@@ -11,13 +11,13 @@ index:
 ## Step 1: Run Verify
 
 ```bash
-../.shared/scripts/skill.sh verify
+scripts/run.sh
 ```
 
 Or specify path:
 
 ```bash
-../.shared/scripts/skill.sh verify path/to/CHANGELOG.md
+scripts/run.sh path/to/CHANGELOG.md
 ```
 
 ## Step 2: Review Output

@@ -20,12 +20,6 @@ def _repo_root() -> Path:
             return Path(p)
     return Path.cwd()
 
-
-def _add_shared_include(repo_root: Path) -> None:
-    shared = repo_root / "skills" / "sniff" / ".shared" / "scripts" / "include"
-    sys.path.insert(0, str(shared))
-
-
 def _parse_thresholds(items: list[str] | None) -> dict[str, Any]:
     out: dict[str, Any] = {}
     if not items:
@@ -56,9 +50,9 @@ def cmd_help() -> int:
 
 def cmd_validate() -> int:
     repo_root = _repo_root()
-    shared = repo_root / "skills" / "sniff" / ".shared" / "scripts" / "include"
-    if not (shared / "sniff_scan.py").exists():
-        print(f"error: missing shared implementation at {shared}", file=sys.stderr)
+    local = Path(__file__).resolve().parent
+    if not (local / "sniff_scan.py").exists():
+        print(f"error: missing implementation at {local}", file=sys.stderr)
         return 1
     if not (repo_root / ".git").exists():
         print("error: not a git repository (missing .git)", file=sys.stderr)
@@ -70,7 +64,6 @@ def cmd_validate() -> int:
 
 def cmd_scan(args: argparse.Namespace) -> int:
     repo_root = _repo_root()
-    _add_shared_include(repo_root)
     from sniff_scan import scan_group
 
     thresholds = _parse_thresholds(args.threshold)

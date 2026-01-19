@@ -23,19 +23,19 @@ ls -la <source.md>
 ## Step 2: Run Split Script
 
 ```bash
-./scripts/split.sh <source.md> [output_dir]
+./scripts/split.sh --in <source.md> [--out <output_dir>] [--prefix <NN>] [--dry-run] [--force] [--no-intro] [--manifest|--no-manifest]
 ```
 
 Or on Windows:
 
 ```powershell
-./scripts/split.ps1 <source.md> [output_dir]
+./scripts/split.ps1 --in <source.md> [--out <output_dir>] [--prefix <NN>] [--dry-run] [--force] [--no-intro] [--manifest|--no-manifest]
 ```
 
 ## Step 3: Generate Index
 
 ```bash
-./scripts/index.sh [output_dir]
+./scripts/index.sh --dir <output_dir>
 ```
 
 ## Step 4: Verify Output
@@ -50,8 +50,9 @@ ls -la <output_dir>/*.md
 
 ```text
 output_dir/
-├── 00_preamble.md     # Content before first H2
-├── 01_section_one.md  # First H2 section
-├── 02_section_two.md  # Second H2 section
-└── .INDEX.md          # Generated index
+├── 00_INTRO.md        # Optional: content before first H2 (only when meaningful)
+├── 01_SECTION_ONE.md  # First H2 section (promoted to H1)
+├── 02_SECTION_TWO.md  # Second H2 section (promoted to H1)
+├── .INDEX.md          # Generated index
+└── .SPLIT.json        # Optional: manifest (default on; disable with --no-manifest)
 ```

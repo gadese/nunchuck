@@ -1,41 +1,25 @@
 ---
 description: Canonical execution path for this skill.
 index:
-  - Step 1: Surface scan
-  - Step 2: Initialize plan
-  - Step 3: Populate plan files
-  - Step 4: Validate
-  - Additional reference
+  - Step 1: Ensure intent exists and is ready
+  - Step 2: Compile active plan
+  - Step 3: Validate deterministically
 ---
 
 # Procedure
 
-## Step 1: Surface scan
+## Step 1: Ensure intent exists and is ready
 
-From `skills/plan/plan-create/`, run:
+Use `plan-discuss` until `.plan/active.yaml` is `status: ready`.
 
-```bash
-../.shared/scripts/skill.sh surface --patterns "*.py" "*.md" "*.yaml"
-```
-
-## Step 2: Initialize plan
+## Step 2: Compile active plan
 
 ```bash
-../.shared/scripts/skill.sh init --title "Description of objective"
+./scripts/skill.sh
 ```
 
-## Step 3: Populate plan files
+This creates/overwrites `.plan/active/` from `.plan/active.yaml` and bakes in a deterministic surface scan result for auditability.
 
-- Populate `.plan/<N>/plan.md` with objective, success criteria, and sub-plan index.
-- Populate each sub-plan `index.md` with task list.
-- Populate each task file with Focus, Inputs, and Work.
+## Step 3: Validate deterministically
 
-## Step 4: Validate
-
-```bash
-../.shared/scripts/skill.sh status <N>
-```
-
-## Additional reference
-
-- See `08_PROCEDURE.md` for legacy detail.
+`plan-create` must produce schema-valid plan files. If compilation fails, fix `.plan/active.yaml` (or schemas) and re-run.

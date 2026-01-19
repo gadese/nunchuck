@@ -11,16 +11,12 @@ index:
 
 ## Step 1: Check Existing
 
-```bash
-../.shared/scripts/skill.sh locate
-```
-
-If found, confirm user wants to overwrite.
+Check whether `CHANGELOG.md` already exists at repo root (or `docs/CHANGELOG.md`). If found, confirm user wants to overwrite.
 
 ## Step 2: Initialize
 
 ```bash
-../.shared/scripts/skill.sh init [--force]
+scripts/run.sh [--force]
 ```
 
 ## Step 3: Customize

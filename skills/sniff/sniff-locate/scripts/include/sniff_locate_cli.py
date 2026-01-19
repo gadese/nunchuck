@@ -19,12 +19,6 @@ def _repo_root() -> Path:
             return Path(p)
     return Path.cwd()
 
-
-def _add_shared_include(repo_root: Path) -> None:
-    shared = repo_root / "skills" / "sniff" / ".shared" / "scripts" / "include"
-    sys.path.insert(0, str(shared))
-
-
 def cmd_help() -> int:
     print("sniff-locate commands:")
     print("  help")
@@ -38,9 +32,9 @@ def cmd_help() -> int:
 
 def cmd_validate() -> int:
     repo_root = _repo_root()
-    shared = repo_root / "skills" / "sniff" / ".shared" / "scripts" / "include"
-    if not (shared / "sniff_locate.py").exists():
-        print(f"error: missing shared implementation at {shared}", file=sys.stderr)
+    local = Path(__file__).resolve().parent
+    if not (local / "sniff_locate.py").exists():
+        print(f"error: missing implementation at {local}", file=sys.stderr)
         return 1
     if not (repo_root / ".git").exists():
         print("error: not a git repository (missing .git)", file=sys.stderr)
@@ -52,7 +46,6 @@ def cmd_validate() -> int:
 
 def cmd_list(args: argparse.Namespace) -> int:
     repo_root = _repo_root()
-    _add_shared_include(repo_root)
     from sniff_locate import format_human, format_json, list_findings
 
     rows = list_findings(
@@ -71,7 +64,6 @@ def cmd_list(args: argparse.Namespace) -> int:
 
 def cmd_validate_findings(args: argparse.Namespace, *, reanchor: bool) -> int:
     repo_root = _repo_root()
-    _add_shared_include(repo_root)
     from sniff_locate import validate_findings
 
     counts = validate_findings(repo_root, reanchor=reanchor, include_all=args.all)

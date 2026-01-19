@@ -14,4 +14,4 @@ index:
 ## CLI not runnable
 
 - Instruct the user to install `uv`.
-- Re-run `../.shared/scripts/skill.sh validate`.
+- Re-run `scripts/validate.sh`.

@@ -12,13 +12,13 @@ def cmd_help() -> int:
         """prompt-compile - Compile .prompt/active.yaml into .prompt/PROMPT.md
 
 Usage:
-  prompt-compile [--force] [--dry-run]
+  prompt-compile [--dry-run]
   prompt-compile help
   prompt-compile validate
 
 Deterministic behavior:
 - Verifies active artifact exists
-- Validates artifact (unless --force)
+- Validates artifact (schema)
 - Writes .prompt/PROMPT.md (unless --dry-run)
 - Preserves active artifact
 """
@@ -31,6 +31,8 @@ def cmd_validate() -> int:
 
     if importlib.util.find_spec("yaml") is None:
         errors.append("missing dependency: pyyaml")
+    if importlib.util.find_spec("jsonschema") is None:
+        errors.append("missing dependency: jsonschema")
 
     if errors:
         for e in errors:
@@ -41,7 +43,7 @@ def cmd_validate() -> int:
     return 0
 
 
-def cmd_compile(force: bool, dry_run: bool) -> int:
+def cmd_compile(dry_run: bool) -> int:
     if not artifact_exists():
         print("error: no active prompt", file=sys.stderr)
         print(f"path: {ACTIVE_PATH} (does not exist)", file=sys.stderr)
@@ -51,11 +53,15 @@ def cmd_compile(force: bool, dry_run: bool) -> int:
     artifact = load_artifact() or {}
     errors = validate_artifact(artifact)
 
-    if errors and not force:
+    if errors:
         print("error: artifact has validation errors", file=sys.stderr)
         for e in errors:
             print(f"  - {e}", file=sys.stderr)
-        print("use --force to compile anyway", file=sys.stderr)
+        return 1
+
+    if artifact.get("status") != "ready":
+        print(f"error: prompt status is '{artifact.get('status')}', not 'ready'", file=sys.stderr)
+        print("use prompt-forge to finish refinement first", file=sys.stderr)
         return 1
 
     content = compile_to_markdown(artifact)
@@ -74,7 +80,6 @@ def cmd_compile(force: bool, dry_run: bool) -> int:
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="prompt-compile", add_help=False)
     parser.add_argument("command", nargs="?", help="help or validate")
-    parser.add_argument("--force", action="store_true")
     parser.add_argument("--dry-run", action="store_true")
     return parser
 
@@ -93,7 +98,7 @@ def main() -> int:
         print(f"error: unknown command '{args.command}'", file=sys.stderr)
         return 1
 
-    return cmd_compile(force=args.force, dry_run=args.dry_run)
+    return cmd_compile(dry_run=args.dry_run)
 
 
 if __name__ == "__main__":

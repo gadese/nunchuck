@@ -10,8 +10,8 @@ index:
 
 ## Pre-Review Rules
 
-- Always run `./skill.sh lint` before reviewing
-- Always read the lint output first
+- Always run `./scripts/skill.sh <target>` before reviewing
+- Always read the lint findings first
 - Always check heading hierarchy
 
 ## Review Rules

@@ -17,4 +17,4 @@ index:
 
 - Chunks have not been edited
 - User wants to keep chunked format
-- Lint errors exist (run lint first)
+- md-review reports lint errors (run md-review first)

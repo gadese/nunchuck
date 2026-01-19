@@ -23,13 +23,13 @@ Determine:
 From `skills/task/task-create/`, run:
 
 ```bash
-../.shared/scripts/skill.sh create <id> --title "Title" --kind <kind> --risk <risk> --select
+scripts/run.sh <id> --title "Title" --kind <kind> --risk <risk> --select
 ```
 
 ## Step 3: Verify
 
 ```bash
-../.shared/scripts/skill.sh list
+../task-list/scripts/run.sh
 ```
 
 ## Additional reference

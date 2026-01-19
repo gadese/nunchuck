@@ -13,7 +13,7 @@ index:
 ## Step 1: Run Lint
 
 ```bash
-./skill.sh lint <target>
+./scripts/skill.sh <target>
 ```
 
 Record any findings.
@@ -21,6 +21,7 @@ Record any findings.
 ## Step 2: Review Structure
 
 Assess:
+
 - Heading hierarchy (H1 → H2 → H3)
 - Section balance (similar depth)
 - Logical flow between sections
@@ -28,6 +29,7 @@ Assess:
 ## Step 3: Review Clarity
 
 For each section:
+
 - Is the purpose clear?
 - Is the language concise?
 - Are there ambiguous statements?

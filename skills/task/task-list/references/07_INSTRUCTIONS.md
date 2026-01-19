@@ -17,7 +17,7 @@ This file is kept for continuity. Prefer the canonical reference set (00–06).
 
 ### Always
 
-1. List tasks via the deterministic CLI (`../.shared/scripts/skill.sh list`).
+1. List tasks via the deterministic entrypoint (`scripts/run.sh`).
 2. Surface skepticism flags (stale, hash mismatch).
 
 ### Never

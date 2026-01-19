@@ -12,7 +12,7 @@ index:
 ## Step 1: Pre-merge Lint
 
 ```bash
-./skill.sh lint chunks/
+../md-review/scripts/skill.sh chunks/
 ```
 
 Fix any issues before proceeding.
@@ -20,13 +20,13 @@ Fix any issues before proceeding.
 ## Step 2: Merge
 
 ```bash
-./skill.sh merge chunks/ --out merged.md
+./scripts/skill.sh chunks/ --out merged.md
 ```
 
 ## Step 3: Post-merge Lint
 
 ```bash
-./skill.sh lint merged.md
+../md-review/scripts/skill.sh merged.md
 ```
 
 ## Step 4: Review

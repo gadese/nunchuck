@@ -14,7 +14,7 @@ index:
 From `skills/task/task-list/`, run:
 
 ```bash
-../.shared/scripts/skill.sh list
+scripts/run.sh
 ```
 
 ## Step 2: Filter
@@ -22,8 +22,8 @@ From `skills/task/task-list/`, run:
 Examples:
 
 ```bash
-../.shared/scripts/skill.sh list --state open
-../.shared/scripts/skill.sh list --stale
+scripts/run.sh --state open
+scripts/run.sh --stale
 ```
 
 ## Step 3: Interpret flags

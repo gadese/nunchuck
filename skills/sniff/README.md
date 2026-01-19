@@ -16,7 +16,7 @@ It turns smells into **stable, locatable artifacts** that survive refactors, lin
 
 ## What `sniff` is
 
-`sniff` is a **deterministic smell detection and tracking skillset**.
+`sniff` is a **deterministic smell detection and tracking skill container**.
 
 It:
 

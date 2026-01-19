@@ -13,7 +13,7 @@ When people start a conversation with an AI, they usually *don’t yet know exac
 
 ## What this is
 
-Nunchuck `prompt` skills are a small, opinionated skillset designed to **separate thinking from acting**.
+Nunchuck `prompt` skills are a small, opinionated set of skills designed to **separate thinking from acting**.
 
 It provides a safe, structured way to:
 

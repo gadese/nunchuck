@@ -20,17 +20,17 @@ Focus, Inputs, and Work come from `plan-create`. If these contain placeholders, 
 ## Step 1: Find Active Task
 
 ```bash
-./skill.sh status <N>
+./skill.sh
 ```
 
-The first task with `status: pending` or `status: in_progress` is the active task.
+This deterministically selects/ensures the single `in_progress` task.
 
 ## Step 2: Load and Validate
 
 Read:
-- Root: `.plan/<N>/plan.md`
-- Sub-plan: `.plan/<N>/<letter>/index.md`
-- Active: `.plan/<N>/<letter>/<roman>.md`
+- Root: `.plan/active/plan.md`
+- Sub-plan: `.plan/active/<letter>/index.md`
+- Active: `.plan/active/<letter>/<roman>.md`
 
 Verify Work section has actionable steps (not placeholders).
 
@@ -38,7 +38,7 @@ Verify Work section has actionable steps (not placeholders).
 
 ### Update Status
 
-Set `status: in_progress` in the task frontmatter.
+If a task is not already `in_progress`, `plan-exec` will select and set the next pending task to `in_progress`.
 
 ### Perform the Work
 
@@ -84,8 +84,8 @@ Repeat Steps 2-4 until all tasks complete.
 
 ## Step 5: Wrap-up
 
-When all sub-plans complete:
+When all tasks are `complete` or `deferred`:
 
-1. Update `plan.md` frontmatter: `status: complete`
+1. Re-run `./skill.sh` to archive `.plan/active/` into `.plan/archive/<id>/`
 2. Check off success criteria with evidence
 3. Append **Plan Summary** section

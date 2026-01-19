@@ -10,13 +10,12 @@ index:
 
 ## Missing or invalid plan
 
-- Stop and ask for the correct plan number `<N>`.
-- Re-run `../.shared/scripts/skill.sh list` / `../.shared/scripts/skill.sh status <N>`.
+- Stop and ensure a compiled plan exists at `.plan/active/` (run `plan-create`).
 
 ## Placeholder Work
 
-- Stop and ask the user to refine Focus/Inputs/Work, or switch back to `plan-create`.
+- Stop and switch back to `plan-discuss` / `plan-create` to refine task Focus/Inputs/Work until it is executable.
 
 ## Commands not runnable
 
-- Stop and instruct user to install `uv`, then re-run `../.shared/scripts/skill.sh validate`.
+- Stop and instruct user to install `uv`, then re-run `./scripts/skill.sh validate`.

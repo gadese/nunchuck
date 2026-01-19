@@ -4,24 +4,25 @@ import argparse
 import importlib.util
 import sys
 
-from plan_parse import clean_plan, init_plan, next_plan_number, plan_exists
+from plan_parse import ACTIVE_DIR, ACTIVE_INTENT_PATH, compile_active_plan, validate_active_plan
 
 
 def cmd_help() -> int:
     print(
-        """plan-create - Create a new plan skeleton in .plan/<N>/
+        """plan-create - Compile .plan/active.yaml into .plan/active/
 
 Usage:
-  plan-create [N] [--title TITLE] [--force]
+  plan-create [--force]
   plan-create help
   plan-create validate
 
-Creates:
-  .plan/<N>/plan.md
-  .plan/<N>/a/index.md
-  .plan/<N>/a/i.md
+Creates/overwrites:
+  .plan/active/plan.md
+  .plan/active/<letter>/index.md
+  .plan/active/<letter>/<roman>.md
 
-If N is omitted, uses the next available plan number.
+Precondition:
+  .plan/active.yaml exists and is status: ready (use plan-discuss).
 """
     )
     return 0
@@ -32,10 +33,24 @@ def cmd_validate() -> int:
 
     if importlib.util.find_spec("yaml") is None:
         errors.append("missing dependency: pyyaml")
+    if importlib.util.find_spec("jsonschema") is None:
+        errors.append("missing dependency: jsonschema")
 
     if errors:
         for e in errors:
             print(f"error: {e}", file=sys.stderr)
+        return 1
+
+    # Validate that required schemas are present (schema-first design).
+    from plan_parse import ROOT_SCHEMA_PATH, SUBPLAN_SCHEMA_PATH, TASK_SCHEMA_PATH
+
+    missing: list[str] = []
+    for p in [ROOT_SCHEMA_PATH, SUBPLAN_SCHEMA_PATH, TASK_SCHEMA_PATH]:
+        if not p.exists():
+            missing.append(str(p))
+    if missing:
+        for p in missing:
+            print(f"error: missing schema: {p}", file=sys.stderr)
         return 1
 
     print("ok: plan-create CLI is runnable")
@@ -44,46 +59,39 @@ def cmd_validate() -> int:
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="plan-create", add_help=False)
-    parser.add_argument("command_or_plan", nargs="?", help="help, validate, or plan number")
-    parser.add_argument("--title", help="Plan title")
     parser.add_argument("--force", action="store_true", help="Overwrite existing plan")
     return parser
 
 
 def main() -> int:
     parser = build_parser()
-    args = parser.parse_args()
+    args, unknown = parser.parse_known_args()
 
-    if args.command_or_plan is None:
-        plan_n = next_plan_number()
-    elif args.command_or_plan == "help":
+    if unknown and unknown[0] == "help":
         return cmd_help()
-    elif args.command_or_plan == "validate":
+    if unknown and unknown[0] == "validate":
         return cmd_validate()
-    else:
-        try:
-            plan_n = int(args.command_or_plan)
-        except ValueError:
-            print(f"error: expected plan number, got '{args.command_or_plan}'", file=sys.stderr)
-            return 1
 
-        if plan_n <= 0:
-            print("error: plan number must be > 0", file=sys.stderr)
-            return 1
-
-    if plan_exists(plan_n) and not args.force:
-        print(f"error: plan {plan_n} already exists", file=sys.stderr)
-        print("use --force to overwrite", file=sys.stderr)
+    if not ACTIVE_INTENT_PATH.exists():
+        print(f"error: missing plan intent: {ACTIVE_INTENT_PATH}", file=sys.stderr)
+        print("run plan-discuss first", file=sys.stderr)
         return 1
 
-    if plan_exists(plan_n) and args.force:
-        clean_plan(plan_n)
+    try:
+        out_dir = compile_active_plan(overwrite=args.force)
+    except ValueError as e:
+        print(f"error: {e}", file=sys.stderr)
+        return 1
 
-    path = init_plan(plan_n, args.title or "")
-    print(f"created: {path}")
-    print("  plan.md")
-    print("  a/index.md")
-    print("  a/i.md")
+    errors = validate_active_plan()
+    if errors:
+        print(f"error: compiled plan failed validation ({len(errors)} issues)", file=sys.stderr)
+        for er in errors:
+            print(f"  - {er}", file=sys.stderr)
+        return 1
+
+    print(f"created: {out_dir}")
+    print(f"  {ACTIVE_DIR / 'plan.md'}")
     return 0
 
 

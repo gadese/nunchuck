@@ -10,23 +10,24 @@ fi
 
 cmd_help() {
     cat <<'EOF'
-plan-create - Create a new plan skeleton in .plan/<N>/
+plan-create - Compile .plan/active.yaml into .plan/active/
 
 Commands:
   help      Show this help message
   validate  Verify the skill is runnable (read-only)
 
 Usage:
-  plan-create [N] [--title TITLE] [--force]
+  plan-create [--force]
   plan-create help
   plan-create validate
 
-Creates:
-  .plan/<N>/plan.md
-  .plan/<N>/a/index.md
-  .plan/<N>/a/i.md
+Creates/overwrites:
+  .plan/active/plan.md
+  .plan/active/<letter>/index.md
+  .plan/active/<letter>/<roman>.md
 
-If N is omitted, uses the next available plan number.
+Precondition:
+  .plan/active.yaml exists and is status: ready (use plan-discuss).
 EOF
 }
 
@@ -56,7 +57,7 @@ cmd_validate() {
 }
 
 cmd_run() {
-    PYTHONPATH="$INCLUDE_DIR" uv run python "$INCLUDE_DIR/plan_create_cli.py" "$@"
+    uv run --project "$INCLUDE_DIR" -- python "$INCLUDE_DIR/plan_create_cli.py" "$@"
 }
 
 case "${1:-}" in

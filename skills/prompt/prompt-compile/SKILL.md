@@ -10,14 +10,22 @@ metadata:
   references:
     - 00_ROUTER.md
     - 01_SUMMARY.md
-    - 02_TRIGGERS.md
-    - 03_ALWAYS.md
+    - 02_CONTRACTS.md
+    - 03_TRIGGERS.md
     - 04_NEVER.md
-    - 05_PROCEDURE.md
-    - 06_FAILURES.md
+    - 05_ALWAYS.md
+    - 06_PROCEDURE.md
+    - 07_FAILURES.md
   scripts:
-    - ../.shared/scripts/skill.sh
-    - ../.shared/scripts/skill.ps1
+    - compile.sh
+    - compile.ps1
+    - validate.sh
+    - help.sh
+  assets:
+    - assets/prompt-artifact-schema.md
+    - assets/prompt-artifact-schema.json
+    - assets/receipt-schema.json
+    - assets/observability-template.md
   artifacts:
     - .prompt/PROMPT.md
   keywords:
@@ -30,5 +38,5 @@ metadata:
 
 # INSTRUCTIONS
 
-1. Refer to `metadata.references`.
-2. Use CLI at `../.shared/scripts/skill.sh` for deterministic operations.
+1. Refer to `metadata.references` for the complete skill definition.
+2. Use individual scripts: `compile.sh`, `validate.sh`, `help.sh`

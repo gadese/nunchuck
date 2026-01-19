@@ -1,12 +1,12 @@
 # Skills Reference
 
-Complete reference of all skills and skillsets available in nunchuck.
+Complete reference of all skills available in nunchuck.
 
 ---
 
-## Skillsets (Orchestrators)
+## Skill Containers
 
-Skillsets coordinate multiple related skills. See [Skillsets Documentation](./SKILLSETS.md) for details.
+Some skill directories are **containers** of multiple standalone skills (for example `skills/plan/` and `skills/prompt/`). Containers are for discovery and organization, not orchestration.
 
 ### changelog
 
@@ -36,25 +36,6 @@ Diagnoses software failures by combining deterministic evidence gathering with a
 **Keywords:** `diagnose`, `debug`, `investigate`, `evidence`, `hypothesis`, `treatment`
 
 [Read more](../skills/doctor/README.md)
-
----
-
-### dtx
-
-**Path:** `skills/dtx/`
-
-Manages an agent's working context via explicit, auditable `.dtx/` artifacts.
-
-**Member Skills:**
-
-- `dtx-gather` - Deterministic evidence gathering (glob + ripgrep)
-- `dtx-state` - Present current admissible working set
-- `dtx-forget` - Revoke a premise from the contract
-- `dtx-validate` - Validate artifacts for integrity and staleness
-
-**Keywords:** `context`, `evidence`, `contract`, `gather`, `forget`
-
-[Read more](../skills/dtx/README.md)
 
 ---
 
@@ -96,12 +77,11 @@ Manages bounded work units with structured plans stored in `.plan/`.
 
 **Member Skills:**
 
-- `plan-create` - Create execution plans
-- `plan-exec` - Execute existing plans
-- `plan-status` - Track plan progress
-- `plan-review` - Review plan completion
+- `plan-discuss` - Clarify and stabilize intent into `.plan/active.yaml`
+- `plan-create` - Compile intent into `.plan/active/`
+- `plan-exec` - Execute tasks and archive to `.plan/archive/`
 
-**Keywords:** `plan`, `planning`, `execute`, `status`
+**Keywords:** `plan`, `planning`, `execute`, `archive`, `intent`
 
 [Read more](../skills/plan/README.md)
 
@@ -146,5 +126,4 @@ Manages bounded work units with single-file tasks stored in `.tasks/`, skepticis
 
 ## See Also
 
-- [Skillsets Documentation](./SKILLSETS.md) - Spec-compliant agent skill groups
 - [Contributing Guidelines](../CONTRIBUTING.md) - Add your own skills

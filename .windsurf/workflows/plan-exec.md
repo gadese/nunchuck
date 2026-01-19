@@ -1,5 +1,5 @@
 ---
-description: "Execute plan tasks by performing actual work. Writes concrete Output and Handoff for each task. Execution means implementation."
+description: "Execute tasks in the active plan under `.plan/active/`. Writes concrete Output and Handoff for each task and archives the plan once terminal."
 auto_execution_mode: 1
 ---
 

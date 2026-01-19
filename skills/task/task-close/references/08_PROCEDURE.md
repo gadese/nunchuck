@@ -12,17 +12,17 @@ This file is kept for continuity. Prefer `05_PROCEDURE.md`.
 ## Close
 
 ```bash
-../.shared/scripts/skill.sh close <id> --reason completed
+scripts/run.sh <id> --reason completed
 ```
 
 or:
 
 ```bash
-../.shared/scripts/skill.sh close <id> --reason abandoned
+scripts/run.sh <id> --reason abandoned
 ```
 
 ## Verify
 
 ```bash
-../.shared/scripts/skill.sh list --state closed
+../task-list/scripts/run.sh --state closed
 ```

@@ -5,5 +5,5 @@ index: []
 
 # Always
 
-- Always list tasks via the deterministic CLI (`../.shared/scripts/skill.sh list`).
+- Always list tasks via the deterministic entrypoint (`scripts/run.sh`).
 - Always surface stale and hash-mismatch flags.

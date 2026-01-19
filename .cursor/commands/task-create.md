@@ -2,14 +2,14 @@
 
 Create a new task file in `.tasks/<id>.md` from template. Sets timestamps, computes initial intent hash, and optionally auto-selects the task.
 
-This command delegates to the agent skill at `/home/jgodau/work/personal/nunchuck/skills/task/task-create/`.
+This command delegates to the agent skill at `skills/task/task-create/`.
 
 ## Skill Root
 
-- **Path:** `/home/jgodau/work/personal/nunchuck/skills/`
+- **Path:** `skills/`
 
 ## Skill Location
 
-- **Path:** `/home/jgodau/work/personal/nunchuck/skills/task/task-create/`
-- **Manifest:** `/home/jgodau/work/personal/nunchuck/skills/task/task-create/SKILL.md`
+- **Path:** `skills/task/task-create/`
+- **Manifest:** `skills/task/task-create/SKILL.md`
 

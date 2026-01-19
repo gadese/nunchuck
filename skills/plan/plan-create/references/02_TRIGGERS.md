@@ -10,13 +10,13 @@ index:
 
 ## Invoke when
 
-- You need to create a new structured plan under `.plan/<N>/`.
-- The user requests a plan scaffold with tasks.
+- Plan intent has been discussed and stabilized (`plan-discuss`), and you need a compiled plan directory.
+- The user requests a plan scaffold with tasks under a single active plan.
 
 ## Do not invoke when
 
-- A plan already exists and the user only wants execution (use `plan-exec`).
+- A compiled plan already exists and the user only wants execution (use `plan-exec`).
 
 ## Exit immediately if
 
-- The target scope is unclear and the user cannot specify a bounded objective.
+- `.plan/active.yaml` is not ready (use `plan-discuss` to resolve open questions).

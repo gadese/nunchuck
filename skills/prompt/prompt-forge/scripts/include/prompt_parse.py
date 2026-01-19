@@ -1,18 +1,34 @@
 """Parse and manage prompt artifacts."""
 
 import hashlib
+import json
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
 import yaml
+from jsonschema import Draft7Validator, FormatChecker
 
 
-PROMPT_DIR = Path(".prompt")
+def find_repo_root(start: Path) -> Path:
+    current = start.resolve()
+    for parent in [current, *current.parents]:
+        if (parent / "nunchuck.toml").exists() or (parent / ".git").exists():
+            return parent
+    return current
+
+
+REPO_ROOT = find_repo_root(Path(__file__).resolve())
+PROMPT_DIR = REPO_ROOT / ".prompt"
 ACTIVE_PATH = PROMPT_DIR / "active.yaml"
 RECEIPTS_DIR = PROMPT_DIR / "receipts"
 
-VALID_STATUSES = ("drafting", "ready")
+SKILL_DIR = Path(__file__).resolve().parents[2]
+ASSETS_DIR = SKILL_DIR / "assets"
+ARTIFACT_SCHEMA_PATH = ASSETS_DIR / "prompt-artifact-schema.json"
+RECEIPT_SCHEMA_PATH = ASSETS_DIR / "receipt-schema.json"
+
+VALID_STATUSES = ("drafting", "ready", "executed")
 
 
 def now_utc() -> datetime:
@@ -81,58 +97,67 @@ def create_empty_artifact() -> dict[str, Any]:
     }
 
 
-def validate_artifact(artifact: dict[str, Any]) -> list[str]:
-    errors: list[str] = []
+def _load_json(path: Path) -> dict[str, Any]:
+    return json.loads(path.read_text(encoding="utf-8"))
 
+
+def _schema_errors(schema: dict[str, Any], instance: dict[str, Any]) -> list[str]:
+    validator = Draft7Validator(schema, format_checker=FormatChecker())
+    errors = sorted(validator.iter_errors(instance), key=lambda e: list(e.path))
+    formatted: list[str] = []
+    for err in errors:
+        path = ".".join(str(p) for p in err.path) or "(root)"
+        formatted.append(f"{path}: {err.message}")
+    return formatted
+
+
+def validate_artifact(artifact: dict[str, Any]) -> list[str]:
     if not isinstance(artifact, dict):
         return ["artifact is not a dictionary"]
 
-    if artifact.get("version") != "1":
-        errors.append("missing or invalid version (expected '1')")
+    if not ARTIFACT_SCHEMA_PATH.exists():
+        return [f"missing artifact schema: {ARTIFACT_SCHEMA_PATH}"]
 
-    status = artifact.get("status")
-    if status not in VALID_STATUSES:
-        errors.append(f"invalid status '{status}' (expected: {VALID_STATUSES})")
-
-    if not artifact.get("created_at"):
-        errors.append("missing created_at")
-
-    if not artifact.get("updated_at"):
-        errors.append("missing updated_at")
-
-    intent = artifact.get("intent")
-    if not isinstance(intent, dict):
-        errors.append("missing or invalid intent object")
-    elif not intent.get("objective") and status == "ready":
-        errors.append("ready artifact must have an objective")
-
-    if status == "ready" and not artifact.get("prompt"):
-        errors.append("ready artifact must have a prompt")
+    schema = _load_json(ARTIFACT_SCHEMA_PATH)
+    errors = _schema_errors(schema, artifact)
 
     return errors
 
 
-def write_receipt(artifact: dict[str, Any]) -> Path:
+def validate_receipt(receipt: dict[str, Any]) -> list[str]:
+    if not RECEIPT_SCHEMA_PATH.exists():
+        return [f"missing receipt schema: {RECEIPT_SCHEMA_PATH}"]
+
+    schema = _load_json(RECEIPT_SCHEMA_PATH)
+    return _schema_errors(schema, receipt)
+
+
+def write_receipt(artifact: dict[str, Any], *, execution_status: str) -> Path:
     ensure_receipts_dir()
 
     prompt_text = artifact.get("prompt", "")
-    prompt_hash = compute_hash(prompt_text)
+    artifact_hash = compute_hash(prompt_text)
     timestamp = to_rfc3339(now_utc()).replace(":", "-")
 
     receipt = {
         "version": "1",
         "executed_at": to_rfc3339(now_utc()),
-        "prompt_hash": prompt_hash,
-        "prompt": prompt_text,
-        "intent": artifact.get("intent"),
-        "quality": artifact.get("quality"),
+        "artifact_hash": artifact_hash,
+        "prompt_text": prompt_text,
+        "execution_status": execution_status,
+        "execution_context": {
+            "working_directory": str(REPO_ROOT),
+        },
     }
 
-    filename = f"{timestamp}-{prompt_hash[:8]}.yaml"
+    errors = validate_receipt(receipt)
+    if errors:  # pragma: no cover
+        raise ValueError("receipt does not match schema: " + "; ".join(errors))
+
+    filename = f"{timestamp}-{artifact_hash[:8]}.json"
     receipt_path = RECEIPTS_DIR / filename
 
-    content = yaml.dump(receipt, default_flow_style=False, allow_unicode=True, sort_keys=False)
-    receipt_path.write_text(content, encoding="utf-8")
+    receipt_path.write_text(json.dumps(receipt, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 
     return receipt_path
 
@@ -140,7 +165,7 @@ def write_receipt(artifact: dict[str, Any]) -> Path:
 def list_receipts() -> list[Path]:
     if not RECEIPTS_DIR.exists():
         return []
-    return sorted(RECEIPTS_DIR.glob("*.yaml"))
+    return sorted(RECEIPTS_DIR.glob("*.json"))
 
 
 COMPILED_PATH = PROMPT_DIR / "PROMPT.md"
@@ -189,20 +214,18 @@ def compile_to_markdown(artifact: dict[str, Any]) -> str:
 
     quality = artifact.get("quality")
     if quality and isinstance(quality, dict):
-        grade = quality.get("grade")
-        if grade:
-            lines.append("## Quality Assessment")
+        clarity = quality.get("clarity_score")
+        completeness = quality.get("completeness_score")
+        validated_at = quality.get("validated_at")
+        if clarity is not None or completeness is not None or validated_at:
+            lines.append("## Quality")
             lines.append("")
-            lines.append(f"**Grade**: {grade}")
-            reasons = quality.get("reasons", [])
-            if reasons:
-                lines.append("")
-                for r in reasons:
-                    lines.append(f"- {r}")
-            top_fix = quality.get("top_fix")
-            if top_fix:
-                lines.append("")
-                lines.append(f"**Top fix**: {top_fix}")
+            if clarity is not None:
+                lines.append(f"- clarity_score: {clarity}")
+            if completeness is not None:
+                lines.append(f"- completeness_score: {completeness}")
+            if validated_at:
+                lines.append(f"- validated_at: {validated_at}")
             lines.append("")
 
     return "\n".join(lines)

@@ -32,6 +32,8 @@ def cmd_validate() -> int:
 
     if importlib.util.find_spec("yaml") is None:
         errors.append("missing dependency: pyyaml")
+    if importlib.util.find_spec("jsonschema") is None:
+        errors.append("missing dependency: jsonschema")
 
     if errors:
         for e in errors:
@@ -68,7 +70,7 @@ def cmd_exec(dry_run: bool) -> int:
         print(f"prompt: {artifact.get('prompt', '')[:100]}...")
         return 0
 
-    receipt_path = write_receipt(artifact)
+    receipt_path = write_receipt(artifact, execution_status="success")
     print(f"receipt: {receipt_path}")
 
     delete_artifact()

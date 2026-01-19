@@ -12,14 +12,14 @@ def cmd_help() -> int:
         """prompt-forge - Shape and stabilize intent into .prompt/active.yaml
 
 Usage:
-  prompt-forge [--mark-ready] [--force]
+  prompt-forge [--mark-ready]
   prompt-forge help
   prompt-forge validate
 
 Deterministic behavior:
 - Ensures .prompt/active.yaml exists (creates it if missing)
 - Prints current artifact status
-- Optionally marks artifact ready (requires no open questions unless --force, and requires a prompt)
+- Optionally marks artifact ready (requires no open questions, and requires a prompt)
 """
     )
     return 0
@@ -30,6 +30,8 @@ def cmd_validate() -> int:
 
     if importlib.util.find_spec("yaml") is None:
         errors.append("missing dependency: pyyaml")
+    if importlib.util.find_spec("jsonschema") is None:
+        errors.append("missing dependency: jsonschema")
 
     if errors:
         for e in errors:
@@ -76,7 +78,7 @@ def ensure_artifact_exists() -> None:
     save_artifact(artifact)
 
 
-def mark_ready(force: bool) -> int:
+def mark_ready() -> int:
     if not artifact_exists():
         print("error: no active prompt", file=sys.stderr)
         return 1
@@ -90,11 +92,10 @@ def mark_ready(force: bool) -> int:
     intent = artifact.get("intent", {})
     open_q = intent.get("open_questions", [])
 
-    if open_q and not force:
+    if open_q:
         print(f"error: {len(open_q)} open questions remain", file=sys.stderr)
         for q in open_q:
             print(f"  - {q}", file=sys.stderr)
-        print("use --force to mark ready anyway", file=sys.stderr)
         return 1
 
     if not artifact.get("prompt"):
@@ -111,7 +112,6 @@ def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="prompt-forge", add_help=False)
     parser.add_argument("command", nargs="?", help="help or validate")
     parser.add_argument("--mark-ready", action="store_true")
-    parser.add_argument("--force", action="store_true")
     return parser
 
 
@@ -128,7 +128,7 @@ def main() -> int:
     ensure_artifact_exists()
 
     if args.mark_ready:
-        return mark_ready(force=args.force)
+        return mark_ready()
 
     return print_status()
 

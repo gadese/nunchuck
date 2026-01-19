@@ -2,10 +2,10 @@
 name: plan-create
 license: MIT
 description: >
-  Scaffold and populate a new plan in `.plan/<N>/` with root plan,
-  sub-plans, and task files.
+  Compile `.plan/active.yaml` into a schema-validated active plan directory under `.plan/active/`.
 metadata:
   author: Jordan Godau
+  version: 0.1.0
   references:
     - 00_ROUTER.md
     - 01_SUMMARY.md
@@ -14,13 +14,20 @@ metadata:
     - 04_NEVER.md
     - 05_PROCEDURE.md
     - 06_FAILURES.md
-    - 07_INSTRUCTIONS.md
-    - 08_PROCEDURE.md
+  scripts:
+    - scripts/skill.sh
+    - scripts/skill.ps1
+  assets:
+    - assets/plan-root-schema.json
+    - assets/plan-subplan-schema.json
+    - assets/plan-task-schema.json
+    - assets/plan-discuss-artifact-schema.json
   keywords:
     - plan
     - create
     - scaffold
     - initialize
+    - compile
 ---
 
 # INSTRUCTIONS

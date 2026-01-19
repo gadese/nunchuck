@@ -2,14 +2,14 @@
 
 Detect object-oriented abusers smells (Switch Statements) using deterministic heuristics and append findings to `.sniff/findings.jsonl`.
 
-This command delegates to the agent skill at `/home/jgodau/work/personal/nunchuck/skills/sniff/sniff-abusers/`.
+This command delegates to the agent skill at `skills/sniff/sniff-abusers/`.
 
 ## Skill Root
 
-- **Path:** `/home/jgodau/work/personal/nunchuck/skills/`
+- **Path:** `skills/`
 
 ## Skill Location
 
-- **Path:** `/home/jgodau/work/personal/nunchuck/skills/sniff/sniff-abusers/`
-- **Manifest:** `/home/jgodau/work/personal/nunchuck/skills/sniff/sniff-abusers/SKILL.md`
+- **Path:** `skills/sniff/sniff-abusers/`
+- **Manifest:** `skills/sniff/sniff-abusers/SKILL.md`
 

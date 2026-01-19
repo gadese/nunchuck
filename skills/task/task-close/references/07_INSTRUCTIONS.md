@@ -15,7 +15,7 @@ index:
 
 ### Always
 
-1. Close tasks via `../.shared/scripts/skill.sh close`.
+1. Close tasks via `scripts/run.sh`.
 2. Provide a close reason: `completed` or `abandoned`.
 
 ### Never

@@ -49,6 +49,9 @@ SKILLS_ROOT_REL="$SKILLS_ROOT"
 OUT_DIR="$OUTPUT_ROOT/.cursor/commands"
 mkdir -p "$OUT_DIR"
 
+# Ensure output reflects the current skill set (remove stale commands).
+find "$OUT_DIR" -maxdepth 1 -type f -name "*.md" -delete
+
 extract_description() {
   awk '
   BEGIN { in_fm=0; in_desc=0; desc="" }

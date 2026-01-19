@@ -10,23 +10,24 @@ if (Test-Path $ConfigPath) {
 
 function Show-Help {
     @"
-plan-create - Create a new plan skeleton in .plan/<N>/
+plan-create - Compile .plan/active.yaml into .plan/active/
 
 Commands:
   help      Show this help message
   validate  Verify the skill is runnable (read-only)
 
 Usage:
-  plan-create [N] [--title TITLE] [--force]
+  plan-create [--force]
   plan-create help
   plan-create validate
 
-Creates:
-  .plan/<N>/plan.md
-  .plan/<N>/a/index.md
-  .plan/<N>/a/i.md
+Creates/overwrites:
+  .plan/active/plan.md
+  .plan/active/<letter>/index.md
+  .plan/active/<letter>/<roman>.md
 
-If N is omitted, uses the next available plan number.
+Precondition:
+  .plan/active.yaml exists and is status: ready (use plan-discuss).
 "@
 }
 
@@ -60,12 +61,7 @@ function Invoke-Validate {
 function Invoke-Run {
     param([string[]]$Arguments)
 
-    Push-Location $IncludeDir
-    try {
-        & uv run python plan_create_cli.py @Arguments
-    } finally {
-        Pop-Location
-    }
+    & uv run --project $IncludeDir -- python (Join-Path $IncludeDir "plan_create_cli.py") @Arguments
 }
 
 if ($args.Count -eq 0) {

@@ -20,7 +20,7 @@ Ask user or infer:
 ## Step 2: Check for Suggestions
 
 ```bash
-../.shared/scripts/skill.sh suggest
+scripts/suggest.sh
 ```
 
 Use as reference, but curate.
@@ -28,17 +28,17 @@ Use as reference, but curate.
 ## Step 3: Add Entry
 
 ```bash
-../.shared/scripts/skill.sh add <category> "<entry text>"
+scripts/run.sh <category> "<entry text>"
 ```
 
 Example:
 
 ```bash
-../.shared/scripts/skill.sh add Fixed "Resolve authentication timeout issue (#123)"
+scripts/run.sh Fixed "Resolve authentication timeout issue (#123)"
 ```
 
 ## Step 4: Verify
 
 ```bash
-../.shared/scripts/skill.sh verify
+../changelog-verify/scripts/run.sh
 ```

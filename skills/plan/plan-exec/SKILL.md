@@ -2,10 +2,11 @@
 name: plan-exec
 license: MIT
 description: >
-  Execute plan tasks by performing actual work. Writes concrete Output
-  and Handoff for each task. Execution means implementation.
+  Execute tasks in the active plan under `.plan/active/`. Writes concrete Output
+  and Handoff for each task and archives the plan once terminal.
 metadata:
   author: Jordan Godau
+  version: 0.1.0
   references:
     - 00_ROUTER.md
     - 01_SUMMARY.md
@@ -17,6 +18,14 @@ metadata:
     - 07_INSTRUCTIONS.md
     - 08_PROCEDURE.md
     - 09_PROCEDURE.md
+  scripts:
+    - scripts/skill.sh
+    - scripts/skill.ps1
+  assets:
+    - assets/plan-root-schema.json
+    - assets/plan-subplan-schema.json
+    - assets/plan-task-schema.json
+    - assets/plan-archive-receipt-schema.json
   keywords:
     - plan
     - execute

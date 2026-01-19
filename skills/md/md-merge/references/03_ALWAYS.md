@@ -9,13 +9,11 @@ index:
 
 ## Merge Rules
 
-- Always run lint before merging
 - Always use manifest order if available
 - Always convert H1 back to H2
-- Always verify all chunks exist
+- Always warn if any expected chunk is missing
 
 ## Output Rules
 
 - Always preserve original content
 - Always report merge statistics
-- Always run lint on merged output
