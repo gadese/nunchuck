@@ -12,6 +12,7 @@ index:
 - Never read file contents beyond the limited search context emitted by the search tool.
 - Never hide, omit, or mutate search criteria.
 - Never introduce hidden state, indexes, caches, or implicit history.
+- Never run bootstrap scripts without explicit user permission.
 
 ## Prohibited reasoning
 

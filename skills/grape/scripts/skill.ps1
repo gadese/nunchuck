@@ -67,6 +67,8 @@ switch ($command) {
     "help" { Show-Help }
     "validate" { Invoke-Validate }
     "grep" { Invoke-Dispatch -Arguments $args }
+    "scan" { Invoke-Dispatch -Arguments $args }
+    "plan" { Invoke-Dispatch -Arguments $args }
     default {
         Write-Error "error: unknown command '$command'"
         Write-Output "run 'grape help' for usage"

@@ -1,5 +1,5 @@
 ---
-description: Schema contract for compiling `/grape <prompt>` into explicit grep args.
+description: Reasoning/compilation contracts that bridge `/grape <prompt>` intent to deterministic CLI arguments.
 index:
   - Contract
   - Determinism
@@ -7,7 +7,7 @@ index:
   - Mapping
 ---
 
-# Compiler Contract
+# Contracts
 
 ## Contract
 

@@ -56,7 +56,7 @@ case "${1:-help}" in
     validate)
         cmd_validate
         ;;
-    grep)
+    grep|scan|plan)
         cmd_dispatch "$@"
         ;;
     *)

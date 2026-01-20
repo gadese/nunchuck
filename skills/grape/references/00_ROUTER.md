@@ -38,11 +38,12 @@ Fresh invocation — read all references in order.
 **Read:**
 
 1. 01_SUMMARY.md
-2. 02_TRIGGERS.md
-3. 03_ALWAYS.md
+2. 02_CONTRACTS.md
+3. 03_TRIGGERS.md
 4. 04_NEVER.md
-5. 05_PROCEDURE.md
-6. 06_FAILURES.md
+5. 05_ALWAYS.md
+6. 06_PROCEDURE.md
+7. 07_FAILURES.md
 
 **Ignore:**
 
