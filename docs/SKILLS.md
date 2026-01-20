@@ -8,25 +8,6 @@ Complete reference of all skills available in nunchuck.
 
 Some skill directories are **containers** of multiple standalone skills (for example `skills/plan/` and `skills/prompt/`). Containers are for discovery and organization, not orchestration.
 
-### changelog
-
-**Path:** `skills/changelog/`
-
-Manages Keep a Changelog format files with deterministic operations, chrono-aware guardrails, and git integration.
-
-**Member Skills:**
-
-- `changelog-init` - Initialize a new changelog from template
-- `changelog-update` - Add entries to [Unreleased] section
-- `changelog-release` - Cut a release by versioning [Unreleased]
-- `changelog-verify` - Verify changelog format compliance
-
-**Keywords:** `changelog`, `keepachangelog`, `release`, `versioning`
-
-[Read more](../skills/changelog/README.md)
-
----
-
 ### doctor
 
 **Path:** `skills/doctor/`
