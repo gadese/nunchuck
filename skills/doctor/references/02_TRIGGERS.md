@@ -19,6 +19,16 @@ When to activate or exit the doctor skill.
 - Investigation is needed before action
 - Previous fix attempts have failed
 
+### R-P-I Integration Triggers
+
+- **During rpi-implement**: Unexpected errors occur during implementation
+- **During rpi-implement**: Tests fail for unclear reasons
+- **During rpi-implement**: Behavior doesn't match plan expectations
+- **During algo-rpi-implement**: Numerical stability issues arise
+- **During algo-rpi-implement**: Performance metrics don't meet targets
+- **During algo-rpi-implement**: Algorithm behavior is unexpected
+- **During algo-rpi-implement**: Reproducibility fails
+
 ## Do Not Invoke When
 
 - User has already identified root cause with certainty

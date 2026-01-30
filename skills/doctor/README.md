@@ -248,3 +248,53 @@ Doctor is a diagnostic skill that treats code failures like medical cases:
 * propose treatment without acting
 
 It exists to stop you and your agents from fixing the wrong thing for the wrong reason.
+
+---
+
+## Integration with R-P-I Workflows
+
+Doctor integrates with Research-Plan-Implement workflows to provide diagnostic support when implementation encounters unexpected failures.
+
+### When to Invoke Doctor During R-P-I
+
+**During rpi-implement:**
+- When implementation fails with unexpected errors
+- When tests fail for unclear reasons
+- When behavior doesn't match the plan's expectations
+- When debugging is needed before continuing
+
+**During algo-rpi-implement:**
+- When numerical stability issues occur
+- When performance metrics don't meet targets
+- When algorithm behavior is unexpected
+- When reproducibility fails
+
+**Workflow Integration Pattern:**
+```
+rpi-implement → encounters error → /doctor → diagnose → return to implement with treatment plan
+```
+
+### Example Scenario
+
+1. **Implementation Phase**: Code changes complete but tests fail
+2. **Invoke Doctor**: `/doctor` to diagnose the failure
+3. **Diagnostic Process**: Doctor investigates, forms hypotheses, diagnoses
+4. **Treatment Artifact**: Doctor produces `.doctor/treatment.md`
+5. **Return to Implementation**: Use treatment plan to fix the issue
+6. **Continue R-P-I**: Resume implementation with corrected approach
+
+### Handoff to Other Skills
+
+Doctor produces artifacts that can be handed to:
+- `rpi-plan` - If diagnosis reveals need for replanning
+- `rpi-implement` - Treatment plan guides implementation fixes
+- `code-review` - After fixes are applied
+- `memory-bank` - Document lessons learned from diagnosis
+
+### Doctor Remains Standalone
+
+While integrated with R-P-I workflows, Doctor remains a standalone skill:
+- Can be invoked independently at any time
+- Does not require R-P-I context to function
+- Produces self-contained diagnostic artifacts
+- Maintains its own session state in `.doctor/`

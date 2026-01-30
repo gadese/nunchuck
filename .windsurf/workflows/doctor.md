@@ -5,14 +5,14 @@ auto_execution_mode: 1
 
 # doctor
 
-This workflow delegates to the agent skill at `/home/jgodau/work/personal/nunchuck/skills/doctor/`.
+This workflow delegates to the agent skill at `skills/doctor/`.
 
 ## Skill Root
 
-- **Path:** `/home/jgodau/work/personal/nunchuck/skills/`
+- **Path:** `skills/`
 
 ## Skill Location
 
-- **Path:** `/home/jgodau/work/personal/nunchuck/skills/doctor/`
-- **Manifest:** `/home/jgodau/work/personal/nunchuck/skills/doctor/SKILL.md`
+- **Path:** `skills/doctor/`
+- **Manifest:** `skills/doctor/SKILL.md`
 

@@ -95,6 +95,11 @@ while IFS= read -r -d '' skill_file; do
   skill_dir="$(dirname "$skill_file")"
   name="$(basename "$skill_dir")"
 
+  # Skip coding-standards (reference-only, not invoked directly)
+  if [[ "$name" == "coding-standards" ]]; then
+    continue
+  fi
+
   rel_dir="$skill_dir"
   rel_dir="${rel_dir#"$SKILLS_ROOT"/}"
 

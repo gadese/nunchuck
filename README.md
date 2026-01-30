@@ -53,6 +53,29 @@ All skills live in the `skills/` directory. Browse them directly or use the refe
 - **[Skills Reference](./docs/SKILLS.md)** — Complete list of skillsets and member skills with descriptions and keywords
 - **[Skillsets Documentation](./docs/SKILLSETS.md)** — How orchestrator skills coordinate members, schema details, and usage patterns
 
+### Available Skillsets
+
+**Research-Plan-Implement (RPI):**
+- `/rpi` — Generic software development workflow
+- `/rpi-research` — Codebase research and documentation
+- `/rpi-plan` — Technical planning
+- `/rpi-implement` — Plan execution
+
+**Algorithm RPI:**
+- `/algo-rpi` — Algorithm development workflow
+- `/algo-rpi-research` — Algorithm problem research
+- `/algo-rpi-plan` — Algorithm planning with P0-P5 phases
+- `/algo-rpi-implement` — Algorithm implementation with metrics
+
+**Standalone Skills:**
+- `/code-review` — Code quality review (scoped to modified files)
+- `/commit-message` — Generate conventional commit messages
+- `/memory-bank` — Manage persistent workspace context
+- `/doctor` — Diagnostic protocol for complex failures
+
+**Reference-Only:**
+- `coding-standards` — Centralized code guidelines (accessed via `.shared/` in other skills)
+
 ---
 
 ## Usage
@@ -64,6 +87,23 @@ See the **[Quickstart Guide](./docs/QUICKSTART.md)** for installation, IDE integ
 ## Scripts
 
 Utility scripts provide thin integration layers without duplicating skill content. Skills remain spec-compliant so they transfer cleanly when IDEs adopt agent skills natively.
+
+### Deploy to Other Projects
+
+Copy nunchuck skills to another project and generate workflows:
+
+```bash
+# Full deployment (copy skills + generate workflows)
+bash scripts/deploy/deploy-to-project.sh /path/to/your/project
+
+# Dry run to see what would be copied
+bash scripts/deploy/deploy-to-project.sh /path/to/your/project --dry-run
+
+# Copy skills only (generate workflows later)
+bash scripts/deploy/deploy-to-project.sh /path/to/your/project --skills-only
+```
+
+This creates a `.nunchuck/` directory in your target project (gitignored) containing skills and scripts, then generates workflows that reference them.
 
 ### IDE Adapters
 
