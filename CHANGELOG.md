@@ -13,7 +13,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Centralized skill storage at `~/.nunchuck/skills/`
 - `uv` + `hatchling` build system for fast installation
 - PowerShell installer with skill copying support
-- `changelog` skillset for Keep a Changelog management
 - `docs/CLI.md` command-line documentation
 
 ### Changed

@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Nunchuck Plan Subplan Frontmatter",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "kind",
+    "plan",
+    "subplan",
+    "status",
+    "created_at",
+    "updated_at",
+    "title",
+    "tasks"
+  ],
+  "properties": {
+    "version": { "type": "string", "const": "1" },
+    "kind": { "type": "string", "const": "plan_subplan" },
+    "plan": { "type": "integer", "minimum": 1 },
+    "subplan": { "type": "string", "pattern": "^[a-z]$" },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "in_progress", "complete", "deferred", "abandoned", "blocked"]
+    },
+    "created_at": { "type": "string", "format": "date-time" },
+    "updated_at": { "type": "string", "format": "date-time" },
+    "title": { "type": "string", "minLength": 1 },
+    "tasks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["task", "title", "status"],
+        "properties": {
+          "task": { "type": "string", "pattern": "^(i|ii|iii|iv|v|vi|vii|viii|ix|x)$" },
+          "title": { "type": "string", "minLength": 1 },
+          "status": {
+            "type": "string",
+            "enum": ["pending", "in_progress", "complete", "deferred", "abandoned", "blocked"]
+          }
+        }
+      }
+    }
+  }
+}
+

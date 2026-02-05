@@ -8,7 +8,6 @@ A rigorously structured collection of agent skills designed to reduce drift, enf
 
 - **[Quickstart Guide](./docs/QUICKSTART.md)** — Getting started
 - **[Skills Reference](./docs/SKILLS.md)** — Browse all available skills
-- **[Skillsets](./docs/SKILLSETS.md)** — Orchestrator skills that coordinate member skills
 - **[Contributing](./CONTRIBUTING.md)** — Add your own skills
 
 ---
@@ -40,7 +39,6 @@ Beyond the open spec, this repository enforces internal specifications that defi
 - **[SKILL.md Structure](./docs/design/specs/skillmd/.INDEX.md)** — Frontmatter schema, body constraints, validation rules
 - **[References Structure](./docs/design/specs/references/.INDEX.md)** — Canonical 7-file reference set (`00_ROUTER` through `06_FAILURES`)
 - **[Scripts Structure](./docs/design/specs/scripts/.INDEX.md)** — Cross-platform script requirements and naming
-- **[Skillset Structure](./docs/design/specs/skillset/.INDEX.md)** — Orchestrator schema, pipelines, shared resources
 
 These specifications ensure consistency across all skills and enable tooling to validate compliance.
 
@@ -50,8 +48,7 @@ These specifications ensure consistency across all skills and enable tooling to 
 
 All skills live in the `skills/` directory. Browse them directly or use the reference documentation:
 
-- **[Skills Reference](./docs/SKILLS.md)** — Complete list of skillsets and member skills with descriptions and keywords
-- **[Skillsets Documentation](./docs/SKILLSETS.md)** — How orchestrator skills coordinate members, schema details, and usage patterns
+- **[Skills Reference](./docs/SKILLS.md)** — Complete list of skills with descriptions and keywords
 
 ### Available Skillsets
 
@@ -132,12 +129,6 @@ Windows (PowerShell):
 ```
 
 ### Index Generator
-
-Generate `.SKILLS.md` for agent discovery:
-
-```bash
-bash scripts/index/run.sh --skills-root skills
-```
 
 ---
 

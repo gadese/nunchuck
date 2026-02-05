@@ -6,7 +6,7 @@ param(
 function Get-Usage {
 @"
 Usage:
-  scripts/adapters/windows/windsurf.ps1 [-SkillsRoot <dir>] [-OutputRoot <dir>]
+  scripts/adapters/windsurf/run.ps1 [-SkillsRoot <dir>] [-OutputRoot <dir>]
 
 Generates Windsurf workflows into:
   <OutputRoot>/.windsurf/workflows/
@@ -30,6 +30,23 @@ if (!(Test-Path -LiteralPath $SkillsRoot -PathType Container)) {
 $skillsRootAbs = (Resolve-Path -LiteralPath $SkillsRoot).Path
 $outDir = Join-Path $OutputRoot ".windsurf/workflows"
 New-Item -ItemType Directory -Force -Path $outDir | Out-Null
+
+# Ensure output reflects the current skill set (remove stale generated workflows).
+$expected = @{}
+Get-ChildItem -LiteralPath $SkillsRoot -Recurse -Filter "SKILL.md" -File | ForEach-Object {
+  $skillDir = $_.Directory.FullName
+  $name = Split-Path $skillDir -Leaf
+  $expected[$name] = $true
+}
+
+Get-ChildItem -LiteralPath $outDir -File -Filter "*.md" -ErrorAction SilentlyContinue | ForEach-Object {
+  $base = [System.IO.Path]::GetFileNameWithoutExtension($_.Name)
+  if ($expected.ContainsKey($base)) { return }
+  $content = Get-Content -LiteralPath $_.FullName -Raw -ErrorAction SilentlyContinue
+  if ($content -and $content.Contains("This workflow delegates to the agent skill at")) {
+    Remove-Item -LiteralPath $_.FullName -Force -ErrorAction SilentlyContinue
+  }
+}
 
 function Get-FrontmatterDescription([string]$path) {
   $lines = Get-Content -LiteralPath $path
@@ -75,7 +92,7 @@ Get-ChildItem -LiteralPath $SkillsRoot -Recurse -Filter "SKILL.md" -File | ForEa
   $skillDir = $_.Directory.FullName
   $name = Split-Path $skillDir -Leaf
 
-  $relDir = $skillDir.Substring($skillsRootAbs.Length).TrimStart('\','/')
+  $relDir = $skillDir.Substring($skillsRootAbs.Length).TrimStart('\\','/')
 
   $desc = (Get-FrontmatterDescription $_.FullName) -replace '\s+', ' '
   $workflowFile = Join-Path $outDir ("$name.md")
@@ -90,7 +107,7 @@ Get-ChildItem -LiteralPath $SkillsRoot -Recurse -Filter "SKILL.md" -File | ForEa
     "",
     "# $name",
     "",
-    "This workflow delegates to the agent skill at `$SkillsRoot/$relDir/`." ,
+    "This workflow delegates to the agent skill at `$skillsRootAbs/$relDir/`." ,
     "",
     "## Skill Root",
     "",

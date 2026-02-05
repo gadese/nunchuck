@@ -60,4 +60,11 @@ pyproject.toml
 SPEC.md
 tasks/
 
+<<<<<<< HEAD
 llm_docs/
+=======
+### Benchmarks
+# Benchmark outputs can include very large logs and copied workdirs; keep them out of
+# git status and repository snapshots.
+benchmark/grape/runs/
+>>>>>>> master

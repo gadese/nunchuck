@@ -45,5 +45,4 @@ After generating commands, they appear in `.cursor/commands/`. Access via the co
 ## 5. Next Steps
 
 - **[Skills Reference](./SKILLS.md)** - Browse all available skills
-- **[Skillsets Documentation](./SKILLSETS.md)** - Orchestrator skills and schema
 - **[Contributing Guidelines](../CONTRIBUTING.md)** - Add your own skills

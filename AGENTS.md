@@ -16,4 +16,4 @@ Use the index files to navigate documentation:
 ## Rules
 
 - Do not modify this file unless explicitly asked.
-- Skills creation must strictly follow all specifications within `docs/design/specs`
+- When creating or modifying skills, treat `https://github.com/JordanGunn/asi` as the authoritative governance and skill design documentation source; follow its `llms.txt` entry points (progressive disclosure).

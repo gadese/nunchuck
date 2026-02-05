@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Nunchuck Plan Root Frontmatter",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "kind",
+    "plan",
+    "status",
+    "created_at",
+    "updated_at",
+    "title",
+    "objective",
+    "success_criteria",
+    "subplans"
+  ],
+  "properties": {
+    "version": { "type": "string", "const": "1" },
+    "kind": { "type": "string", "const": "plan_root" },
+    "plan": { "type": "integer", "minimum": 1 },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "in_progress", "complete", "deferred", "abandoned", "blocked"]
+    },
+    "created_at": { "type": "string", "format": "date-time" },
+    "updated_at": { "type": "string", "format": "date-time" },
+    "title": { "type": "string", "minLength": 1 },
+    "objective": { "type": "string" },
+    "success_criteria": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "subplans": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["letter", "title"],
+        "properties": {
+          "letter": { "type": "string", "pattern": "^[a-z]$" },
+          "title": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "surface_scan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["root", "globs", "excludes", "max_files", "files"],
+      "properties": {
+        "root": { "type": "string", "minLength": 1 },
+        "globs": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+        "excludes": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+        "max_files": { "type": "integer", "minimum": 1, "maximum": 2000 },
+        "files": { "type": "array", "items": { "type": "string", "minLength": 1 } }
+      }
+    }
+  }
+}
+
