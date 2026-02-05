@@ -112,7 +112,6 @@ while IFS= read -r -d '' skill_file; do
   skill_dir="$(dirname "$skill_file")"
   name="$(basename "$skill_dir")"
 
-<<<<<<< HEAD
   # Skip coding-standards (reference-only, not invoked directly)
   if [[ "$name" == "coding-standards" ]]; then
     continue
@@ -120,12 +119,6 @@ while IFS= read -r -d '' skill_file; do
 
   rel_dir="$skill_dir"
   rel_dir="${rel_dir#"$SKILLS_ROOT"/}"
-=======
-  skill_dir_abs="$(python3 -c 'import os,sys; print(os.path.realpath(sys.argv[1]))' "$skill_dir")"
-
-  rel_dir="$skill_dir_abs"
-  rel_dir="${rel_dir#"$SKILLS_ROOT_ABS"/}"
->>>>>>> master
 
   desc_raw="$(extract_description "$skill_file" | tr '\n' ' ' | sed -e 's/[[:space:]]\+/ /g' -e 's/^ //g' -e 's/ $//g')"
   desc_yaml="$(printf '%s' "$desc_raw" | sanitize_yaml_string)"
