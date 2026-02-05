@@ -1,0 +1,88 @@
+============================================================
+KNOWLEDGE GRAPH ANALYSIS REPORT
+============================================================
+
+Nodes: 22
+Edges: 23
+Communities: 4
+Modularity: 0.5831
+
+------------------------------------------------------------
+COMMUNITIES
+------------------------------------------------------------
+
+  Community 0 (6 nodes)
+  Top nodes (by centrality):
+    - reinforcement learning (0.4238)
+    - multi-agent systems (0.0952)
+    - Q-learning (0.0000)
+    - game theory (0.0000)
+    - policy gradient (0.0000)
+  All nodes: Q-learning, game theory, multi-agent systems, policy gradient, reinforcement learning, reward shaping
+
+  Community 1 (6 nodes)
+  Top nodes (by centrality):
+    - natural language processing (0.4405)
+    - transformers (0.1857)
+    - attention mechanism (0.0000)
+    - sentiment analysis (0.0000)
+    - text generation (0.0000)
+  All nodes: attention mechanism, natural language processing, sentiment analysis, text generation, transformers, word embeddings
+
+  Community 2 (5 nodes)
+  Top nodes (by centrality):
+    - deep learning (0.6000)
+    - neural networks (0.4952)
+    - machine learning (0.4286)
+    - gradient descent (0.0286)
+    - backpropagation (0.0190)
+  All nodes: backpropagation, deep learning, gradient descent, machine learning, neural networks
+
+  Community 3 (5 nodes)
+  Top nodes (by centrality):
+    - convolutional networks (0.2833)
+    - image recognition (0.1810)
+    - computer vision (0.0952)
+    - transfer learning (0.0571)
+    - object detection (0.0000)
+  All nodes: computer vision, convolutional networks, image recognition, object detection, transfer learning
+
+------------------------------------------------------------
+GAPS (low inter-community connectivity)
+------------------------------------------------------------
+
+  Community 0 <-> Community 1  (density: 0.0000)
+    Community 0 concepts: reinforcement learning, multi-agent systems, Q-learning
+    Community 1 concepts: natural language processing, transformers, attention mechanism
+
+  Community 0 <-> Community 3  (density: 0.0000)
+    Community 0 concepts: reinforcement learning, multi-agent systems, Q-learning
+    Community 3 concepts: convolutional networks, image recognition, computer vision
+
+  Community 0 <-> Community 2  (density: 0.0333)
+    Community 0 concepts: reinforcement learning, multi-agent systems, Q-learning
+    Community 2 concepts: deep learning, neural networks, machine learning
+
+  Community 1 <-> Community 2  (density: 0.0333)
+    Community 1 concepts: natural language processing, transformers, attention mechanism
+    Community 2 concepts: deep learning, neural networks, machine learning
+
+  Community 1 <-> Community 3  (density: 0.0333)
+    Community 1 concepts: natural language processing, transformers, attention mechanism
+    Community 3 concepts: convolutional networks, image recognition, computer vision
+
+  Community 2 <-> Community 3  (density: 0.0400)
+    Community 2 concepts: deep learning, neural networks, machine learning
+    Community 3 concepts: convolutional networks, image recognition, computer vision
+
+------------------------------------------------------------
+BRIDGE CONCEPTS (span multiple communities)
+------------------------------------------------------------
+  - deep learning (centrality: 0.6000)
+  - natural language processing (centrality: 0.4405)
+  - machine learning (centrality: 0.4286)
+  - reinforcement learning (centrality: 0.4238)
+  - convolutional networks (centrality: 0.2833)
+  - transfer learning (centrality: 0.0571)
+
+============================================================
