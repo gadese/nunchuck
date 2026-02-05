@@ -4,11 +4,19 @@ Research-Plan-Implement workflow for general software development tasks.
 
 ## Overview
 
-The `rpi` skillset provides a structured, three-phase approach to software development:
+The `rpi` skillset provides a structured approach to software development:
 
+**Standard Workflow (3 phases):**
 1. **Research** — Document current codebase state
 2. **Plan** — Create detailed implementation plan
 3. **Implement** — Execute plan with verification
+
+**Full Workflow with Expert Review (5 phases):**
+1. **Research** — Document current codebase state
+2. **Plan** — Create detailed implementation plan
+3. **Plan Review** — Expert review for design quality, best practices, and alternatives
+4. **Plan Reimagine** — Reimagine plan from scratch for optimal design
+5. **Implement** — Execute approved plan with verification
 
 Each phase includes mandatory pause points for user approval, ensuring alignment and preventing wasted effort.
 
@@ -36,16 +44,25 @@ rpi/
 ├── README.md                   # This file
 ├── .pipelines/                 # Workflow definitions
 │   ├── .INDEX.md              # Pipeline index
-│   ├── 00_DEFAULT.md          # Full R-P-I workflow
+│   ├── 00_DEFAULT.md          # Standard R-P-I workflow
 │   ├── 01_RESEARCH_ONLY.md    # Research phase only
 │   ├── 02_PLAN_ONLY.md        # Plan phase only
-│   └── 03_IMPLEMENT_ONLY.md   # Implement phase only
+│   ├── 03_IMPLEMENT_ONLY.md   # Implement phase only
+│   └── 04_FULL_WORKFLOW.md    # Full workflow with expert review
 ├── .shared/                    # Symlink to coding-standards/references/
 ├── rpi-research/              # Research member skill
 │   ├── SKILL.md
 │   ├── README.md
 │   └── references/            # 7 reference files (00-06)
 ├── rpi-plan/                  # Plan member skill
+│   ├── SKILL.md
+│   ├── README.md
+│   └── references/            # 7 reference files (00-06)
+├── rpi-plan-review/           # Expert plan review member skill
+│   ├── SKILL.md
+│   ├── README.md
+│   └── references/            # 7 reference files (00-06)
+├── rpi-plan-reimagine/        # Expert plan reimagine member skill
 │   ├── SKILL.md
 │   ├── README.md
 │   └── references/            # 7 reference files (00-06)
@@ -57,9 +74,18 @@ rpi/
 
 ## Quick Start
 
-### Full Workflow
+### Standard Workflow
 ```
 /rpi
+
+Task: Add user authentication to the API
+Files: src/api/auth.py, src/models/user.py
+Constraints: Must use JWT tokens, maintain backward compatibility
+```
+
+### Full Workflow with Expert Review
+```
+/rpi-full
 
 Task: Add user authentication to the API
 Files: src/api/auth.py, src/models/user.py
@@ -75,8 +101,17 @@ Research question: How does the current authentication system work?
 Research document: llm_docs/research/2026-01-15-1420-research-auth.md
 Task: Add JWT authentication
 
+/rpi-plan-review
+Plan document: llm_docs/plans/2026-01-15-1430-plan-auth.md
+
+/rpi-plan-reimagine
+Plan document: llm_docs/plans/2026-01-15-1430-plan-auth.md
+Research document: llm_docs/research/2026-01-15-1420-research-auth.md
+
 /rpi-implement
 Plan document: llm_docs/plans/2026-01-15-1430-plan-auth.md
+# Or use v2 plan if reimagined:
+Plan document: llm_docs/plans/2026-01-15-1430-plan-auth-v2.md
 ```
 
 ## Workflow Phases
@@ -113,7 +148,48 @@ Plan document: llm_docs/plans/2026-01-15-1430-plan-auth.md
 
 **Pause Point:** Present plan structure and design decisions, wait for approval
 
-### Phase 3: Implement
+### Phase 3: Plan Review (Optional)
+**Skill:** `rpi-plan-review`
+
+**Purpose:** Review implementation plan for design quality, best practices, and alternatives
+
+**Key Features:**
+- **Multi-dimension expert review:**
+  - Design quality (architecture, patterns, modularity)
+  - Best practices (SOLID, DRY, coding standards)
+  - Implementation approach (is there a better way?)
+  - Risk assessment (edge cases, failure modes)
+  - Integration concerns (backward compatibility, dependencies)
+  - Testing strategy (coverage, test types)
+- **In-place plan annotation** with severity levels (CRITICAL, IMPORTANT, SUGGESTION)
+- **Design alternatives** suggested when genuinely beneficial
+- **Quantified concerns** with specific analysis
+
+**Output:** Modified plan with expert review annotations and recommendations
+
+**Pause Point:** Present review summary, offer to proceed to reimagine or skip to implement
+
+### Phase 4: Plan Reimagine (Optional)
+**Skill:** `rpi-plan-reimagine`
+
+**Purpose:** Reimagine the implementation plan from scratch for optimal design
+
+**Key Features:**
+- **Systematic design space exploration** (different patterns, architectures, approaches)
+- **Multi-dimension optimization:**
+  - Code quality (maintainability, readability, testability)
+  - Architecture (modularity, separation of concerns, scalability)
+  - Best practices (industry standards, proven patterns)
+  - Simplicity (prefer simpler solutions when possible)
+  - Future-proofing (extensibility, adaptability)
+- **Comprehensive comparison** explaining v2 improvements over original
+- **Creates new v2 plan** (preserves original)
+
+**Output:** `llm_docs/plans/YYYY-MM-DD-HHMM-plan-<topic>-v2.md`
+
+**Pause Point:** Present v2 plan with comparison, get user confirmation on which plan to implement
+
+### Phase 5: Implement
 **Skill:** `rpi-implement`
 
 **Purpose:** Execute approved plan with verification
@@ -128,6 +204,23 @@ Plan document: llm_docs/plans/2026-01-15-1430-plan-auth.md
 **Output:** Code changes, updated plan with checkmarks
 
 **Pause Point:** Present implementation summary, wait for approval
+
+## When to Use Full Workflow vs Standard Workflow
+
+### Use `/rpi-full` (with expert review) when:
+- Design decisions are complex or have long-term implications
+- You want validation of your approach before implementation
+- The task involves critical components or high-risk changes
+- You want to explore alternative designs
+- Code quality and maintainability are paramount
+- You're willing to invest time in thorough review and optimization
+
+### Use `/rpi` (standard workflow) when:
+- The task is straightforward with clear implementation path
+- Time constraints don't allow for extensive review
+- The changes are low-risk or isolated
+- You're confident in the initial plan
+- You need to iterate quickly
 
 ## Integration with Other Skills
 

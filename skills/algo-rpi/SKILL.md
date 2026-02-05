@@ -12,6 +12,8 @@ metadata:
     skills:
       - algo-rpi-research
       - algo-rpi-plan
+      - algo-rpi-plan-review
+      - algo-rpi-plan-reimagine
       - algo-rpi-implement
     shared:
       root: .shared

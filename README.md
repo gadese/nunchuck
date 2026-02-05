@@ -59,15 +59,22 @@ All skills live in the `skills/` directory. Browse them directly or use the refe
 - `/rpi` — Generic software development workflow
 - `/rpi-research` — Codebase research and documentation
 - `/rpi-plan` — Technical planning
+- `/rpi-plan-review` — Expert review of implementation plans
+- `/rpi-plan-reimagine` — Reimagine plans from scratch for optimization
 - `/rpi-implement` — Plan execution
+- `/rpi-full` — Full workflow with expert review and reimagine phases
 
 **Algorithm RPI:**
 - `/algo-rpi` — Algorithm development workflow
 - `/algo-rpi-research` — Algorithm problem research
 - `/algo-rpi-plan` — Algorithm planning with P0-P5 phases
+- `/algo-rpi-plan-review` — AI/ML expert review of algorithm plans
+- `/algo-rpi-plan-reimagine` — AI/ML expert reimagination for optimal design
 - `/algo-rpi-implement` — Algorithm implementation with metrics
+- `/algo-rpi-full` — Full workflow with AI expert review and optimization
 
 **Standalone Skills:**
+- `/brainstorm` — Interactive algorithm/AI solution brainstorming
 - `/code-review` — Code quality review (scoped to modified files)
 - `/commit-message` — Generate conventional commit messages
 - `/memory-bank` — Manage persistent workspace context

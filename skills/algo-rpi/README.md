@@ -4,11 +4,19 @@ Algorithm Research-Plan-Implement workflow for algorithm development and optimiz
 
 ## Overview
 
-The `algo-rpi` skillset provides a structured, three-phase approach to algorithm development with quantitative verification and reproducibility:
+The `algo-rpi` skillset provides a structured approach to algorithm development with quantitative verification and reproducibility:
 
+**Standard Workflow (3 phases):**
 1. **Algorithm Research** — Formalize problem, explore solution space
 2. **Algorithm Plan** — Create detailed plan with P0-P5 phases and quantitative targets
 3. **Algorithm Implement** — Execute plan with performance gates and reproducibility enforcement
+
+**Full Workflow with AI Expert Review (5 phases):**
+1. **Algorithm Research** — Formalize problem, explore solution space
+2. **Algorithm Plan** — Create detailed plan with P0-P5 phases and quantitative targets
+3. **AI Expert Plan Review** — Review for theoretical soundness, numerical stability, production-readiness
+4. **AI Expert Plan Reimagine** — Reimagine plan from scratch for optimal algorithm design
+5. **Algorithm Implement** — Execute approved plan with performance gates and reproducibility enforcement
 
 Each phase includes mandatory pause points for user approval, ensuring alignment and preventing wasted effort.
 
@@ -40,16 +48,25 @@ algo-rpi/
 ├── README.md                        # This file
 ├── .pipelines/                      # Workflow definitions
 │   ├── .INDEX.md                   # Pipeline index
-│   ├── 00_DEFAULT.md               # Full Algo-RPI workflow
+│   ├── 00_DEFAULT.md               # Standard Algo-RPI workflow
 │   ├── 01_RESEARCH_ONLY.md         # Research phase only
 │   ├── 02_PLAN_ONLY.md             # Plan phase only
-│   └── 03_IMPLEMENT_ONLY.md        # Implement phase only
+│   ├── 03_IMPLEMENT_ONLY.md        # Implement phase only
+│   └── 04_FULL_WORKFLOW.md         # Full workflow with AI expert review
 ├── .shared/                         # Symlink to coding-standards/references/
 ├── algo-rpi-research/              # Algorithm research member skill
 │   ├── SKILL.md
 │   ├── README.md
 │   └── references/                 # 7 reference files (00-06)
 ├── algo-rpi-plan/                  # Algorithm plan member skill
+│   ├── SKILL.md
+│   ├── README.md
+│   └── references/                 # 7 reference files (00-06)
+├── algo-rpi-plan-review/           # AI expert plan review member skill
+│   ├── SKILL.md
+│   ├── README.md
+│   └── references/                 # 7 reference files (00-06)
+├── algo-rpi-plan-reimagine/        # AI expert plan reimagine member skill
 │   ├── SKILL.md
 │   ├── README.md
 │   └── references/                 # 7 reference files (00-06)
@@ -61,9 +78,20 @@ algo-rpi/
 
 ## Quick Start
 
-### Full Workflow
+### Standard Workflow
 ```
 /algo-rpi
+
+Problem: Implement real-time object detection for video stream
+Constraints: <30ms latency per frame, <2GB memory, 95%+ mAP
+Data: 1080p video at 30fps, 20 object classes
+Hardware: NVIDIA RTX 3080 GPU
+Metrics: mAP@0.5, latency, memory usage
+```
+
+### Full Workflow with AI Expert Review
+```
+/algo-rpi-full
 
 Problem: Implement real-time object detection for video stream
 Constraints: <30ms latency per frame, <2GB memory, 95%+ mAP
@@ -84,8 +112,17 @@ Hardware: [CPU/GPU, memory limits]
 Research document: llm_docs/research/2026-01-15-1400-research-algo-detection.md
 Targets: mAP@0.5=0.95, latency=30ms, memory=2GB
 
+/algo-rpi-plan-review
+Plan document: llm_docs/plans/2026-01-15-1415-plan-algo-detection.md
+
+/algo-rpi-plan-reimagine
+Plan document: llm_docs/plans/2026-01-15-1415-plan-algo-detection.md
+Research document: llm_docs/research/2026-01-15-1400-research-algo-detection.md
+
 /algo-rpi-implement
 Plan document: llm_docs/plans/2026-01-15-1415-plan-algo-detection.md
+# Or use v2 plan if reimagined:
+Plan document: llm_docs/plans/2026-01-15-1415-plan-algo-detection-v2.md
 ```
 
 ## Workflow Phases
@@ -128,7 +165,48 @@ Plan document: llm_docs/plans/2026-01-15-1415-plan-algo-detection.md
 
 **Pause Point:** Present plan with quantitative targets, wait for approval
 
-### Phase 3: Algorithm Implement
+### Phase 3: AI Expert Plan Review (Optional)
+**Skill:** `algo-rpi-plan-review`
+
+**Purpose:** Review implementation plan as an AI/ML expert for theoretical soundness and practical implications
+
+**Key Features:**
+- **6-dimension expert review:**
+  - Algorithm selection (is this the right algorithm?)
+  - Theoretical soundness (convergence, complexity, statistical validity)
+  - Numerical stability (precision, overflow, gradient issues)
+  - Practical deployment (latency, memory, monitoring, maintenance)
+  - Evaluation rigor (baselines, metrics, statistical testing)
+  - Reproducibility (seeds, versions, determinism)
+- **In-place plan annotation** with severity levels (CRITICAL, IMPORTANT, SUGGESTION)
+- **Algorithm alternatives** suggested when genuinely beneficial
+- **Quantified concerns** with specific analysis
+
+**Output:** Modified plan with expert review annotations and recommendations
+
+**Pause Point:** Present review summary, offer to proceed to reimagine or skip to implement
+
+### Phase 4: AI Expert Plan Reimagine (Optional)
+**Skill:** `algo-rpi-plan-reimagine`
+
+**Purpose:** Reimagine the implementation plan from scratch for optimal algorithm design
+
+**Key Features:**
+- **Systematic algorithm space exploration** (different families, complexities, trade-offs)
+- **5-dimension optimization:**
+  - Algorithm efficiency (time/space complexity, vectorization, parallelization)
+  - ML best practices (proper evaluation, avoiding leakage, statistical rigor)
+  - Production-readiness (latency, memory, monitoring, graceful degradation)
+  - Theoretical elegance (simpler solutions, principled approaches)
+  - Industry standards (what would a senior ML engineer do?)
+- **Comprehensive comparison** explaining v2 improvements over original
+- **Creates new v2 plan** (preserves original)
+
+**Output:** `llm_docs/plans/YYYY-MM-DD-HHMM-plan-algo-<topic>-v2.md`
+
+**Pause Point:** Present v2 plan with comparison, get user confirmation on which plan to implement
+
+### Phase 5: Algorithm Implement
 **Skill:** `algo-rpi-implement`
 
 **Purpose:** Execute plan with quantitative verification and reproducibility
@@ -144,6 +222,23 @@ Plan document: llm_docs/plans/2026-01-15-1415-plan-algo-detection.md
 **Output:** Code changes, benchmark results, updated plan, reproducibility artifacts
 
 **Pause Point:** Present implementation summary with final metrics table
+
+## When to Use Full Workflow vs Standard Workflow
+
+### Use `/algo-rpi-full` (with AI expert review) when:
+- Algorithm choice is critical and needs expert validation
+- Performance targets are aggressive and need optimization
+- Production deployment requires high confidence in design
+- You want a second opinion on the algorithm approach
+- You're willing to invest time in thorough review and optimization
+- Numerical stability or theoretical soundness is critical
+
+### Use `/algo-rpi` (standard workflow) when:
+- Algorithm choice is straightforward
+- Time constraints don't allow for extensive review
+- The problem is well-understood and low-risk
+- You're confident in the initial plan
+- You need to iterate quickly
 
 ## Integration with Other Skills
 

@@ -60,3 +60,4 @@ pyproject.toml
 SPEC.md
 tasks/
 
+llm_docs/
