@@ -52,18 +52,7 @@ Apply the expert review checklist from `03_ALWAYS.md` across all six dimensions:
 - Ignoring well-established algorithms in favor of novel approaches
 - Mismatched complexity assumptions (e.g., assuming sparse when data is dense)
 
-**Example annotation:**
-```markdown
----
-**EXPERT REVIEW:** Algorithm Selection
-
-**Rationale:** The plan proposes a brute-force O(n²) nearest neighbor search, but with n=10,000 points and a 50ms latency target, this will take ~500ms on typical hardware (assuming 0.005ms per distance computation).
-
-**Recommendation:** Use a k-d tree or ball tree for O(log n) query time. Scikit-learn's `NearestNeighbors` with `algorithm='kd_tree'` would reduce latency to ~5ms for this workload.
-
-**Severity:** CRITICAL
----
-```
+**Example fix:** If the plan proposes brute-force O(n²) nearest neighbor search but the latency target is 50ms with n=10,000 points (~500ms expected), rewrite the algorithm selection section to use a k-d tree or ball tree for O(log n) query time instead.
 
 #### 2. Theoretical Soundness Review
 
@@ -85,10 +74,7 @@ Apply the expert review checklist from `03_ALWAYS.md` across all six dimensions:
 - Incorrect complexity analysis (missing hidden constants, wrong recurrence)
 - Unrealistic data assumptions (e.g., assuming uniform distribution for real-world data)
 
-**Example annotation:**
-```markdown
-**[EXPERT: The plan assumes gradient descent will converge, but the loss function is non-convex. Add note about potential local minima and recommend multiple random initializations in P1.]**
-```
+**Example fix:** If the plan assumes gradient descent will converge on a non-convex loss function, rewrite the relevant P1 section to include multiple random initializations and document the non-convexity risk in the approach rationale.
 
 #### 3. Numerical Stability Review
 
@@ -112,18 +98,7 @@ Apply the expert review checklist from `03_ALWAYS.md` across all six dimensions:
 - Inverting nearly singular matrices
 - Summing many small numbers without Kahan summation
 
-**Example annotation:**
-```markdown
----
-**EXPERT REVIEW:** Numerical Stability Risk
-
-**Rationale:** The softmax computation in P1 uses raw exp(logits), which will overflow for logits > 88. With logits potentially in range [-100, 100], this will cause NaN outputs.
-
-**Recommendation:** Use log-sum-exp trick: softmax(x) = exp(x - max(x)) / sum(exp(x - max(x))). Add this to P1 implementation notes.
-
-**Severity:** IMPORTANT
----
-```
+**Example fix:** If the plan describes a softmax computation using raw exp(logits), rewrite the P1 implementation notes to specify the log-sum-exp trick: `softmax(x) = exp(x - max(x)) / sum(exp(x - max(x)))` to prevent overflow for logits > 88.
 
 #### 4. Practical Deployment Review
 
@@ -147,10 +122,7 @@ Apply the expert review checklist from `03_ALWAYS.md` across all six dimensions:
 - Complex dependency chains that are hard to maintain
 - No graceful degradation for edge cases
 
-**Example annotation:**
-```markdown
-**[EXPERT: The 10ms latency target doesn't account for model loading time (~200ms) or input preprocessing (~30ms). Either adjust target to 250ms total or add model caching to P3 optimization phase.]**
-```
+**Example fix:** If the plan has a 10ms latency target that doesn't account for model loading (~200ms) or preprocessing (~30ms), either update the target to 250ms total or add model caching to the P3 optimization phase directly in the plan.
 
 #### 5. Evaluation Rigor Review
 
@@ -174,18 +146,7 @@ Apply the expert review checklist from `03_ALWAYS.md` across all six dimensions:
 - Missing ablations (can't attribute performance to specific components)
 - Test set contamination (data leakage from train/val)
 
-**Example annotation:**
-```markdown
----
-**EXPERT REVIEW:** Evaluation Baseline Insufficient
-
-**Rationale:** The plan compares only to a random baseline. For image classification, this is too weak—random guessing achieves 10% on 10-class problem, but a simple linear model would achieve ~60%.
-
-**Recommendation:** Add a logistic regression baseline in P0 to establish a stronger reference point. This will better demonstrate the value of the proposed deep learning approach.
-
-**Severity:** IMPORTANT
----
-```
+**Example fix:** If the plan only compares to a random baseline for image classification, add a logistic regression baseline to the P0 phase directly in the plan to establish a stronger reference point.
 
 #### 6. Reproducibility Review
 
@@ -209,27 +170,22 @@ Apply the expert review checklist from `03_ALWAYS.md` across all six dimensions:
 - Incomplete artifacts (missing config files or data versions)
 - No hardware documentation (results vary across GPUs)
 
-**Example annotation:**
-```markdown
-**[EXPERT: The reproducibility checklist is missing data augmentation seed. Add: "Data augmentation seed: 789" to ensure identical augmented samples across runs.]**
-```
+**Example fix:** If the reproducibility checklist is missing a data augmentation seed, add it directly to the checklist in the plan (e.g., "Data augmentation seed: 789").
 
-### Phase 3: Annotation and Modification
+### Phase 3: Direct Modification
 
-1. **Prepare Annotations**
-   - For each issue identified, prepare a clear annotation
-   - Use the format from `03_ALWAYS.md` (severity, rationale, recommendation)
-   - Prioritize issues: CRITICAL > IMPORTANT > SUGGESTION
+1. **Prioritize Issues**
+   - Rank identified issues: CRITICAL > IMPORTANT > SUGGESTION
+   - Focus on issues that would affect implementation correctness or feasibility
 
-2. **Modify the Plan In-Place**
-   - Read the current plan document
-   - Apply annotations and corrections
-   - For critical issues, rewrite affected sections
-   - For minor issues, use inline annotations
+2. **Rewrite Affected Sections**
+   - For each issue, directly rewrite the relevant plan section to fix it
+   - Do NOT leave review comments, annotations, or markers — no one will read them
+   - The plan should read as a clean, improved document after your edits
    - Preserve the overall structure (P0-P5 phases)
 
 3. **Verify Modifications**
-   - Ensure all changes have clear rationale
+   - Ensure the plan reads coherently after all changes
    - Check that quantitative targets are still present and realistic
    - Verify that the plan remains actionable for implementation
    - Confirm no sections were deleted without replacement
@@ -266,7 +222,7 @@ Apply the expert review checklist from `03_ALWAYS.md` across all six dimensions:
 
 2. **Update the Plan Document**
    - Write the modified plan back to the original file path
-   - Ensure all annotations are clearly marked
+   - Ensure the plan reads as a clean, improved document (no leftover review markers)
    - Preserve formatting and structure
 
 3. **Recommend Next Steps**
@@ -331,33 +287,23 @@ Apply the expert review checklist from `03_ALWAYS.md` across all six dimensions:
 1. **Check algorithm selection:** Bubble sort is O(n²), but for n=10,000 and 50ms target, this is ~500ms
 2. **Consider alternatives:** Quicksort O(n log n) or built-in sort would be ~5ms
 3. **Assess severity:** CRITICAL (10x over latency target)
-4. **Prepare annotation:**
+4. **Rewrite the section directly:**
 
 ```markdown
----
-**EXPERT REVIEW:** Algorithm Selection
-
-**Rationale:** Bubble sort O(n²) will take ~500ms for n=10,000 elements, exceeding the 50ms latency target by 10x. While simple, it's fundamentally unsuitable for this scale.
-
-**Recommendation:** Use Python's built-in `sorted()` (Timsort, O(n log n)) or `numpy.sort()` for numerical data. Both will achieve ~5ms latency for n=10,000.
-
-**Severity:** CRITICAL
----
-
-## 3. Selected Approach (REVISED)
+## 3. Selected Approach
 - **Algorithm:** Timsort (Python built-in `sorted()`)
 - **Complexity:** O(n log n) time, O(n) space
 - **Rationale:** Achieves 50ms latency target while remaining simple (built-in function). Adaptive algorithm performs well on partially sorted data.
 ```
 
-### Output Summary
+### Output Summary (presented in chat, NOT written into the plan)
 ```markdown
 ## Expert Review Summary
 
 **Overall Assessment:** APPROVED WITH CHANGES
 
-**Critical Issues:** 1
-- Algorithm complexity mismatch: Bubble sort O(n²) replaced with Timsort O(n log n) to meet latency target
+**Critical Issues Fixed:** 1
+- Replaced bubble sort O(n²) with Timsort O(n log n) to meet latency target
 
-**Recommendation:** Proceed to implementation with revised algorithm choice.
+**Recommendation:** Proceed to implementation with revised plan.
 ```

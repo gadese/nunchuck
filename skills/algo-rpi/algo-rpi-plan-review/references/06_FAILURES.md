@@ -121,18 +121,7 @@
 3. Provide realistic alternative targets with justification
 4. Recommend revising requirements with stakeholders
 
-**Example:**
-```markdown
----
-**EXPERT REVIEW:** Unrealistic Latency Target
-
-**Rationale:** The plan targets 1ms latency for processing 1M data points. Even reading the data from memory takes ~3ms (assuming 3GB/s bandwidth). No algorithm can achieve this target.
-
-**Recommendation:** Revise latency target to 50ms (achievable with optimized O(n) algorithm) or reduce data size to 10K points (achievable in 1ms).
-
-**Severity:** CRITICAL
----
-```
+**Example:** If the plan targets 1ms latency for processing 1M data points (even reading data from memory takes ~3ms), directly rewrite the target to 50ms (achievable with optimized O(n) algorithm) or note in your summary that this requires a user decision between adjusting the target or reducing data size.
 
 **Prevention:**
 - Sanity-check targets against fundamental limits (I/O bandwidth, memory access time)
@@ -154,18 +143,7 @@
 3. Provide specific fix (e.g., log-sum-exp trick, Kahan summation)
 4. Add verification to appropriate phase (usually P4 robustness)
 
-**Example:**
-```markdown
----
-**EXPERT REVIEW:** Numerical Stability Risk
-
-**Rationale:** Computing standard deviation as sqrt(E[X²] - E[X]²) will lose precision when variance is small relative to mean. For X ~ N(1000, 1), this formula gives incorrect results due to catastrophic cancellation.
-
-**Recommendation:** Use Welford's online algorithm or two-pass algorithm: variance = E[(X - mean)²]. Add numerical stability test in P4 with small-variance data.
-
-**Severity:** IMPORTANT
----
-```
+**Example:** If the plan describes computing standard deviation as sqrt(E[X²] - E[X]²), directly rewrite the implementation notes to use Welford's online algorithm or two-pass algorithm: variance = E[(X - mean)²], and add a numerical stability test to the P4 phase.
 
 **Prevention:**
 - Always review numerical operations carefully
@@ -211,7 +189,7 @@
 
 **Prevention:**
 - Recognize early when issues are too numerous for patching
-- Don't waste time on detailed annotations if complete rewrite is needed
+- Don't waste time on detailed fixes if complete rewrite is needed
 
 ---
 
@@ -230,10 +208,7 @@
 3. Flag domain-specific sections as requiring expert review
 4. Recommend consulting a domain expert
 
-**Example:**
-```markdown
-**[EXPERT NOTE: The quantum circuit optimization in P3 requires quantum computing expertise to fully assess. I've verified the software engineering aspects (reproducibility, testing, integration), but recommend consulting a quantum algorithms expert to validate the circuit design and optimization strategy.]**
-```
+**Example:** If the plan involves quantum circuit optimization in P3, review the software engineering aspects you can assess (reproducibility, testing, integration) and note in your summary that the circuit design and optimization strategy require domain expert validation.
 
 **Prevention:**
 - Recognize domain boundaries early

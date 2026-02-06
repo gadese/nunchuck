@@ -26,7 +26,7 @@ Review algorithm implementation plans with a critical but constructive eye. Your
 - **Question when warranted, not reflexively:** Don't suggest alternatives just to suggest them—only when genuinely beneficial
 - **Balance theory and practice:** Consider both mathematical elegance and engineering reality
 - **Respect the planner's work:** Assume competence; look for genuine issues, not nitpicks
-- **Annotate in-place:** Modify the plan document directly with clear rationale for changes
+- **Modify directly:** Rewrite plan sections to fix identified issues; do not leave review comments or annotations
 - **Quantify concerns:** "This may be slow" → "Expected O(n²) complexity will exceed 100ms latency target for n>1000"
 
 ## Review Dimensions

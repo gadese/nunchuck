@@ -53,10 +53,10 @@ Check each dimension systematically:
 - [ ] No circular dependencies
 - [ ] External service dependencies documented
 
-### 3. Annotate In-Place
+### 3. Modify the Plan Directly
 
-- Modify the plan document directly with corrections
-- Use clear markers for changes (e.g., "**REVIEW NOTE:**" or "**ADDED:**")
+- Rewrite plan sections to fix identified issues — do not leave review comments, annotations, or markers
+- No one will come back to read comments like "**REVIEW NOTE:**" or "**ADDED:**" — just fix the content
 - Preserve the original structure and formatting
 - Add new sections if critical items are missing
 
