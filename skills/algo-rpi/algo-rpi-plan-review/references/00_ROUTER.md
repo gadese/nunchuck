@@ -17,5 +17,5 @@ This skill is invoked when:
 ## Handoff
 
 **Input:** Algorithm implementation plan document path
-**Output:** Modified plan with expert review annotations and recommendations
+**Output:** Modified plan with issues directly fixed (clean document, no review markers)
 **Next Step:** Typically `algo-rpi-plan-reimagine` or `algo-rpi-implement`

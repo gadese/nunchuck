@@ -135,7 +135,7 @@ I understand your concern. Let me clarify why I flagged this:
 [Detailed explanation with specific examples]
 
 However, if you prefer to proceed with the current approach because [user's rationale], 
-I can remove that review note. What would you like to do?
+I can revert that change. What would you like to do?
 ```
 
 ## Recovery Strategies
@@ -159,7 +159,7 @@ If you realize you're being too pedantic:
 ### Unclear Plan Section
 
 If a section of the plan is ambiguous:
-1. Flag it clearly: "**REVIEW QUESTION:** This section is unclear. [Specific question]"
+1. Note the ambiguity in your summary and ask the user for clarification
 2. Do not assume or guess the intent
-3. Ask the user for clarification
-4. Continue reviewing other sections
+3. Continue reviewing other sections while waiting for clarification
+4. Once clarified, rewrite the section to fix the ambiguity

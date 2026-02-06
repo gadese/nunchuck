@@ -24,8 +24,8 @@ Acts as an AI/ML expert reviewer who evaluates algorithm implementation plans wi
 3. Checks for theoretical and practical concerns
 4. Identifies numerical stability risks
 5. Considers alternative algorithms when appropriate
-6. Annotates/modifies plan in-place with expert insights
-7. Presents changes with clear rationale
+6. Directly rewrites plan sections to fix identified issues
+7. Presents a summary of changes with rationale
 
 ## What It Does NOT Do
 
@@ -36,7 +36,7 @@ Acts as an AI/ML expert reviewer who evaluates algorithm implementation plans wi
 
 ## Output
 
-Modified plan document with expert annotations, corrections, and recommendations. Changes are made in-place with clear rationale for each modification.
+Modified plan document with issues directly fixed. The plan reads as a clean, improved document — no review comments or annotations are left behind. A summary of changes with rationale is presented in chat.
 
 ## Invocation
 

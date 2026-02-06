@@ -21,7 +21,7 @@ Review implementation plans to ensure they:
 - **Be Specific**: Reference exact sections of the plan with line numbers
 - **Be Practical**: Focus on issues that matter; don't nitpick trivial details
 - **Be Thorough**: Review all dimensions (edge cases, errors, performance, security, maintainability)
-- **Soft Corrections**: Annotate and improve the plan in-place rather than rejecting it
+- **Direct Fixes**: Rewrite and improve plan sections to fix identified issues rather than leaving comments or rejecting the plan
 
 ## Review Dimensions
 

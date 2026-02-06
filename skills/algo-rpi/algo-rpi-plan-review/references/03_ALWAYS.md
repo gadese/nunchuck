@@ -12,9 +12,9 @@
 
 - **Apply the expert review checklist systematically** — Cover all six review dimensions (see below)
 
-- **Annotate changes in-place** — Modify the plan document directly with clear markers for changes
+- **Modify the plan directly** — Rewrite and improve plan sections to address identified issues; do not leave review comments or annotations
 
-- **Provide rationale for every change** — Explain WHY each modification is needed, not just WHAT changed
+- **Provide rationale in the summary** — When presenting your summary to the user, explain WHY each modification was made
 
 - **Quantify concerns** — Use specific numbers, complexity bounds, or measurable criteria
 
@@ -85,41 +85,27 @@ Apply this checklist systematically to every plan:
 - [ ] Can results be reproduced from the artifacts (configs, seeds, data hashes)?
 - [ ] Is hardware configuration documented (CPU/GPU model, memory)?
 
-## Change Annotation Format
+## How to Modify the Plan
 
-When modifying the plan, use this format:
+When you identify an issue, **directly rewrite the affected section** to fix it. Do not leave review comments, annotations, or markers in the plan — no one will come back to read them. The plan must be a clean, improved document after your review.
 
+For example, if the plan says:
 ```markdown
-## Original Section
-
-[Original text]
-
----
-**EXPERT REVIEW:** [Brief issue description]
-
-**Rationale:** [Why this is a problem - quantify if possible]
-
-**Recommendation:** [Specific change or alternative]
-
-**Severity:** [CRITICAL | IMPORTANT | SUGGESTION]
----
-
-## Revised Section
-
-[Modified text incorporating the recommendation]
+- **Algorithm:** Bubble sort
+- **Complexity:** O(n²) time, O(1) space
 ```
 
-For minor edits, inline annotations are acceptable:
-
+Do NOT add a comment like `**[EXPERT: This is too slow]**`. Instead, rewrite the section:
 ```markdown
-- Latency target: 50ms **[EXPERT: Unrealistic for O(n²) algorithm with n>1000; suggest 200ms or O(n log n) algorithm]**
+- **Algorithm:** Timsort (Python built-in `sorted()`)
+- **Complexity:** O(n log n) time, O(n) space
+- **Rationale:** Achieves 50ms latency target while remaining simple (built-in function)
 ```
 
 ## Critical Issue Escalation
 
 If you identify a **CRITICAL** issue that would prevent successful implementation:
 
-1. Mark it clearly with **CRITICAL** severity
-2. Explain the blocker concretely
-3. Provide at least one viable alternative
-4. Recommend pausing implementation until resolved
+1. Fix it directly in the plan by rewriting the affected section
+2. If the fix requires a user decision (e.g., choosing between two valid approaches), note this in your summary and ask the user
+3. If the issue is fundamental enough that the plan needs a complete rethink, recommend `algo-rpi-plan-reimagine` instead

@@ -18,7 +18,7 @@ Use this skill when you need to:
 - **Critical review**: Examines plans with a staff engineer's eye for detail
 - **Blind spot detection**: Identifies missing considerations and edge cases
 - **Best practices**: Suggests improvements aligned with coding standards
-- **Soft corrections**: Annotates plans in-place rather than rejecting them
+- **Direct fixes**: Rewrites plan sections to fix issues rather than leaving comments or rejecting them
 - **Constructive feedback**: Provides actionable suggestions for improvement
 
 ## Example Invocation
@@ -33,8 +33,8 @@ and identify any blind spots or missing considerations"
 The skill will:
 1. Read the plan document thoroughly
 2. Identify issues across multiple dimensions (edge cases, error handling, performance, security, maintainability)
-3. Annotate or modify the plan in-place with corrections
-4. Present the modified plan with a summary of changes
+3. Directly rewrite plan sections to fix identified issues
+4. Present a summary of changes made
 
 ## Review Dimensions
 
@@ -49,7 +49,7 @@ The review examines plans across these dimensions:
 ## Output
 
 - **Location**: Modifies the original plan file in-place
-- **Format**: Annotated plan with inline corrections and suggestions
+- **Format**: Clean, improved plan with issues directly fixed (no review markers left behind)
 - **Summary**: Brief explanation of key changes made
 
 ## Integration with R-P-I Workflow

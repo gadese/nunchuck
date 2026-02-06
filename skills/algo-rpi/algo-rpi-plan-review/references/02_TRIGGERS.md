@@ -45,7 +45,7 @@ Before starting this skill, ensure:
 
 ## Output Expectations
 
-- Modified plan document with expert annotations
-- Clear rationale for each change or suggestion
+- Modified plan document with issues directly fixed (clean document, no review markers)
+- Summary in chat with rationale for each change made
 - Identification of any critical issues that block implementation
 - Recommendations for algorithm alternatives (if warranted)

@@ -85,23 +85,22 @@ Review the plan across all dimensions. For each dimension, ask:
 
 **Action**: Note any missing dependencies.
 
-### Step 3: Annotate the Plan
+### Step 3: Modify the Plan
 
 1. **Open the Plan for Editing**
    - Use the edit tool to modify the plan document
 
-2. **Add Review Notes**
-   - For each issue found, add a note in the relevant section
-   - Use clear markers like "**REVIEW NOTE:**" or "**ADDED:**"
-   - Be specific about what's missing and why it matters
+2. **Rewrite Sections to Fix Issues**
+   - For each issue found, directly rewrite the relevant section to address it
+   - Do NOT leave review comments, annotations, or markers (e.g., "**REVIEW NOTE:**" or "**ADDED:**") — no one will read them
+   - The plan should read as a clean, improved document after your edits
 
 3. **Add Missing Sections**
-   - If critical items are completely missing, add new sections
-   - Example: If error handling is not mentioned, add an "Error Handling Strategy" subsection
+   - If critical items are completely missing, add new sections with the actual content
+   - Example: If error handling is not mentioned, add an "Error Handling Strategy" subsection with the concrete strategy
 
 4. **Preserve Structure**
    - Keep the original plan structure intact
-   - Add annotations inline rather than rewriting sections
    - Maintain the original formatting and style
 
 ### Step 4: Summarize Changes
@@ -143,7 +142,7 @@ After modifying the plan, provide a summary in chat:
 
 **Next Steps:**
 [If proceeding] The plan has been updated and is ready for implementation.
-[If needs revision] Please review the annotated sections and provide guidance on [specific issues].
+[If needs revision] Please review the changes and provide guidance on [specific issues].
 [If critical] The following issues must be resolved: [list critical issues].
 ```
 
@@ -153,7 +152,7 @@ After modifying the plan, provide a summary in chat:
 - If recommendation is "Needs revision" or "Critical issues", wait for user guidance
 - Do not automatically proceed to the next phase
 
-## Example Annotation
+## Example Modification
 
 **Before:**
 ```markdown
@@ -165,24 +164,22 @@ After modifying the plan, provide a summary in chat:
 3. Return error if invalid
 ```
 
-**After:**
+**After (directly rewritten — no review markers):**
 ```markdown
 ### Phase 2: Add User Validation
 
-**REVIEW NOTE:** Consider edge cases and error handling
-
 **Implementation Steps:**
 1. Create validation function
-   - **ADDED:** Handle null/undefined inputs
-   - **ADDED:** Validate email format with regex
-   - **ADDED:** Check username length (min 3, max 50 chars)
+   - Handle null/undefined inputs
+   - Validate email format with regex
+   - Check username length (min 3, max 50 chars)
 2. Call validation in API endpoint
-   - **ADDED:** Wrap in try-catch for validation errors
+   - Wrap in try-catch for validation errors
 3. Return error if invalid
-   - **ADDED:** Return 400 status with descriptive error message
-   - **ADDED:** Log validation failures for monitoring
+   - Return 400 status with descriptive error message
+   - Log validation failures for monitoring
 
-**ADDED: Error Handling:**
+**Error Handling:**
 - Validation errors return 400 with `{"error": "validation_failed", "details": [...]}`
 - Unexpected errors return 500 and are logged
 - All errors include request ID for tracing
@@ -194,8 +191,8 @@ Before completing the review, verify:
 
 - [ ] Read entire plan document
 - [ ] Reviewed all 6 dimensions (edge cases, errors, performance, security, maintainability, dependencies)
-- [ ] Annotated plan with specific, actionable feedback
-- [ ] Added missing sections if critical items were absent
+- [ ] Directly rewrote plan sections to fix identified issues (no review markers left behind)
+- [ ] Added missing sections with concrete content if critical items were absent
 - [ ] Preserved original plan structure
 - [ ] Provided summary with recommendation
 - [ ] Identified any questions requiring user decision

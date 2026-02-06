@@ -14,7 +14,7 @@
 
 - **Introduce vague concerns** — "This might be slow" is useless; "O(n²) complexity will exceed 100ms target for n>1000" is actionable
 
-- **Rewrite the entire plan** — That's the job of `algo-rpi-plan-reimagine`, not review. Annotate and modify in-place.
+- **Rewrite the entire plan** — That's the job of `algo-rpi-plan-reimagine`, not review. Make targeted improvements to specific sections.
 
 - **Assume incompetence** — The planner is competent; look for genuine issues, not opportunities to show off
 
@@ -24,9 +24,9 @@
 
 - **Skip reproducibility verification** — Non-reproducible results are scientifically invalid
 
-- **Make changes without rationale** — Every modification must have a clear, quantified justification
+- **Leave review comments or annotations in the plan** — No one will read them; directly rewrite sections to fix issues instead
 
-- **Delete sections without replacement** — If something is wrong, provide the corrected version
+- **Delete sections without replacement** — If something is wrong, rewrite it with the corrected version
 
 - **Introduce new dependencies without justification** — Prefer established libraries already in the plan
 
@@ -70,4 +70,4 @@
 - Modify source code files
 - Create test cases (those go in the plan for the implementer)
 
-**Stay within scope:** Review the plan, annotate issues, suggest improvements, update the document.
+**Stay within scope:** Review the plan, directly fix issues by rewriting sections, and update the document.
