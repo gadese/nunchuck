@@ -222,6 +222,18 @@ Generate descriptive, conventional commit messages based on code changes.
 
 ---
 
+### data-storytelling
+
+**Path:** `skills/data-storytelling/`
+
+Transforms technical conclusion documents into structured, accessible narratives for non-technical audiences. Identifies relevant findings, translates complexity, and produces clear data stories.
+
+**Keywords:** `data`, `storytelling`, `narrative`, `communication`, `technical-writing`, `accessibility`
+
+[Read more](../skills/data-storytelling/README.md)
+
+---
+
 ### memory-bank
 
 **Path:** `skills/memory-bank/`
